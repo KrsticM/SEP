@@ -1,0 +1,23 @@
+.landing__container {
+  display: flex;
+  height: 90vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing__logo {
+  max-width: 350px;
+  width: 100%;
+}
+
+.landing__buttons {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  max-width: 300px;
+}
+
+.landing__container .MuiButtonBase-root {
+  margin: 10px;
+}

@@ -1,0 +1,41 @@
+.signup__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px;
+  height: 80vh;
+}
+
+.signup__logo {
+  max-height: 150px;
+  width: auto;
+}
+
+.form__container {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  max-width: 400px;
+  padding: 50px;
+  -webkit-box-shadow: -1px 7px 22px 6px rgba(0,0,0,0.19);
+  -moz-box-shadow: -1px 7px 22px 6px rgba(0,0,0,0.19);
+  box-shadow: -1px 7px 22px 6px rgba(0,0,0,0.19);
+}
+
+.form__container .MuiTextField-root {
+  margin: 5px;
+}
+
+.form__container .MuiButtonBase-root {
+  margin-top: 60px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.signup__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
