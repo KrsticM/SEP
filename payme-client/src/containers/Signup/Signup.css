@@ -21,6 +21,7 @@
   -webkit-box-shadow: -1px 7px 22px 6px rgba(0,0,0,0.19);
   -moz-box-shadow: -1px 7px 22px 6px rgba(0,0,0,0.19);
   box-shadow: -1px 7px 22px 6px rgba(0,0,0,0.19);
+  background: white;
 }
 
 .form__container .MuiTextField-root {

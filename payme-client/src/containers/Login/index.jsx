@@ -2,9 +2,8 @@ import React from 'react';
 import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import './Signup.css';
 
-function Signup() {
+function Login() {
   return (
     <div className="signup__container">
       <Link href="/">
@@ -15,30 +14,19 @@ function Signup() {
       </Link>
       <form className="form__container">
         <TextField
-          label="First name"
-          required
-        />
-        <TextField
-          label="Last name"
-          required
-        />
-        <TextField
-          label="Organization name"
-        />
-        <TextField
           label="Email"
           required
         />
         <TextField
-          label="Website"
+          label="Password"
           required
         />
         <div className="signup__actions">
           <Button variant="contained" color="primary">
-            Register
+            Login
           </Button>
-          <Link href="/login">
-            Have an account? Log in
+          <Link href="/signup">
+            Don't have an account? Register
           </Link>
         </div>
       </form>
@@ -46,4 +34,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default Login;
