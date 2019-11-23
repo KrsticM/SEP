@@ -1,5 +1,6 @@
 package tim18.ftn.uns.ac.rs.paymentconcentrator.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +12,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import tim18.ftn.uns.ac.rs.paymentconcentrator.dto.RegistrationDTO;
+import tim18.ftn.uns.ac.rs.paymentconcentrator.dto.auth.AuthenticationRequest;
+import tim18.ftn.uns.ac.rs.paymentconcentrator.dto.auth.AuthenticationResponse;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.model.User;
+import tim18.ftn.uns.ac.rs.paymentconcentrator.service.AuthenticationService;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.service.RegistrationService;
 
 @RestController
 @RequestMapping("/auth")
-public class RegistrationController {
+public class AuthentificationController {
 
 	@Autowired
 	private RegistrationService registrationService;
+	
+	@Autowired
+	private AuthenticationService authenticationService;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> registerUser(@RequestBody @Valid RegistrationDTO registrationDTO) {
@@ -28,5 +35,11 @@ public class RegistrationController {
 		return ResponseEntity.ok(user);
 	}
 	
+	@RequestMapping(value = "/login", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<AuthenticationResponse> login(@RequestBody @Valid AuthenticationRequest authenticationRequest, HttpServletRequest request){		
+		String token = authenticationService.login(authenticationRequest.getEmail(), authenticationRequest.getPassword(), request);
+		AuthenticationResponse response = new AuthenticationResponse(token);
+		return ResponseEntity.ok(response);
+	}
 
 }

@@ -23,7 +23,7 @@ public class PaymentController {
 	@GetMapping("/{method}")
 	public String test(@PathVariable("method") String method) {
 
-		String result = restTemplate.getForObject("https://" + method + "/printMe", String.class);
+		String result = restTemplate.getForObject("http://" + method + "/printMe", String.class);
 
 		return result;
 	}
@@ -34,5 +34,6 @@ public class PaymentController {
 		allServices.remove("payment-concentrator");
 		return allServices;
 	}
-
+	
+	
 }
