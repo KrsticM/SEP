@@ -89,12 +89,22 @@ public class RegistrationDTO {
 	}
 
 	public PersonalUser createPersonalUser() {
-		// TODO Auto-generated method stub
-		return null;
+		PersonalUser ret = new PersonalUser();
+		ret.setEmail(this.email);
+		ret.setFirstName(this.firstName);
+		ret.setLastName(this.lastName);
+		ret.setOrganizationName(this.organizationName);
+		ret.setWebsite(this.website);
+		return ret;
 	}
 
 	public EnterpriseUser createEnterpriseUser() {
-		// TODO Auto-generated method stub
-		return null;
+		EnterpriseUser ret = new EnterpriseUser();
+		ret.setEmail(this.email);
+		ret.setFirstName(this.firstName);
+		ret.setLastName(this.lastName);
+		ret.setOrganizationName(this.organizationName);
+		ret.setWebsite(this.website);
+		return ret;
 	}
 }

@@ -26,8 +26,10 @@ public class AuthorityService {
 		Optional<Authority> authority = authorityRepository.findByName(name);
 		if (authority.isPresent()) {
 			ret = authority.get();
+			System.out.println("autoriti pronadjen");
 		} else {
 			ret = saveAuthority(name);
+			System.out.println("Autoriri ne postoji dodavanje novog");
 		}
 		return ret;
 	}

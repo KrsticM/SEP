@@ -145,4 +145,15 @@ public abstract class User {
 		return authorities;
 	}
 
+	public User(User user) {
+		this.id = user.getId();
+		this.email = user.getEmail();
+		this.password = user.getPassword();
+		this.authorities = user.getUserAuthorities();
+		this.firstName = user.getFirstName();
+		this.lastName = user.getLastName();
+		this.organizationName = user.getOrganizationName();
+		this.website = user.getWebsite();		
+	}
+
 }
