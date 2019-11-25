@@ -26,9 +26,10 @@ public class PaymentController {
 	@GetMapping("/{method}")
 	public String test(@PathVariable("method") String method) {
 
-		String result = restTemplate.getForObject("http://" + method + "/printMe", String.class);
+		String result = restTemplate.getForObject("https://" + method + "/printMe", String.class);
 
 		return result;
+		
 	}
 	
 	@GetMapping("/form/{method}")
