@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -32,7 +35,7 @@ const requiredFields = [
   }
 ];
 
-function Signup() {
+function Signup(props) {
   const [state, setState] = useState({
     firstName: '',
     lastName: '',
@@ -73,12 +76,24 @@ function Signup() {
     return isValid;
   };
 
-  const handleRegistration = (event) => {
+  const handleRegistration = async (event) => {
     event.preventDefault();
     if (!validateForm()) {
       return;
     }
-    // handle registration afterwards
+    try {
+      const { data, status } = await axios.post('http://localhost:8100/auth/register', state);
+      if (status !== 200) {
+        toast.error('Something went wrong');
+        return;
+      }
+      toast.success('Registration successful! You can now log into your account.');
+      props.history.replace('/login');
+    } catch (error) {
+      toast.error(error.message || 'Unspecified error occured', {
+        autoClose: 3000,
+      });
+    }
   };
 
   return (
@@ -98,8 +113,13 @@ function Signup() {
               name={field.value}
               value={state[field.value]}
               error={errors[field.value]}
+              helperText={errors[field.value]}
               onChange={handleChange}
               required
+              type={(field.value === "password")
+                ? 'password'
+                : 'text'
+              }
             />
           ))
         }
@@ -126,4 +146,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default withRouter(Signup);

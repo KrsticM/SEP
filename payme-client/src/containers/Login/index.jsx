@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
+import { withRouter } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-function Login() {
+function Login(props) {
   const [state, setState] = useState({
     email: '',
     password: ''
   });
 
   const [errors, setErrors] = useState({});
-
   const handleChange = (event) => {
     const { name, value } = event.target;
     setState({
@@ -40,12 +42,25 @@ function Login() {
     return isValid;
   };
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
     if (!validateForm()) {
       return;
     }
-    // handle login afterwards
+    try {
+      const { data, status } = await axios.post('http://localhost:8100/auth/login', state);
+      if (!data.token || status !== 200) {
+        toast.error('Something went wrong');
+        return;
+      }
+      toast.success('Login successful!');
+      sessionStorage.setItem('authUser', data.token);
+      props.history.replace('/');
+    } catch (error) {
+      toast.error(error.message || 'Unspecified error occured', {
+        autoClose: 3000,
+      });
+    }
   };
 
   return (
@@ -63,6 +78,7 @@ function Login() {
           value={state.email}
           onChange={handleChange}
           error={errors.email}
+          helperText={errors.email}
           required
         />
         <TextField
@@ -71,7 +87,9 @@ function Login() {
           value={state.password}
           onChange={handleChange}
           error={errors.password}
+          helperText={errors.password}
           required
+          type="password"
         />
         <div className="signup__actions">
           <Button
@@ -90,4 +108,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default withRouter(Login);

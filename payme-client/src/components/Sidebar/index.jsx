@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
 
 function Sidebar() {
   const classes = useStyles();
+  const isLoggedIn = sessionStorage.getItem('auth');
   return (
     <Drawer
       className={classes.drawer}
@@ -45,6 +46,25 @@ function Sidebar() {
         </ListItem>
       </List>
       <Divider className={classes.divider} />
+      {
+        !isLoggedIn && (
+          <React.Fragment>
+            <List>
+              <ListItem>
+                <ListItemText className={classes.linkText}>
+                  My application
+                </ListItemText>
+              </ListItem>
+              <ListItem>
+                <ListItemText className={classes.linkText}>
+                  Payment methods
+                </ListItemText>
+              </ListItem>
+            </List>
+            <Divider className={classes.divider} />
+          </React.Fragment>
+        )
+      }
       <List>
         <ListItem>
           <ListItemText className={classes.linkText}>
