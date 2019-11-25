@@ -5,6 +5,10 @@ import { toast } from 'react-toastify';
 import Link from '@material-ui/core/Link';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+import Icon from '@material-ui/core/Icon';
 import './Signup.css';
 
 const AUTHORITY = {
@@ -62,6 +66,12 @@ function Signup(props) {
     }
   };
 
+  const selectAuthority = (type) => () => {
+    setState({
+      ...state,
+      authority: type
+    });
+  }
 
   const validateForm = () => {
     const validationErrors = {};
@@ -129,6 +139,27 @@ function Signup(props) {
           value={state.organizationName}
           onChange={handleChange}
         />
+        <FormControl component="fieldset">
+          <FormLabel required>Account type</FormLabel>
+          <ButtonGroup size="large">
+            <Button
+              variant="outlined"
+              color={(state.authority === AUTHORITY.PERSONAL) ? 'primary' : 'default'}
+              startIcon={<Icon>person</Icon>}
+              onClick={selectAuthority(AUTHORITY.PERSONAL)}
+            >
+              Personal
+            </Button>
+            <Button
+              variant="outlined"
+              color={(state.authority === AUTHORITY.ENTERPRISE) ? 'primary' : 'default'}
+              startIcon={<Icon>account_balance</Icon>}
+              onClick={selectAuthority(AUTHORITY.ENTERPRISE)}
+            >
+              Enterprise
+            </Button>
+          </ButtonGroup>
+        </FormControl>
         <div className="signup__actions">
           <Button
             variant="contained"
