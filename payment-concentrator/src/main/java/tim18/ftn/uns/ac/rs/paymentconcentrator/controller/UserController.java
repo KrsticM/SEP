@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tim18.ftn.uns.ac.rs.paymentconcentrator.exceptions.NotFoundException;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.service.PaymentMethodService;
+import tim18.ftn.uns.ac.rs.paymentconcentrator.service.UserService;
 
 @RestController
 @RequestMapping("/user")
@@ -24,10 +25,14 @@ public class UserController {
 	@Autowired
 	private PaymentMethodService paymentMethodService;
 
-	@GetMapping("/generate-token")
-	public UUID genrateToken() {
-
-		return null;
+	@Autowired
+	private UserService userService;
+	
+	@GetMapping("/regenerate-token")
+	public UUID genrateToken(@RequestHeader Map<String, String> headers) throws NotFoundException {
+		Integer userId = Integer.parseInt(headers.get("userId"));
+		System.out.println(headers.get("userId"));
+		return userService.regenerateToken(userId);
 	}
 
 	@PreAuthorize("hasAnyRole('PERSONAL', 'ENTERPRISE')")

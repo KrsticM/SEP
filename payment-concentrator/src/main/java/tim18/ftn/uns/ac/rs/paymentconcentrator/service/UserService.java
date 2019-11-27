@@ -1,6 +1,7 @@
 package tim18.ftn.uns.ac.rs.paymentconcentrator.service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,13 @@ public class UserService {
 		return user.get();
 	}
 	
+	public UUID regenerateToken(Integer id) throws NotFoundException {
+		
+		User u = findUserById(id);
+		UUID token = UUID.randomUUID();
+		u.setToken(token);
+		userRepository.save(u);	
+		return token;
+	}
 	
 }

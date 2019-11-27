@@ -46,7 +46,7 @@ public abstract class User {
 	@Column(nullable = false, unique = true)
 	protected String website;
 
-	@Column // TODO: dodati kasnije (nullable = false, unique = true)
+	@Column(nullable = false, unique = true)
 	protected UUID token;
 	
 	public User() {

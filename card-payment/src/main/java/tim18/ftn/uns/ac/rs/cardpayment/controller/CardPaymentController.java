@@ -11,4 +11,10 @@ public class CardPaymentController {
 		System.out.println("card payment");
 		return "Hello from card-payment microservice.";
 	}
+	
+	@GetMapping("/payTest")
+	public String payTest() {
+		System.out.println("Card payment test");
+		return "Hello from card-payment microservice TEST.";
+	}
 }
