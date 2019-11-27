@@ -3,8 +3,8 @@ package tim18.ftn.uns.ac.rs.paymentconcentrator.model;
 import static javax.persistence.DiscriminatorType.STRING;
 import static javax.persistence.InheritanceType.SINGLE_TABLE;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -110,8 +110,11 @@ public abstract class User {
 	}
 
 	@ManyToMany(fetch = FetchType.EAGER)
-	protected List<Authority> authorities;
+	protected Set<Authority> authorities;
 
+	@ManyToMany(fetch = FetchType.EAGER)
+	protected Set<PaymentMethod> methods; 
+	
 	public UUID getToken() {
 		return token;
 	}
@@ -145,15 +148,26 @@ public abstract class User {
 		return true;
 	}
 
-	public void setAuthorities(List<Authority> authorities) {
+	public void setAuthorities(Set<Authority> authorities) {
 		this.authorities = authorities;
 	}
 
-	public List<Authority> getUserAuthorities() {
+	public Set<Authority> getUserAuthorities() {
 		if (authorities == null) {
-			authorities = new ArrayList<>();
+			authorities = new HashSet<>();
 		}
 		return authorities;
+	}
+
+	public Set<PaymentMethod> getMethods() {
+		if (methods == null) {
+			methods = new HashSet<>();
+		}
+		return methods;
+	}
+
+	public void setMethods(Set<PaymentMethod> methods) {
+		this.methods = methods;
 	}
 
 	public User(User user) {
@@ -166,6 +180,7 @@ public abstract class User {
 		this.organizationName = user.getOrganizationName();
 		this.website = user.getWebsite();
 		this.token = user.getToken();
+		this.methods = user.getMethods();
 	}
 
 }

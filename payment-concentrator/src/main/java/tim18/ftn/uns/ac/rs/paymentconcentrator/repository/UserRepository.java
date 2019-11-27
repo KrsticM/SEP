@@ -8,4 +8,5 @@ import tim18.ftn.uns.ac.rs.paymentconcentrator.model.User;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
   Optional<User> findByEmail(String email);
+  Optional<User> findById(Integer id);
 }

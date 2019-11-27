@@ -1,8 +1,11 @@
 package tim18.ftn.uns.ac.rs.paymentconcentrator.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tim18.ftn.uns.ac.rs.paymentconcentrator.exceptions.NotFoundException;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.model.User;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.repository.UserRepository;
 
@@ -21,4 +24,14 @@ public class UserService {
 	public User saveUser(User user) {
 		return userRepository.save(user);
 	}
+	
+	public User findUserById(Integer id) throws NotFoundException {
+		Optional<User> user = userRepository.findById(id);
+		if (!user.isPresent()) {
+			throw new NotFoundException(id, User.class.getSimpleName());
+		}
+		return user.get();
+	}
+	
+	
 }
