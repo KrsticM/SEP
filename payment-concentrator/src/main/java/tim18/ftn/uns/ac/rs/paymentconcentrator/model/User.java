@@ -1,5 +1,12 @@
 package tim18.ftn.uns.ac.rs.paymentconcentrator.model;
 
+import static javax.persistence.DiscriminatorType.STRING;
+import static javax.persistence.InheritanceType.SINGLE_TABLE;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -10,13 +17,6 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import static javax.persistence.InheritanceType.SINGLE_TABLE;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static javax.persistence.DiscriminatorType.STRING;
 
 @Entity
 @Table(name = "users")
@@ -46,6 +46,9 @@ public abstract class User {
 	@Column(nullable = false, unique = true)
 	protected String website;
 
+	@Column // TODO: dodati kasnije (nullable = false, unique = true)
+	protected UUID token;
+	
 	public User() {
 		super();
 	}
@@ -109,6 +112,14 @@ public abstract class User {
 	@ManyToMany(fetch = FetchType.EAGER)
 	protected List<Authority> authorities;
 
+	public UUID getToken() {
+		return token;
+	}
+
+	public void setToken(UUID token) {
+		this.token = token;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -153,7 +164,8 @@ public abstract class User {
 		this.firstName = user.getFirstName();
 		this.lastName = user.getLastName();
 		this.organizationName = user.getOrganizationName();
-		this.website = user.getWebsite();		
+		this.website = user.getWebsite();
+		this.token = user.getToken();
 	}
 
 }

@@ -11,6 +11,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import tim18.ftn.uns.ac.rs.paymentconcentrator.dto.temp.MutableHttpServletRequest;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.dto.temp.TokenValidationResponse;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.service.AuthenticationService;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.service.CustomUserDetailsService;
@@ -31,18 +32,27 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		System.out.println("Izfiltrirano");
 		
+		MutableHttpServletRequest mutableRequest = new MutableHttpServletRequest(request);
+		
 		String authHeader = request.getHeader("Authorization");
 		if (authHeader != null && authHeader.startsWith("Bearer ")) {
 			
 			TokenValidationResponse retValue = authenticationService.validateToken(authHeader);
+			
 			String email = retValue.getEmail();
 			if(email != null) {
 				UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
 				AuthenticationData authentication = new AuthenticationData(userDetails);
 				SecurityContextHolder.getContext().setAuthentication(authentication);
+				
+				System.out.println("postavljamo header userId: " + retValue.getUserId());
+			    
+			    mutableRequest.putHeader("userId", retValue.getUserId().toString());
+		       
+				
 			}
 		}
-		filterChain.doFilter(request, response);
+		filterChain.doFilter(mutableRequest, response);
 
 	}
 

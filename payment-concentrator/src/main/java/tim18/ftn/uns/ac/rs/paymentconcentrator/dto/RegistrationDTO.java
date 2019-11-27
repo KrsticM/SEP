@@ -1,5 +1,7 @@
 package tim18.ftn.uns.ac.rs.paymentconcentrator.dto;
 
+import java.util.UUID;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
@@ -95,6 +97,7 @@ public class RegistrationDTO {
 		ret.setLastName(this.lastName);
 		ret.setOrganizationName(this.organizationName);
 		ret.setWebsite(this.website);
+		ret.setToken(UUID.randomUUID());
 		return ret;
 	}
 
@@ -105,6 +108,7 @@ public class RegistrationDTO {
 		ret.setLastName(this.lastName);
 		ret.setOrganizationName(this.organizationName);
 		ret.setWebsite(this.website);
+		ret.setToken(UUID.randomUUID());
 		return ret;
 	}
 }
