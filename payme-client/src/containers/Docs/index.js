@@ -1,12 +1,11 @@
 import React from 'react';
-import Sidebar from '../../components/Sidebar';
+import withSidebar from '../../components/Sidebar/withSidebar';
 
 function Docs() {
   return (
     <div>
-      <Sidebar />
     </div>
   );
 }
 
-export default Docs;
+export default withSidebar(Docs);

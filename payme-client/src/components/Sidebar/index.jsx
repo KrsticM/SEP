@@ -1,10 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Link from '@material-ui/core/Link';
 import Drawer from '@material-ui/core/Drawer';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import './Sidebar.css';
 
 const drawerWidth = 240;
 
@@ -40,9 +42,11 @@ function Sidebar() {
     >
       <List>
         <ListItem>
-          <ListItemText className={classes.linkText}>
-            Get started
-          </ListItemText>
+          <Link href="/documentation">
+            <ListItemText className={classes.linkText}>
+              Get started
+            </ListItemText>
+          </Link>
         </ListItem>
       </List>
       <Divider className={classes.divider} />
@@ -56,9 +60,22 @@ function Sidebar() {
                 </ListItemText>
               </ListItem>
               <ListItem>
-                <ListItemText className={classes.linkText}>
-                  Payment methods
-                </ListItemText>
+                <List>
+                  <ListItem>
+                    <Link href="/settings/payment_methods">
+                      <ListItemText className={classes.linkText}>
+                        Payment methods
+                      </ListItemText>
+                    </Link>
+                  </ListItem>
+                  <ListItem>
+                    <Link href="/settings/generate_token">
+                      <ListItemText className={classes.linkText}>
+                        Settings
+                      </ListItemText>
+                    </Link>
+                  </ListItem>
+                </List>
               </ListItem>
             </List>
             <Divider className={classes.divider} />
