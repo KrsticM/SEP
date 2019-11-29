@@ -5,9 +5,9 @@ import static javax.persistence.InheritanceType.SINGLE_TABLE;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import tim18.ftn.uns.ac.rs.paymentconcentrator.config.StringConverter;
 
 @Entity
 @Table(name = "users")
@@ -46,8 +48,9 @@ public abstract class User {
 	@Column(nullable = false, unique = true)
 	protected String website;
 
+	@Convert(converter = StringConverter.class)
 	@Column(nullable = false, unique = true)
-	protected UUID token;
+	protected String token;
 	
 	public User() {
 		super();
@@ -115,11 +118,11 @@ public abstract class User {
 	@ManyToMany(fetch = FetchType.EAGER)
 	protected Set<PaymentMethod> methods; 
 	
-	public UUID getToken() {
+	public String getToken() {
 		return token;
 	}
 
-	public void setToken(UUID token) {
+	public void setToken(String token) {
 		this.token = token;
 	}
 

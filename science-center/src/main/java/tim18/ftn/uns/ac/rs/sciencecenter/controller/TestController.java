@@ -20,7 +20,7 @@ public class TestController {
 	
 	@GetMapping("/test")
 	public ResponseEntity<?> test() {
-		String api_key = "33ed0102-5555-4e61-a18d-7dcb3fe918ca";
+		String api_key = "e5dc259c-2e64-4ac5-bec2-984351c28cfe";
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));        

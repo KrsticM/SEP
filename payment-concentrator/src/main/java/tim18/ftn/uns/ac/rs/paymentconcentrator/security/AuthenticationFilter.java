@@ -36,6 +36,7 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 		MutableHttpServletRequest mutableRequest = new MutableHttpServletRequest(request);
 		
 		String authHeader = request.getHeader("Authorization");
+		System.out.println("authHeader: " + authHeader);
 		if (authHeader != null && authHeader.startsWith("Bearer ")) {
 			
 			TokenValidationResponse retValue = authenticationService.validateToken(authHeader);

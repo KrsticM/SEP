@@ -34,10 +34,10 @@ public class UserService {
 		return user.get();
 	}
 	
-	public UUID regenerateToken(Integer id) throws NotFoundException {
+	public String regenerateToken(Integer id) throws NotFoundException {
 		
 		User u = findUserById(id);
-		UUID token = UUID.randomUUID();
+		String token = UUID.randomUUID().toString();
 		u.setToken(token);
 		userRepository.save(u);	
 		return token;

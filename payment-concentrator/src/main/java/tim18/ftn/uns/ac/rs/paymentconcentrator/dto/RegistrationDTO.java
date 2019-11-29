@@ -97,7 +97,7 @@ public class RegistrationDTO {
 		ret.setLastName(this.lastName);
 		ret.setOrganizationName(this.organizationName);
 		ret.setWebsite(this.website);
-		ret.setToken(UUID.randomUUID());
+		ret.setToken(UUID.randomUUID().toString());
 		return ret;
 	}
 
@@ -108,7 +108,7 @@ public class RegistrationDTO {
 		ret.setLastName(this.lastName);
 		ret.setOrganizationName(this.organizationName);
 		ret.setWebsite(this.website);
-		ret.setToken(UUID.randomUUID());
+		ret.setToken(UUID.randomUUID().toString());
 		return ret;
 	}
 }
