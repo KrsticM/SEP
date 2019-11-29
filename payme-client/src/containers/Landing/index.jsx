@@ -6,7 +6,7 @@ import './Landing.css';
 function Landing(props) {
 
   const handleViewDocumentation = () => {
-    props.history.push('/documentation');
+    props.history.push('/get_started');
   };
 
   const handleGoToDashboard = () => {
@@ -14,7 +14,7 @@ function Landing(props) {
     if (!jwt) {
       props.history.push('/login');
     } else {
-      props.history.push('/dashboard');
+      props.history.push('/get_started');
     }
   };
 

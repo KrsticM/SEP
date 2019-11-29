@@ -46,7 +46,7 @@ function GenerateToken(props) {
   };
 
   return (
-    <Card className="token__container">
+    <Card className="card__container token__container">
       <CardContent>
         <Typography variant="h5" component="h2" color="primary">
           {"Generate new API key"}

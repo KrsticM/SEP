@@ -55,7 +55,7 @@ function Login(props) {
       }
       toast.success('Login successful!');
       sessionStorage.setItem('authUser', data.token);
-      props.history.replace('/');
+      props.history.replace('/get_started');
     } catch (error) {
       toast.error(error.message || 'Unspecified error occured', {
         autoClose: 3000,

@@ -61,7 +61,7 @@ function Router() {
   return (
     <AppRouter>
       <Switch>
-        <Route path="/documentation" component={Documentation} />
+        <Route path="/get_started" component={Documentation} />
         <AuthRoute path="/signup">
           <Signup />
         </AuthRoute>

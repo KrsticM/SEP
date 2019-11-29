@@ -1,19 +1,32 @@
-.token__container {
-  width: 70%;
+.card__container {
   padding: 10px;
 }
 
-.token__container h2 {
+.token__container {
+  width: 70%;
+}
+
+.card__container h2 {
   margin-left: 30px;
 }
 
-.token__container p {
+.card__container p {
   margin-left: 10px;
   line-height: 20px;
   font-size: 15px;
 }
 
-.token__container .MuiCardActions-root {
+.card__container .MuiCardActions-root {
   padding: 20px 40px;
   justify-content: flex-end;
+}
+
+.card__container .MuiListItemSecondaryAction-root .MuiButton-root {
+  margin-left: 20px;
+}
+
+.card__container .MuiListItem-root {
+  padding: 15px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  align-items: center;
 }
