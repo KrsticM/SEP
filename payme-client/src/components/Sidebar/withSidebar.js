@@ -1,12 +1,16 @@
 import React from 'react';
 import Sidebar from '../Sidebar';
+import AppBar from '../AppBar';
 
-function withSidebar(children) {
-  return () => (
+function withSidebar(ComposedComponent) {
+  return (props) => (
     <React.Fragment>
       <Sidebar />
+      <AppBar />
       <div className="withsidebar_layout">
-        {children}
+        <ComposedComponent
+          {...props}
+        />
       </div>
     </React.Fragment>
   );

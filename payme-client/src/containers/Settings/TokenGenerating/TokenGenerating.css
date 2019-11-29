@@ -2,7 +2,7 @@
   padding: 10px;
 }
 
-.token__container {
+.smaller__container {
   width: 70%;
 }
 
@@ -29,4 +29,12 @@
   padding: 15px;
   border-bottom: 1px solid rgba(0,0,0,0.1);
   align-items: center;
+}
+
+.card__button {
+  margin: 20px 80px;
+}
+
+.card__button .MuiButton-root {
+  width: 100%;
 }

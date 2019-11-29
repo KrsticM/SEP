@@ -6,3 +6,22 @@
   height: 100vh;
   z-index: -1;
 }
+
+.payme__appbar .MuiPaper-root {
+  box-shadow: none;
+  background: transparent;
+}
+
+
+.payme__appbar .MuiToolbar-root {
+  justify-content: flex-end;
+}
+
+.payme__appbar .MuiToolbar-root .MuiButton-root {
+  margin-left: 30px;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}

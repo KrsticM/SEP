@@ -30,7 +30,11 @@ const useStyles = makeStyles(theme => ({
 
 function Sidebar() {
   const classes = useStyles();
-  const isLoggedIn = sessionStorage.getItem('auth');
+  const isLoggedIn = sessionStorage.getItem('authUser');
+  const handleLogout = () => {
+    sessionStorage.removeItem('authUser');
+    window.location.reload();
+  }
   return (
     <Drawer
       className={classes.drawer}
@@ -42,7 +46,7 @@ function Sidebar() {
     >
       <List>
         <ListItem>
-          <Link href="/documentation">
+          <Link href="/get_started">
             <ListItemText className={classes.linkText}>
               Get started
             </ListItemText>
@@ -51,7 +55,7 @@ function Sidebar() {
       </List>
       <Divider className={classes.divider} />
       {
-        !isLoggedIn && (
+        !!isLoggedIn && (
           <React.Fragment>
             <List>
               <ListItem>
@@ -60,7 +64,7 @@ function Sidebar() {
                 </ListItemText>
               </ListItem>
               <ListItem>
-                <List>
+                <List disablePadding>
                   <ListItem>
                     <Link href="/settings/payment_methods">
                       <ListItemText className={classes.linkText}>
@@ -84,11 +88,27 @@ function Sidebar() {
       }
       <List>
         <ListItem>
-          <ListItemText className={classes.linkText}>
-            API References
-          </ListItemText>
+          <Link href="/documentation">
+            <ListItemText className={classes.linkText}>
+              API References
+            </ListItemText>
+          </Link>
         </ListItem>
       </List>
+      {
+        !!isLoggedIn && (
+          <div className="sidebar__signout">
+            <List>
+              <ListItem onClick={handleLogout}>
+
+                  <ListItemText className={classes.linkText}>
+                    Log out
+                  </ListItemText>
+              </ListItem>
+            </List>
+          </div>
+        )
+      }
     </Drawer>
   );
 }

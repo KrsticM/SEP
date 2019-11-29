@@ -8,7 +8,8 @@ import {
 
 import Sidebar from './components/Sidebar';
 import Landing from './containers/Landing';
-import Documentation from './containers/Docs';
+import GettingStarted from './containers/Docs';
+import ApiRefs from './containers/Docs/ApiRefs';
 import Signup from './containers/Signup';
 import Login from './containers/Login';
 import PaymentServices from './containers/Settings/PaymentServices';
@@ -61,7 +62,8 @@ function Router() {
   return (
     <AppRouter>
       <Switch>
-        <Route path="/get_started" component={Documentation} />
+        <Route path="/get_started" component={GettingStarted} />
+        <Route path="/documentation" component={ApiRefs} />
         <AuthRoute path="/signup">
           <Signup />
         </AuthRoute>

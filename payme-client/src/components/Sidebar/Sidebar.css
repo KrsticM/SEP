@@ -2,3 +2,9 @@
   margin-left: 240px;
   padding: 20px;
 }
+
+.sidebar__signout {
+  position: absolute;
+  bottom: 0;
+  cursor: pointer;
+}
