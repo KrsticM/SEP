@@ -20,16 +20,16 @@ public class TestController {
 	
 	@GetMapping("/test")
 	public ResponseEntity<?> test() {
-		String authToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJKZWxlbmFAZ21haWwuY29tIiwiYXVkaWVuY2UiOiJ1bmtub3duIiwiY3JlYXRlZCI6MTU3NDg4OTQ3NDI2Miwicm9sZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfUEVSU09OQUwifV0sImV4cCI6MTU3NDk3NTg3NH0.ywuv6KWD08pROuoNpQ9dqsZtGfjx7SX7H_-xBz-eq0ltKadctgTvek7u8QJdFhJ44bhnMxqAy6qYFJNZSjHBOw";
+		String api_key = "33ed0102-5555-4e61-a18d-7dcb3fe918ca";
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));        
 	    headers.add("User-Agent", "Spring's RestTemplate" );  // value can be whatever
-	    headers.add("Authorization", "Bearer "+authToken );
+	    headers.add("Authorization", api_key );
 	    
 	    HttpEntity entity = new HttpEntity(headers);
 
-	    String url = "http://localhost:8100/payment/pay/6167cb01-a67c-4ec7-8acc-72c7449f4d35/paypal-payment";
+	    String url = "http://localhost:8100/payment/pay/paypal-payment";
 	    ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
 		return response;
 	}
