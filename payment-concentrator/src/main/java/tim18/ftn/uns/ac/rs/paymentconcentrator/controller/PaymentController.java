@@ -48,8 +48,8 @@ public class PaymentController {
 	}
 	
 	// Metoda koja ce vrsiti placanje
-	@RequestMapping(value = "/pay/{token}/{method}", method = RequestMethod.GET) // TODO: Bice POST
-	public ResponseEntity<?> pay(@PathVariable("token") UUID token, @PathVariable("method") String method) {
+	@RequestMapping(value = "/pay/{method}", method = RequestMethod.GET) // TODO: Bice POST
+	public ResponseEntity<?> pay(@PathVariable("method") String method) {
 		
 		// Pomocu tokena cemo pronaci korisnika
 

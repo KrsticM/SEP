@@ -13,6 +13,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import tim18.ftn.uns.ac.rs.paymentconcentrator.dto.temp.MutableHttpServletRequest;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.dto.temp.TokenValidationResponse;
+import tim18.ftn.uns.ac.rs.paymentconcentrator.model.temporary.CustomUserDetails;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.service.AuthenticationService;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.service.CustomUserDetailsService;
 
@@ -51,7 +52,17 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 		       
 				
 			}
+		} else if (authHeader != null) {
+
+			CustomUserDetails userDetails = customUserDetailsService.loadUserByApiKey(authHeader);
+			AuthenticationData authentication = new AuthenticationData(userDetails);
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+				
+			System.out.println("postavljamo header userId: " + userDetails.getUserId());
+			    
+			mutableRequest.putHeader("userId", userDetails.getUserId().toString());
 		}
+
 		filterChain.doFilter(mutableRequest, response);
 
 	}
