@@ -1,0 +1,19 @@
+.token__container {
+  width: 70%;
+  padding: 10px;
+}
+
+.token__container h2 {
+  margin-left: 30px;
+}
+
+.token__container p {
+  margin-left: 10px;
+  line-height: 20px;
+  font-size: 15px;
+}
+
+.token__container .MuiCardActions-root {
+  padding: 20px 40px;
+  justify-content: flex-end;
+}

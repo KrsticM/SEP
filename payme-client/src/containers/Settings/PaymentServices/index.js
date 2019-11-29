@@ -10,8 +10,7 @@ function PaymentServices(props) {
   const [state, setState] = useState({
     availableMethods: [],
     loaded: false
-  })
-  const [errors, setErrors] = useState({});
+  });
 
   useEffect(() => {
     if (state.loaded) {
