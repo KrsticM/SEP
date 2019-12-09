@@ -6,8 +6,6 @@ import org.springframework.stereotype.Service;
 
 import tim18.ftn.uns.ac.rs.paymentconcentrator.dto.RegistrationDTO;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.model.Authority;
-import tim18.ftn.uns.ac.rs.paymentconcentrator.model.EnterpriseUser;
-import tim18.ftn.uns.ac.rs.paymentconcentrator.model.PersonalUser;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.model.User;
 
 @Service
@@ -15,10 +13,10 @@ public class RegistrationService {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private AuthorityService authorityService;
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -29,23 +27,15 @@ public class RegistrationService {
 	 * @return User with set id
 	 */
 	public User registerUser(RegistrationDTO registrationDTO) {
-
-		if (registrationDTO.getAuthority().contentEquals("PERSONAL")) {
-			PersonalUser personalUser = registrationDTO.createPersonalUser();
-			return saveUser(personalUser, registrationDTO.getPassword(), "PERSONAL");
-		} else if (registrationDTO.getAuthority().contentEquals("ENTERPRISE")) {
-			EnterpriseUser enterpriseUser = registrationDTO.createEnterpriseUser();
-			return saveUser(enterpriseUser, registrationDTO.getPassword(), "ENTERPRISE");
-		}
-
-		return null;
+		User user = registrationDTO.createUser();
+		return saveUser(user, registrationDTO.getPassword());
 	}
 
-	private User saveUser(User user, String password, String role) {
+	private User saveUser(User user, String password) {
 		// postavi kriptovanu sifru
 		user.setPassword(passwordEncoder.encode(password));
 		// dodavanje uloge
-		Authority authority = authorityService.findByName(role);
+		Authority authority = authorityService.findByName("USER");
 		user.getUserAuthorities().add(authority);
 		return userService.saveUser(user);
 	}

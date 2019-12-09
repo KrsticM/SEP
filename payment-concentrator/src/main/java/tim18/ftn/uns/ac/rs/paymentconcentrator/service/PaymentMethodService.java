@@ -61,13 +61,13 @@ public class PaymentMethodService {
 		PaymentMethod paymentMethod = paymentMethodService.findByName(method);
 		User user = userService.findUserById(userId);
 
-		user.getMethods().add(paymentMethod);
+		//user.getMethods().add(paymentMethod);
 		return userService.saveUser(user);
 
 	}
 	
 	public User removePaymentMethod(String method, Integer userId) throws NotFoundException {
-		User user = userService.findUserById(userId);
+		/*User user = userService.findUserById(userId);
 		Set<PaymentMethod> paymentMethods = user.getMethods();
 		PaymentMethod paymentMethod = paymentMethodService.findByName(method);
 		
@@ -75,8 +75,9 @@ public class PaymentMethodService {
 			throw new NotFoundException(method, PaymentMethod.class.getSimpleName());
 		}
 
-		user.getMethods().remove(paymentMethod);
-		return userService.saveUser(user);
+		//user.getMethods().remove(paymentMethod);
+		return userService.saveUser(user);*/
+		return null;
 		
 	}
 

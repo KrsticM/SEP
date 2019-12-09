@@ -67,7 +67,7 @@ public class AuthenticationService {
 					response.setIsValid(true);
 					response.setUserId(customUserDetails.getId());
 					response.setEmail(email);
-					response.setAuthorities(StringUtils.join(userDetails.getAuthorities(), ','));
+					//response.setAuthorities(StringUtils.join(userDetails.getAuthorities(), ','));
 				}
 			}
 		}

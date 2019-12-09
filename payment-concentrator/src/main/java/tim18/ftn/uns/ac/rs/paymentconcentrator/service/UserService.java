@@ -38,7 +38,7 @@ public class UserService {
 		
 		User u = findUserById(id);
 		String token = UUID.randomUUID().toString();
-		u.setToken(token);
+		//u.setToken(token);
 		userRepository.save(u);	
 		return token;
 	}

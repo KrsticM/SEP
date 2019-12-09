@@ -23,7 +23,8 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 
 	private CustomUserDetailsService customUserDetailsService;
 
-	public AuthenticationFilter(CustomUserDetailsService customUserDetailsService, AuthenticationService authenticationService) {
+	public AuthenticationFilter(CustomUserDetailsService customUserDetailsService,
+			AuthenticationService authenticationService) {
 		this.customUserDetailsService = customUserDetailsService;
 		this.authenticationService = authenticationService;
 	}
@@ -32,40 +33,40 @@ public class AuthenticationFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		System.out.println("Izfiltrirano");
-		
+
 		MutableHttpServletRequest mutableRequest = new MutableHttpServletRequest(request);
-		
+
 		String authHeader = request.getHeader("Authorization");
 		System.out.println("authHeader: " + authHeader);
-		if (authHeader != null && authHeader.startsWith("Bearer ")) {
-			
-			TokenValidationResponse retValue = authenticationService.validateToken(authHeader);
-			
-			String email = retValue.getEmail();
-			if(email != null) {
-				UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
+		if (authHeader != null) {
+			if (authHeader.startsWith("Bearer ")) {
+
+				TokenValidationResponse retValue = authenticationService.validateToken(authHeader);
+
+				String email = retValue.getEmail();
+				if (email != null) {
+					UserDetails userDetails = customUserDetailsService.loadUserByUsername(email);
+					AuthenticationData authentication = new AuthenticationData(userDetails);
+					SecurityContextHolder.getContext().setAuthentication(authentication);
+
+					System.out.println("postavljamo header userId: " + retValue.getUserId());
+
+					mutableRequest.putHeader("userId", retValue.getUserId().toString());
+
+				}
+			}/* else {
+
+				CustomUserDetails userDetails = customUserDetailsService.loadUserByApiKey(authHeader);
 				AuthenticationData authentication = new AuthenticationData(userDetails);
 				SecurityContextHolder.getContext().setAuthentication(authentication);
-				
-				System.out.println("postavljamo header userId: " + retValue.getUserId());
-			    
-			    mutableRequest.putHeader("userId", retValue.getUserId().toString());
-		       
-				
-			}
-		} else if (authHeader != null) {
 
-			CustomUserDetails userDetails = customUserDetailsService.loadUserByApiKey(authHeader);
-			AuthenticationData authentication = new AuthenticationData(userDetails);
-			SecurityContextHolder.getContext().setAuthentication(authentication);
-				
-			System.out.println("postavljamo header userId: " + userDetails.getUserId());
-			    
-			mutableRequest.putHeader("userId", userDetails.getUserId().toString());
+				System.out.println("postavljamo header userId: " + userDetails.getUserId());
+
+				mutableRequest.putHeader("userId", userDetails.getUserId().toString());
+			}*/
+
 		}
-
 		filterChain.doFilter(mutableRequest, response);
-
 	}
 
 }

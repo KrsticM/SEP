@@ -1,4 +1,4 @@
-package tim18.ftn.uns.ac.rs.paymentconcentrator.dto.temp;
+package tim18.ftn.uns.ac.rs.pcgateway.filter.authentification;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

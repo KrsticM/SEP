@@ -25,9 +25,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 		return optionalUser.map(CustomUserDetails::new).get();
 	}
 	
-	public CustomUserDetails loadUserByApiKey(String apiKey) throws UsernameNotFoundException {
+	/*public CustomUserDetails loadUserByApiKey(String apiKey) throws UsernameNotFoundException {
 		Optional<User> optionalUser = userRepository.findByToken(apiKey);
 		optionalUser.orElseThrow(() -> new UsernameNotFoundException("User not found"));
 		return optionalUser.map(CustomUserDetails::new).get();
-	}
+	}*/
 }

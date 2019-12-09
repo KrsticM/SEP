@@ -38,11 +38,11 @@ public class UserController {
 	@PreAuthorize("hasAnyRole('PERSONAL', 'ENTERPRISE')")
 	@GetMapping("/my-payment-methods")
 	public ResponseEntity<?> getUserPaymentMethods(@RequestHeader Map<String, String> headers) throws NotFoundException {
-		Integer userId = Integer.parseInt(headers.get("userId"));
+		/*Integer userId = Integer.parseInt(headers.get("userId"));
 		User user = userService.findUserById(userId);
 		if (user != null) {
 			return new ResponseEntity<>(user.getMethods(), HttpStatus.OK);
-		}
+		}*/
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
