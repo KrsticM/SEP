@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import tim18.ftn.uns.ac.rs.paymentconcentrator.exceptions.NotFoundException;
-import tim18.ftn.uns.ac.rs.paymentconcentrator.model.User;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.service.PaymentMethodService;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.service.UserService;
 
@@ -29,14 +28,7 @@ public class UserController {
 	private UserService userService;
 	
 	@PreAuthorize("hasAnyRole('PERSONAL', 'ENTERPRISE')")
-	@RequestMapping(value = "/regenerate-token", method = RequestMethod.POST)
-	public ResponseEntity<?> generateToken(@RequestHeader Map<String, String> headers) throws NotFoundException {
-		Integer userId = Integer.parseInt(headers.get("userId"));
-		return new ResponseEntity<>(userService.regenerateToken(userId), HttpStatus.OK);
-	}
-
-	@PreAuthorize("hasAnyRole('PERSONAL', 'ENTERPRISE')")
-	@GetMapping("/my-payment-methods")
+	@GetMapping("/payment-methods/{appId}") // TODO: Dovrsiti
 	public ResponseEntity<?> getUserPaymentMethods(@RequestHeader Map<String, String> headers) throws NotFoundException {
 		/*Integer userId = Integer.parseInt(headers.get("userId"));
 		User user = userService.findUserById(userId);
@@ -47,7 +39,7 @@ public class UserController {
 	}
 
 	@PreAuthorize("hasAnyRole('PERSONAL', 'ENTERPRISE')")
-	@RequestMapping(value = "/add-method/{method}", method = RequestMethod.POST)
+	@RequestMapping(value = "/add-method/{appId}/{method}", method = RequestMethod.POST)
 	public ResponseEntity<?> addMethod(@PathVariable String method, @RequestHeader Map<String, String> headers)
 			throws NotFoundException { // TODO: @Valid @RequestBody dataDTO
 		Integer userId = Integer.parseInt(headers.get("userId"));
@@ -57,7 +49,7 @@ public class UserController {
 	}
 
 	@PreAuthorize("hasAnyRole('PERSONAL', 'ENTERPRISE')")
-	@RequestMapping(value = "/remove-method/{method}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/remove-method/{appId}/{method}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> removeMethod(@PathVariable String method, @RequestHeader Map<String, String> headers)
 			throws NotFoundException {
 

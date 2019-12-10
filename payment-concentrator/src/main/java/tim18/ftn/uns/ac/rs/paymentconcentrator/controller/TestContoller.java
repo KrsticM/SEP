@@ -9,15 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 public class TestContoller {
 
-	@PreAuthorize("hasAnyRole('PERSONAL')")
+	@PreAuthorize("hasAnyRole('USER')")
 	@GetMapping("/personalni")
 	public String personalni() {
-		return "Personalni";
+		return "User";
 	}
 
-	@PreAuthorize("hasAnyRole('ENTERPRISE')")
-	@GetMapping("/enterprise")
-	public String enterprise() {
-		return "Enterprise";
-	}
 }
