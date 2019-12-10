@@ -33,7 +33,11 @@ public class Item {
 	@Column
 	private Double price;
 	
+	@Column
+	private String imageUrl;
+	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(nullable = false)
 	protected Merchant merchant;
+	
 }

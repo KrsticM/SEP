@@ -10,16 +10,18 @@ import tim18.ftn.uns.ac.rs.sciencecenter.model.Item;
 @NoArgsConstructor
 public class ItemDTO {
 	
+	private Integer id;
 	private String name;
 	private Double price;
-	private String api_key;
 	private Integer merchantId;
+	private String imageUrl;
 	
 	public ItemDTO(Item item) {
+		this.id = item.getId();
 		this.name = item.getName();
 		this.price = item.getPrice();
-		this.api_key = item.getMerchant().getApi_key();
 		this.merchantId = item.getMerchant().getId();
+		this.imageUrl = item.getImageUrl();
 	}
 
 }
