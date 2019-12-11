@@ -14,5 +14,10 @@ public class TestContoller {
 	public String personalni() {
 		return "User";
 	}
+	
+	@GetMapping("/test")
+	public String test() {
+		return "Jees";
+	}
 
 }
