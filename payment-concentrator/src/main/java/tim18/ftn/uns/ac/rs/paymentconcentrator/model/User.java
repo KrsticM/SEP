@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AccessLevel;
@@ -49,6 +50,17 @@ public class User {
 	@Column
 	private String organizationName;
 
+	@Getter(AccessLevel.NONE)
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
+	private Set<Application> applications;
+	
+	public Set<Application> getApplications() {
+		if (applications == null) {
+			applications = new HashSet<>();
+		}
+		return applications;
+	}
+	
 	@Getter(AccessLevel.NONE)
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Authority> authorities;

@@ -20,19 +20,17 @@ public class AuthenticationFilter extends ZuulFilter {
 	@Autowired
 	private RestTemplate restTemplate;
 
-	private String authUrl = "http://auth-service/validate-token";
+	private String authUrl = "http://payment-concentrator/auth/validate-token";
 
 	@Override
 	public boolean shouldFilter() {
 		// filter every request
-		System.out.println("gateway koje zahteve da filtrira?");
 		return true;
 	}
 
 	@Override
 	public Object run() throws ZuulException {
 		// get token
-		System.out.println("gateway run pozvan");
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 		String authHeader = request.getHeader("Authorization");
@@ -47,6 +45,7 @@ public class AuthenticationFilter extends ZuulFilter {
 			// if token is valid add data
 			if (response.getIsValid()) {
 				ctx.addZuulRequestHeader("UserId", response.getUserId().toString());
+				ctx.addZuulRequestHeader("Email", response.getEmail());
 			}
 
 		}
@@ -55,7 +54,6 @@ public class AuthenticationFilter extends ZuulFilter {
 
 	@Override
 	public String filterType() {
-		System.out.println("Koji je tip filtera? gateway");
 		return FilterConstants.PRE_TYPE;
 	}
 

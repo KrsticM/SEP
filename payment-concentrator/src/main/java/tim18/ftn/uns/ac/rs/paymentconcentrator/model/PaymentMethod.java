@@ -20,6 +20,7 @@ import lombok.Setter;
 @Table(name = "payment_methods")
 public class PaymentMethod {
 	
+	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;

@@ -1,5 +1,6 @@
 package tim18.ftn.uns.ac.rs.paymentconcentrator.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -7,9 +8,10 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tim18.ftn.uns.ac.rs.paymentconcentrator.dto.ApplicationResponseDTO;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.exceptions.NotFoundException;
+import tim18.ftn.uns.ac.rs.paymentconcentrator.model.Application;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.model.PaymentMethod;
-import tim18.ftn.uns.ac.rs.paymentconcentrator.model.User;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.repository.PaymentMethodRepository;
 
 @Service
@@ -22,11 +24,8 @@ public class PaymentMethodService {
 	private ServiceService serviceService;
 
 	@Autowired
-	private PaymentMethodService paymentMethodService;
-
-	@Autowired
-	private UserService userService;
-
+	private ApplicationService applicationService; 
+	
 	/**
 	 * Finds {@link PaymentMethod}. named @param name. If no payment method with
 	 * that name is found, creates new payment method.
@@ -51,34 +50,55 @@ public class PaymentMethodService {
 		return paymentMethodRepository.save(paymentMethod);
 	}
 
-	public User addPaymentMethod(String method, Integer userId) throws NotFoundException {
+	public ApplicationResponseDTO addPaymentMethod(String method, Integer userId, Integer appId) throws NotFoundException {
 		List<String> services = serviceService.getAll();
 
 		if (!services.contains(method)) {
 			throw new NotFoundException(method, PaymentMethod.class.getSimpleName());
 		}
 
-		PaymentMethod paymentMethod = paymentMethodService.findByName(method);
-		User user = userService.findUserById(userId);
-
-		//user.getMethods().add(paymentMethod);
-		return userService.saveUser(user);
+		Application app = applicationService.findById(appId);
+		if(!app.getUser().getId().equals(userId)) {
+			throw new NotFoundException(appId, Application.class.getSimpleName());
+		}	
+		
+		PaymentMethod paymentMethod = findByName(method);
+		app.getMethods().add(paymentMethod);
+		return new ApplicationResponseDTO(applicationService.saveApp(app));
 
 	}
 	
-	public User removePaymentMethod(String method, Integer userId) throws NotFoundException {
-		/*User user = userService.findUserById(userId);
-		Set<PaymentMethod> paymentMethods = user.getMethods();
-		PaymentMethod paymentMethod = paymentMethodService.findByName(method);
+	public ApplicationResponseDTO removePaymentMethod(String method, Integer userId, Integer appId) throws NotFoundException {
+
+		Application app = applicationService.findById(appId);
+		Set<PaymentMethod> paymentMethods = app.getMethods();
+		PaymentMethod paymentMethod = findByName(method);
 		
 		if(!paymentMethods.contains(paymentMethod)) {
 			throw new NotFoundException(method, PaymentMethod.class.getSimpleName());
 		}
-
-		//user.getMethods().remove(paymentMethod);
-		return userService.saveUser(user);*/
-		return null;
 		
+		if(!app.getUser().getId().equals(userId)) {
+			throw new NotFoundException(appId, Application.class.getSimpleName());
+		}		
+
+		app.getMethods().remove(paymentMethod);
+		return new ApplicationResponseDTO(applicationService.saveApp(app));
+		
+	}
+
+	public List<PaymentMethod> getPaymentMethods(Integer userId, Integer appId) throws NotFoundException {
+		Application app = applicationService.findById(appId);
+		
+		if(!app.getUser().getId().equals(userId)) {
+			throw new NotFoundException(appId, Application.class.getSimpleName());
+		}		
+		
+		List<PaymentMethod> ret = new ArrayList<PaymentMethod>();
+		for(PaymentMethod pm: app.getMethods()) {
+			ret.add(pm);
+		}
+		return ret;
 	}
 
 }
