@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import tim18.ftn.uns.ac.rs.sciencecenter.dto.ItemDTO;
 import tim18.ftn.uns.ac.rs.sciencecenter.dto.PaymentRequestDTO;
+import tim18.ftn.uns.ac.rs.sciencecenter.exceptions.NotFoundException;
 import tim18.ftn.uns.ac.rs.sciencecenter.service.ItemService;
 
 @RestController
@@ -29,9 +31,18 @@ public class ItemController {
 	}
 	
 	@RequestMapping(value="/pay", method = RequestMethod.POST)
-	public void  makePayment(@RequestBody PaymentRequestDTO paymentRequestDTO, HttpServletResponse httpServletResponse) {
+	public String  makePayment(@RequestBody PaymentRequestDTO paymentRequestDTO, HttpServletResponse httpServletResponse) throws NotFoundException {
 		System.out.println(paymentRequestDTO);
-		httpServletResponse.setHeader("Location", "http://localhost:8100/test/test");
-	    httpServletResponse.setStatus(302);
+		// Pretpostavka: Svi artikli bi trebalo da pripadaju jednom prodavcu
+		String merchantApiKey = "";
+		for(Integer id : paymentRequestDTO.getIds()) {
+			merchantApiKey = itemService.getItem(id).getMerchant().getApi_key();
+			break; // Za sve artikle je isti
+		}
+		// Mozda order
+		
+	    // return new ModelAndView("redirect:" + "http://localhost:8762/payment-concentrator/choosePaymentMethod/" + merchantApiKey);
+		return "http://localhost:8762/payment-concentrator/choosePaymentMethod/" + merchantApiKey;
 	}
+	
 }

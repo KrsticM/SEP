@@ -20,11 +20,12 @@ public class ApplicationService {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private ApplicationRepository applicationRepository;
-	
-	public ApplicationResponseDTO addApplication(Integer userId, ApplicationDTO applicationDTO) throws NotFoundException {
+
+	public ApplicationResponseDTO addApplication(Integer userId, ApplicationDTO applicationDTO)
+			throws NotFoundException {
 		User user = userService.findUserById(userId);
 		Application app = new Application();
 		app.setName(applicationDTO.getName());
@@ -33,43 +34,53 @@ public class ApplicationService {
 		app.setActive(true);
 		return new ApplicationResponseDTO(applicationRepository.save(app));
 	}
-	
+
 	public ApplicationResponseDTO removeApplication(Integer userId, Integer appId) throws NotFoundException {
 		Optional<Application> app = applicationRepository.findById(appId);
-		
-		if(!app.isPresent()) {
+
+		if (!app.isPresent()) {
 			throw new NotFoundException(appId, Application.class.getSimpleName());
 		}
-		
-		if(!app.get().getUser().getId().equals(userId)) {
+
+		if (!app.get().getUser().getId().equals(userId)) {
 			throw new NotFoundException(appId, Application.class.getSimpleName());
 		}
-		
+
 		app.get().setActive(false);
 		return new ApplicationResponseDTO(applicationRepository.save(app.get()));
 	}
-	
+
 	public Application saveApp(Application app) {
 		return applicationRepository.save(app);
 	}
-	
+
 	public Application findById(Integer appId) throws NotFoundException {
 		Optional<Application> app = applicationRepository.findById(appId);
-		
-		if(!app.isPresent()) {
+
+		if (!app.isPresent()) {
 			throw new NotFoundException(appId, Application.class.getSimpleName());
 		}
-		
+
 		return app.get();
 	}
 
 	public List<ApplicationResponseDTO> getApplications(Integer userId) throws NotFoundException {
 		User user = userService.findUserById(userId);
 		List<ApplicationResponseDTO> ret = new ArrayList<ApplicationResponseDTO>();
-		for(Application app: user.getApplications()) {
+		for (Application app : user.getApplications()) {
 			ret.add(new ApplicationResponseDTO(app));
 		}
 		return ret;
+	}
+
+	public Application findByApiKey(String appApiKey) throws NotFoundException {
+		Optional<Application> app = applicationRepository.findByToken(appApiKey);
+
+		if (!app.isPresent()) {
+			throw new NotFoundException(appApiKey.toString(), Application.class.getSimpleName());
+		}
+
+		return app.get();
 	}
 
 }

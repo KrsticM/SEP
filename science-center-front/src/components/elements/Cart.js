@@ -73,7 +73,10 @@ const Cart = ( ) => {
                     JSON.stringify({"ids": itemsIds}), 
                     config)
                   .then(function (response) {
+                    console.log("Odgovor!");
                     console.log(response);
+                    window.location.href = response.data;
+                    
                   })
                   .catch(function (error) {
                     console.log(error);

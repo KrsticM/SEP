@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -93,6 +94,16 @@ public class PaymentMethodService {
 		if(!app.getUser().getId().equals(userId)) {
 			throw new NotFoundException(appId, Application.class.getSimpleName());
 		}		
+		
+		List<PaymentMethod> ret = new ArrayList<PaymentMethod>();
+		for(PaymentMethod pm: app.getMethods()) {
+			ret.add(pm);
+		}
+		return ret;
+	}
+	
+	public List<PaymentMethod> getPaymentMethods(UUID appApiKey) throws NotFoundException {
+		Application app = applicationService.findByApiKey(appApiKey.toString());		
 		
 		List<PaymentMethod> ret = new ArrayList<PaymentMethod>();
 		for(PaymentMethod pm: app.getMethods()) {

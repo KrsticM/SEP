@@ -1,16 +1,20 @@
 package tim18.ftn.uns.ac.rs.bitcoinpayment.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class FormController {
 
 	@RequestMapping(value = "/index/{appId}")
-	public String index(@RequestHeader(value="UserId") Integer userId, @PathVariable Integer appId) {
+	public String index(@PathVariable String appId, Model model) {
+	
 		System.out.println(appId);
+		
+		
+		model.addAttribute("appId", appId);
 		return "index";
 	}
 
