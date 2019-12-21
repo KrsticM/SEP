@@ -1,8 +1,6 @@
 package tim18.ftn.uns.ac.rs.cardpayment.service;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -22,13 +20,10 @@ public class CardPaymentService {
 	@Autowired
 	private MerchantService merchantService;
 	
-	private String url = "http://localhost:8400";
+	private String url = "http://localhost:8400/view";
 	private String bankUrl = "http://localhost:5005/payment/create";
 
-	
-	
-	public Map<String, Object> pay(Integer applicationId, Double amount) throws NotFoundException {
-		Map<String, Object> response = new HashMap<String, Object>();		
+	public String pay(Integer applicationId, Double amount) throws NotFoundException {
 		
 		Merchant merchant = merchantService.findByAppId(applicationId);
 		
@@ -45,9 +40,7 @@ public class CardPaymentService {
 		ResponseEntity<PaymentResponseDTO> responseEntity = new RestTemplate().exchange(bankUrl, HttpMethod.POST,
 				new HttpEntity<PaymentRequestDTO>(paymentRequestDTO), PaymentResponseDTO.class);
 		
-		response.put("status", "success");
-		response.put("redirect_url", responseEntity.getBody().getPaymentUrl());
-		return response;
+		return responseEntity.getBody().getPaymentUrl() + "/" + responseEntity.getBody().getPaymentId();
 	}
 
 }

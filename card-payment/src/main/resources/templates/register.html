@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<link href="../static/css/register.css" rel="stylesheet" th:href="@{/css/register.css}"/>
+<title>Register</title>
+
+<link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body class="bg-color">
+
+	<div class="container py-5">	
+	  <!-- Register text -->
+	  <div class="row mb-4">
+	    <div class="col-lg-6 mx-auto text-center">
+	      <h1 class="display-4 ">Register</h1>
+	    </div>
+	  </div>
+	  <!-- End -->
+	
+	  <div class="row">
+	    <div class="col-lg-5 mx-auto">
+	      <div class="bg-white rounded-lg shadow-sm p-5">
+	       
+	          <!-- registration form -->
+	          <div>
+	            <form role="form">
+	            	<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" class="form-control" placeholder="Merchant id">						
+					</div>	              
+	              	<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" class="form-control" placeholder="Merchant password">
+				 	</div>         
+	           
+	              	<button type="button" class="subscribe btn btn-info btn-block rounded-pill shadow-sm"> Register  </button>
+	            </form>
+	          </div>
+	          <!-- End registration form-->
+
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</body>
+</html>
+
+
