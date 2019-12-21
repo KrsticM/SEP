@@ -16,7 +16,7 @@
 		<tr th:each="method: ${paymentMethods}">
 			<td th:text="${method.id}" />
 			<td th:text="${method.name}" />
-			<td><a th:href="@{'http://localhost:8762/' + ${method.name}} + '/index/' +  ${appId}"> Izaberi</a></td>
+			<td><a th:href="@{'http://localhost:8762/' + ${method.name}} + '/pay/' +  ${appId}"> Izaberi</a></td>
 		</tr> 
 	</table>
 </body>
