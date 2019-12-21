@@ -75,7 +75,7 @@ const Cart = ( ) => {
                   .then(function (response) {
                     console.log("Odgovor!");
                     console.log(response);
-                    window.location.href = response.redirectUrl;
+                    window.location.href = response.data;
                     
                   })
                   .catch(function (error) {

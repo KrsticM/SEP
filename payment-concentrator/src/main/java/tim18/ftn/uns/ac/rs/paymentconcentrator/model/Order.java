@@ -1,4 +1,4 @@
-package tim18.ftn.uns.ac.rs.sciencecenter.model;
+package tim18.ftn.uns.ac.rs.paymentconcentrator.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,11 +12,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Entity
 @Table(name = "orders")
 public class Order {
 
@@ -25,6 +26,9 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column
+	private Integer orderIdScienceCenter;
+	
 	@Column
 	private Double price;
 	

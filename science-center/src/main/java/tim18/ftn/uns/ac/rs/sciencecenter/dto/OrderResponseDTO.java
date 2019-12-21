@@ -7,11 +7,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class PaymentResponseDTO {
-	
-	private String redirectUrl;
-	private Integer orderId;
+public class OrderResponseDTO {
+	private Integer id;
+	private Integer orderIdScienceCenter;
 	private Double price;
 	private String callbackUrl;
-	
 }

@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import tim18.ftn.uns.ac.rs.bitcoinpayment.exeptions.NotFoundException;
 import tim18.ftn.uns.ac.rs.bitcoinpayment.model.BTCOrder;
 import tim18.ftn.uns.ac.rs.bitcoinpayment.model.Merchant;
+import tim18.ftn.uns.ac.rs.bitcoinpayment.model.Order;
 
 @Service
 public class PaymentService {
@@ -20,17 +21,21 @@ public class PaymentService {
 	@Autowired
 	private MerchantService merchantService;
 
+	@Autowired
+	private OrderService orderService;
+	
 	private String url = "http://localhost:8300";
 	private String sandboxUrl = "https://api-sandbox.coingate.com/v2/orders";
 	private String token;
 
-	public String pay(Integer appId, Double price) throws NotFoundException {
+	public String pay(Integer appId, Integer orderId) throws NotFoundException {
 		
 		Merchant merchant = merchantService.findByAppId(appId);
+		Order order = orderService.findById(orderId);
 		
 		BTCOrder btcOrder = new BTCOrder();
-		btcOrder.setOrder_id("Merchant's ID");
-		btcOrder.setPrice_amount(price);
+		btcOrder.setOrder_id(order.getOrderIdScienceCenter().toString());
+		btcOrder.setPrice_amount(order.getPrice());
 		btcOrder.setCancel_url(url + "/cancelBtc");
 		token = UUID.randomUUID().toString();
 		btcOrder.setSuccess_url(url + "/successBtc");

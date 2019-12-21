@@ -2,22 +2,72 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8" />
-<link href="css/styles.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <title>Choose payment method</title>
 </head>
 <body>
 	<h4>Welcome to Thymeleaf Spring Boot web application</h4>
-	<p>Application ID:</p><p th:text="${appId}"></p>
+	<p>Application ID:</p>
+	<p th:text="${appId}"></p>
 
-	<br />
+	<p>Order ID:
+	<p>
+	<p th:text="${orderId}"></p>
 
 	<p>Izaberite metodu kojom želite da platite:</p>
 	<table>
 		<tr th:each="method: ${paymentMethods}">
 			<td th:text="${method.id}" />
 			<td th:text="${method.name}" />
-			<td><a th:href="@{'http://localhost:8762/' + ${method.name}} + '/pay/' +  ${appId}"> Izaberi</a></td>
-		</tr> 
+			<td><a class="link"
+				th:href="@{'http://localhost:8762/' + ${method.name}} + '/pay/' +  ${appId}"
+				th:attr="create_url=@{'http://localhost:8762/' + ${method.name}} + '/create/', order_id=${orderId}, order_price=${orderPrice}, callback_url=${callbackUrl}" >
+					Izaberi</a></td>
+		</tr>
 	</table>
+
+	<script>
+		$(document).ready(function(){
+			$( ".link" ).click(function(e) {
+				  e.preventDefault();
+				  
+				  
+				  console.log($(this).attr('create_url'));
+				  console.log($(this).attr('order_id'));
+				  console.log($(this).attr('order_price'));
+				  console.log($(this).attr('callback_url'));
+				  
+				  console.log("REDIRECT URL: ")
+				  console.log($(this).attr('href'));
+				  
+				  var hrefUrl = $(this).attr('href');
+				  $.ajax({
+				  	type: 'POST',
+					url: $(this).attr('create_url'),
+					contentType: "application/json",
+					data: JSON.stringify({'orderIdScienceCenter':$(this).attr('order_id'),
+						'price':$(this).attr('order_price'),
+						'callbackUrl': $(this).attr('callback_url')}),
+					success: function(odgovor){
+						console.log(odgovor);
+						
+						var url = hrefUrl + "/" + odgovor.id
+						console.log(url);
+					
+						window.location.href = url;
+					},
+					error: function(odgovor){
+						alert(odgovor.responseText);
+					}
+				  });
+				  
+				  // Url na koji cemo izvrsiti redirect
+				  
+				  
+				  alert( "Handler for .click() called." );
+			});
+		});
+	</script>
+
 </body>
 </html>

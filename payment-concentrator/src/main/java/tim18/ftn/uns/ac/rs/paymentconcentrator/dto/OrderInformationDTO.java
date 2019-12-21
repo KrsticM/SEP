@@ -7,14 +7,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class PaymentInformationDTO {
-	private Integer orderId;
-	private Double orderPrice;
+public class OrderInformationDTO {
+	private Integer id;
+	private Double price;
 	private String callbackUrl;
 	
 	@Override
 	public String toString() {
-		return "PaymentInformationDTO [orderId=" + orderId + ", orderPrice=" + orderPrice + ", callbackUrl="
+		return "PaymentInformationDTO [orderId=" + id + ", orderPrice=" + price + ", callbackUrl="
 				+ callbackUrl + "]";
 	}
 	
