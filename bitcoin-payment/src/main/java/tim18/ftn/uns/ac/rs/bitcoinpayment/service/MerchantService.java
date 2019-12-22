@@ -15,6 +15,10 @@ public class MerchantService {
 	@Autowired
 	private MerchantRepository merchantRepository;
 	
+	public Merchant saveMerchant(Merchant merchant) {
+		return merchantRepository.save(merchant);
+	}
+	
 	public Merchant findByAppId(Integer appId) throws NotFoundException {
 		Optional<Merchant> merchant = merchantRepository.findByApplicationId(appId);
 

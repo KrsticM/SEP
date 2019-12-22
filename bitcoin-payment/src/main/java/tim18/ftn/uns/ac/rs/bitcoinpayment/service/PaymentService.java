@@ -37,9 +37,9 @@ public class PaymentService {
 		BTCOrder btcOrder = new BTCOrder();
 		btcOrder.setOrder_id(order.getId().toString());
 		btcOrder.setPrice_amount(order.getPrice());
-		btcOrder.setCancel_url(url + "/cancelBtc");
+		btcOrder.setCancel_url(url + "/view/cancelBtc");
 		token = UUID.randomUUID().toString();
-		btcOrder.setSuccess_url(url + "/successBtc");
+		btcOrder.setSuccess_url(url + "/view/successBtc");
 		btcOrder.setCallback_url("http://localhost:8080/api/bitcoin/complete/payment");
 		btcOrder.setToken(token);
 

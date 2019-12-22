@@ -34,6 +34,7 @@ public class CardPaymentController {
 	@Autowired
 	private RestTemplate restTemplate;
 	
+	// TODO: prebaciti u servise
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public Order createOrder(@RequestBody OrderDTO orderDTO) throws NotFoundException { // Mora se znati kom prodavcu se uplacuje, koliko se uplacuje
 		System.out.println("U kontroleru kreiranje ordera");
@@ -49,6 +50,7 @@ public class CardPaymentController {
 		return savedOrder;
 	}
 	
+	// TODO: prebaciti u servise
 	@RequestMapping(value = "/pay/{appId}/{orderId}", method = RequestMethod.GET)
 	public ModelAndView payTest(@PathVariable Integer appId, @PathVariable Integer orderId) throws NotFoundException { // Mora se znati kom prodavcu se uplacuje, koliko se uplacuje
 		

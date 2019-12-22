@@ -1,5 +1,4 @@
 $(document).ready(function(){
-	alert('hello');
 	var formId = 'forma';
 	$('#' + formId).submit(function (e) {
 		handleFormConfirm(e, formId);

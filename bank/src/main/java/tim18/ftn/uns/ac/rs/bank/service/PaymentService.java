@@ -54,6 +54,7 @@ public class PaymentService {
 		paymentRequest.setSuccessUrl(paymentRequestDTO.getSuccessUrl());
 		paymentRequest.setFailedUrl(paymentRequestDTO.getFailedUrl());
 		paymentRequest.setErrorUrl(paymentRequestDTO.getErrorUrl());
+		paymentRequest.setCallbackUrl(paymentRequestDTO.getCallbackUrl());
 		PaymentRequest ret = paymentRepository.save(paymentRequest);
 		return new PaymentResponseDTO(ret.getId(), "http://localhost:5005/view/form");
 	}
