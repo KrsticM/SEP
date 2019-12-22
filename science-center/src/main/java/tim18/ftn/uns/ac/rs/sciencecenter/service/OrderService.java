@@ -1,8 +1,11 @@
 package tim18.ftn.uns.ac.rs.sciencecenter.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tim18.ftn.uns.ac.rs.sciencecenter.exceptions.NotFoundException;
 import tim18.ftn.uns.ac.rs.sciencecenter.model.Order;
 import tim18.ftn.uns.ac.rs.sciencecenter.repository.OrderRepository;
 
@@ -14,5 +17,15 @@ public class OrderService {
 	
 	public Order saveOrder(Order order) {
 		return orderRepository.save(order);
+	}
+
+	public Order findById(Integer id) throws NotFoundException {
+		Optional<Order> order = orderRepository.findById(id);
+		
+		if(!order.isPresent()) {
+			throw new NotFoundException(id, Order.class.getSimpleName());
+		}
+		
+		return order.get();
 	}
 }

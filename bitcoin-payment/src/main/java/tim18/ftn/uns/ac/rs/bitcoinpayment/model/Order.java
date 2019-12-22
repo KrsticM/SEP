@@ -34,4 +34,7 @@ public class Order {
 	@Column
 	private String callbackUrl;
 	
+	@Column
+	private OrderStatus status;
+	
 }
