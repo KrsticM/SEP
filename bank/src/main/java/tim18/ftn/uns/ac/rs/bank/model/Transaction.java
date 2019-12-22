@@ -1,4 +1,6 @@
-package tim18.ftn.uns.ac.rs.bitcoinpayment.model;
+package tim18.ftn.uns.ac.rs.bank.model;
+
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,16 +18,29 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Merchant {
-
+public class Transaction {
+	
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(nullable = false)
-	private String coingateToken;
+	@Column
+	private Double amount;
+		
+	@Column
+	private String merchantId;
+
+	@Column
+	private String merchantOrderId;
 	
-	@Column(nullable = false)
-	private Integer applicationId;  
+	@Column
+	private Date merchantTimestamp;
+	
+	@Column
+	private String panNumber;
+	
+	@Column
+	private TransactionStatus status;
+
 }

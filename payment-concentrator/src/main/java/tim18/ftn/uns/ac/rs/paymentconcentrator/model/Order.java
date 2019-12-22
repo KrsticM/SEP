@@ -1,31 +1,38 @@
-package tim18.ftn.uns.ac.rs.bitcoinpayment.model;
+package tim18.ftn.uns.ac.rs.paymentconcentrator.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@NoArgsConstructor
+
 @Getter
 @Setter
+@NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Merchant {
+@Table(name = "orders")
+public class Order {
 
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
+	@Column
+	private Integer orderIdScienceCenter;
 	
-	@Column(nullable = false)
-	private String coingateToken;
+	@Column
+	private Double price;
 	
-	@Column(nullable = false)
-	private Integer applicationId;  
+	@Column
+	private String callbackUrl;
+	
 }
