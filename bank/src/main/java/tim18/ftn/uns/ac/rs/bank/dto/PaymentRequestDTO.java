@@ -14,23 +14,11 @@ public class PaymentRequestDTO {
 	private String merchantId;
 	private String merchantPassword;
 	private Double amount;
-	private String merchantOrderId;
+	private Integer merchantOrderId;
 	private Date merchantTimestamp;
 	private String successUrl;
 	private String failedUrl;
 	private String errorUrl;	
-	private String paymentId;
-	private String paymentUrl;
-	
-	// TODO: Obrisati
-	@Override
-	public String toString() {
-		return "PaymentRequestDTO [merchantId=" + merchantId + ", merchantPassword=" + merchantPassword + ", amount="
-				+ amount + ", merchantOrderId=" + merchantOrderId + ", merchantTimestamp=" + merchantTimestamp
-				+ ", successUrl=" + successUrl + ", failedUrl=" + failedUrl + ", errorUrl=" + errorUrl + ", paymentId="
-				+ paymentId + ", paymentUrl=" + paymentUrl + "]";
-	}
-	
-	
+	private String callbackUrl;
 	
 }
