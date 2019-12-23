@@ -10,6 +10,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import tim18.ftn.uns.ac.rs.bitcoinpayment.dto.MerchantInfoDTO;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
@@ -28,4 +29,10 @@ public class Merchant {
 	
 	@Column(nullable = false)
 	private Integer applicationId;  
+	
+	public Merchant(MerchantInfoDTO merchantDTO, Integer applicationId) {
+		this.coingateToken = merchantDTO.getCoingateToken();
+		this.applicationId = applicationId;
+	}
+	
 }

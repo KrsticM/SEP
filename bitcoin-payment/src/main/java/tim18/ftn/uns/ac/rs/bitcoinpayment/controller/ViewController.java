@@ -26,4 +26,10 @@ public class ViewController {
 		return "register";
 	}
 	
+	@RequestMapping(value = "/successfulConfig") 
+	public String successfulConfig(Model model) { 
+		System.out.println("successfulConfig ");
+		return "successfulConfig";
+	}
+	
 }
