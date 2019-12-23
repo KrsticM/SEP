@@ -16,7 +16,6 @@ public class ViewController {
 		return "register";
 	}
 	
-	
 	@RequestMapping(value = "/successURL") 
 	public String successURL(Model model) { 
 		System.out.println("successURL ");
@@ -39,7 +38,6 @@ public class ViewController {
 	public String successfulConfig(Model model) { 
 		System.out.println("successfulConfig ");
 		return "successfulConfig";
-	}
-	
+	}	
 
 }

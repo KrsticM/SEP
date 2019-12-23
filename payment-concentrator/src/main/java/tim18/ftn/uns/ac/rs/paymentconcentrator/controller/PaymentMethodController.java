@@ -1,6 +1,8 @@
 package tim18.ftn.uns.ac.rs.paymentconcentrator.controller;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +21,15 @@ import tim18.ftn.uns.ac.rs.paymentconcentrator.service.PaymentMethodService;
 @RequestMapping("/payment-method")
 public class PaymentMethodController {
 	
+	Logger logger = LoggerFactory.getLogger(PaymentMethodController.class);
+	
 	@Autowired
 	private PaymentMethodService paymentMethodService;
 
 	@PreAuthorize("hasAnyRole('USER')") // Trenutno radi samo za front-end usera. Kako bi i casopisi mogli sami da dodaju metode potrebno je izloziti API
 	@RequestMapping(value = "/{appId}/{method}", method = RequestMethod.POST)
 	public ResponseEntity<?> addMethod(@RequestHeader("UserId") Integer userId, @PathVariable Integer appId, @PathVariable String method) throws NotFoundException {
+		logger.info("Adding payment method " + method + " for application " + appId);
 		System.out.println("add Metode placanja:" + method + " za aplikaciju: " + appId);
 		return new ResponseEntity<>(paymentMethodService.addPaymentMethod(method, userId, appId), HttpStatus.CREATED);
 	}
@@ -32,6 +37,7 @@ public class PaymentMethodController {
 	@PreAuthorize("hasAnyRole('USER')")
 	@RequestMapping(value = "/{appId}/{method}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> removeMethod(@RequestHeader("UserId") Integer userId, @PathVariable Integer appId, @PathVariable String method) throws NotFoundException {
+		logger.info("Removing payment method " + method + " for application " + appId);
 		System.out.println("remove Metode placanja:" + method + " za korisnika: " + userId);
 		return new ResponseEntity<>(paymentMethodService.removePaymentMethod(method, userId, appId), HttpStatus.OK);
 	}

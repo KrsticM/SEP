@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import tim18.ftn.uns.ac.rs.paymentconcentrator.repository.ApplicationRepository;
 @Service
 public class ApplicationService {
 
+	Logger logger = LoggerFactory.getLogger(ApplicationService.class);
+	
 	@Autowired
 	private UserService userService;
 
@@ -32,6 +36,7 @@ public class ApplicationService {
 		app.setToken(UUID.randomUUID().toString());
 		app.setUser(user);
 		app.setActive(true);
+		logger.info("Saving application with name " + applicationDTO.getName() + " for user " + user.getEmail());
 		return new ApplicationResponseDTO(applicationRepository.save(app));
 	}
 
@@ -39,14 +44,17 @@ public class ApplicationService {
 		Optional<Application> app = applicationRepository.findById(appId);
 
 		if (!app.isPresent()) {
+			logger.error("Application with id " + appId + " not found.");
 			throw new NotFoundException(appId, Application.class.getSimpleName());
 		}
 
 		if (!app.get().getUser().getId().equals(userId)) {
+			// TODO: logger.error
 			throw new NotFoundException(appId, Application.class.getSimpleName());
 		}
 
 		app.get().setActive(false);
+		logger.info("Application with id " + appId + " is removed.");
 		return new ApplicationResponseDTO(applicationRepository.save(app.get()));
 	}
 
@@ -58,6 +66,7 @@ public class ApplicationService {
 		Optional<Application> app = applicationRepository.findById(appId);
 
 		if (!app.isPresent()) {
+			logger.error("Application with id " + appId + " not found.");
 			throw new NotFoundException(appId, Application.class.getSimpleName());
 		}
 
@@ -77,6 +86,7 @@ public class ApplicationService {
 		Optional<Application> app = applicationRepository.findByToken(appApiKey);
 
 		if (!app.isPresent()) {
+			logger.error("Application with application api key " + appApiKey + " not found.");
 			throw new NotFoundException(appApiKey.toString(), Application.class.getSimpleName());
 		}
 

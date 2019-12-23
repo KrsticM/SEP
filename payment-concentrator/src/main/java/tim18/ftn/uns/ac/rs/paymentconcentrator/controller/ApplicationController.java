@@ -2,6 +2,8 @@ package tim18.ftn.uns.ac.rs.paymentconcentrator.controller;
 
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +24,8 @@ import tim18.ftn.uns.ac.rs.paymentconcentrator.service.UserService;
 @RequestMapping("/app")
 public class ApplicationController {
 
+	Logger logger = LoggerFactory.getLogger(ApplicationController.class);
+
 	@Autowired
 	private UserService userService;
 	
@@ -39,12 +43,14 @@ public class ApplicationController {
 	@PreAuthorize("hasAnyRole('USER')") // Trenutno je dodavanje moguce samo preko front-enda. Bice potrebno omoguciti dodavanje i iz Naucnih centrala. (API)
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<?> addApplication(@RequestHeader(value="UserId") Integer userId, @RequestBody ApplicationDTO applicationDTO) throws NotFoundException { // User je sistem prodavaca		
+		logger.info("Adding application with name " + applicationDTO.getName() + " for user with id " + userId);
 		return new ResponseEntity<>(applicationService.addApplication(userId, applicationDTO), HttpStatus.CREATED);
 	}
 	
 	@PreAuthorize("hasAnyRole('USER')")
 	@RequestMapping(value = "/{appId}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> removeApplication(@RequestHeader(value="UserId") Integer userId, @PathVariable Integer appId) throws NotFoundException { // User je sistem prodavaca		
+		logger.info("Removing application with id " + appId + " for user with id " + userId);
 		return new ResponseEntity<>(applicationService.removeApplication(userId, appId), HttpStatus.OK);
 	}
 	

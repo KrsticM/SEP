@@ -6,6 +6,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ import tim18.ftn.uns.ac.rs.paymentconcentrator.repository.PaymentMethodRepositor
 
 @Service
 public class PaymentMethodService {
+
+	Logger logger = LoggerFactory.getLogger(PaymentMethodService.class);
 
 	@Autowired
 	private PaymentMethodRepository paymentMethodRepository;
@@ -55,35 +59,40 @@ public class PaymentMethodService {
 		List<String> services = serviceService.getAll();
 
 		if (!services.contains(method)) {
+			logger.error("Method " + method + " does not existis.");
 			throw new NotFoundException(method, PaymentMethod.class.getSimpleName());
 		}
 
 		Application app = applicationService.findById(appId);
 		if(!app.getUser().getId().equals(userId)) {
+			// TODO: logger.errror
 			throw new NotFoundException(appId, Application.class.getSimpleName());
 		}	
 		
 		PaymentMethod paymentMethod = findByName(method);
 		app.getMethods().add(paymentMethod);
+		logger.info("Method " + method + " is saved for application with id " + appId + " and user with id " + userId);
 		return new ApplicationResponseDTO(applicationService.saveApp(app));
 
 	}
 	
 	public ApplicationResponseDTO removePaymentMethod(String method, Integer userId, Integer appId) throws NotFoundException {
-
 		Application app = applicationService.findById(appId);
 		Set<PaymentMethod> paymentMethods = app.getMethods();
 		PaymentMethod paymentMethod = findByName(method);
 		
 		if(!paymentMethods.contains(paymentMethod)) {
+			logger.error("Method " + method + " does not existis.");
 			throw new NotFoundException(method, PaymentMethod.class.getSimpleName());
 		}
 		
 		if(!app.getUser().getId().equals(userId)) {
+			// TODO: logger.errror
 			throw new NotFoundException(appId, Application.class.getSimpleName());
 		}		
 
 		app.getMethods().remove(paymentMethod);
+		logger.info("Method " + method + " is removed for application with id " + appId + " and user with id " + userId);
 		return new ApplicationResponseDTO(applicationService.saveApp(app));
 		
 	}
@@ -92,6 +101,7 @@ public class PaymentMethodService {
 		Application app = applicationService.findById(appId);
 		
 		if(!app.getUser().getId().equals(userId)) {
+			// TODO: logger.errror
 			throw new NotFoundException(appId, Application.class.getSimpleName());
 		}		
 		

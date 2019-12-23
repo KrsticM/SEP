@@ -1,5 +1,7 @@
 package tim18.ftn.uns.ac.rs.cardpayment.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -25,6 +27,8 @@ import tim18.ftn.uns.ac.rs.cardpayment.service.OrderService;
 @RestController
 public class CardPaymentController {
 	
+	Logger logger = LoggerFactory.getLogger(CardPaymentController.class);
+	
 	@Autowired
 	private CardPaymentService cardPaymentService;
 	
@@ -37,7 +41,7 @@ public class CardPaymentController {
 	// TODO: prebaciti u servise
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public Order createOrder(@RequestBody OrderDTO orderDTO) throws NotFoundException { // Mora se znati kom prodavcu se uplacuje, koliko se uplacuje
-		System.out.println("U kontroleru kreiranje ordera");
+		logger.info("Creating order"); // TODO: koja aplikacija
 		System.out.println(orderDTO);
 		
 		Order o = new Order();
@@ -47,27 +51,30 @@ public class CardPaymentController {
 		o.setOrderStatus(OrderStatus.CREATED);
 		
 		Order savedOrder = orderService.saveOrder(o);
+		logger.info("Saved order " + savedOrder.getId()); // TODO: koja aplikacija
 		return savedOrder;
 	}
 	
-	// TODO: prebaciti u servise
 	@RequestMapping(value = "/pay/{appId}/{orderId}", method = RequestMethod.GET)
 	public ModelAndView payTest(@PathVariable Integer appId, @PathVariable Integer orderId) throws NotFoundException { // Mora se znati kom prodavcu se uplacuje, koliko se uplacuje
-		
+		logger.info("Card payment controller: appId: " + appId + ", orderId: " + orderId); 
 		String retUrl = cardPaymentService.pay(appId, orderId);
 		System.out.println("REDIRECT URL: " + retUrl);
 	
 		return new ModelAndView("redirect:" + retUrl);
 	}
 	
+	// TODO: prebaciti u servise
 	@RequestMapping(value = "/complete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String complete(@RequestBody CompletePaymentDTO completePayment) throws NotFoundException {
+		logger.info("Complete payment for order with id " + completePayment.getOrder_id()); 
 		System.out.println("Complete payment");
 		System.out.println(completePayment);
 		if(completePayment.getStatus().contentEquals("PAID")) {
 			Order order = orderService.findById(completePayment.getOrder_id());
 			order.setOrderStatus(OrderStatus.COMPLETED);
 			orderService.saveOrder(order);
+			logger.info("Order with id " + completePayment.getOrder_id() + "is completed"); 
 			
 			CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
 			completePaymentResponseDTO.setOrder_id(order.getOrderIdScienceCenter());
@@ -80,6 +87,8 @@ public class CardPaymentController {
 			return responseEntity.getBody();
 			
 		}
+		logger.info("Order with id " + completePayment.getOrder_id() + "is not paid"); 
+
 		return "Order not paid";
 	}
 	

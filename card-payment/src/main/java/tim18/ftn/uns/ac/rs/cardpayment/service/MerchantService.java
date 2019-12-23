@@ -2,6 +2,8 @@ package tim18.ftn.uns.ac.rs.cardpayment.service;
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import tim18.ftn.uns.ac.rs.cardpayment.repository.MerchantRepository;
 
 @Service
 public class MerchantService {
+	
+	Logger logger = LoggerFactory.getLogger(MerchantService.class);
 
 	@Autowired
 	private MerchantRepository merchantRepository;
@@ -28,7 +32,9 @@ public class MerchantService {
 		Optional<Merchant> merchant = merchantRepository.findByApplicationId(appId);
 
 		if (!merchant.isPresent()) {
+			logger.error("Merchant with appId " + appId + " not found.");
 			throw new NotFoundException(appId, Merchant.class.getSimpleName());
+			
 		}
 
 		return merchant.get();
@@ -41,11 +47,14 @@ public class MerchantService {
 		if (!merchantOpt.isPresent()) {
 			Merchant merchant = new Merchant(merchantInfoDTO, appId);
 			saveMerchant(merchant);
+			logger.info("Saved merchant with id " + merchantInfoDTO.getMerchantId() + " and application with id" + appId);
 		} else {
 			Merchant merchant = merchantOpt.get();
 			merchant.setMerchantId(merchantInfoDTO.getMerchantId());
 			merchant.setMerchantPassword(merchantInfoDTO.getMerchantPassword());
 			saveMerchant(merchant);
+			logger.info("Updated merchant with id " + merchantInfoDTO.getMerchantId() + " and application with id" + appId);
+
 		}
 		return "http://localhost:8400/view/successfulConfig";
 	}

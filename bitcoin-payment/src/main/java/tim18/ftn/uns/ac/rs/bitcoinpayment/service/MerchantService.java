@@ -2,6 +2,8 @@ package tim18.ftn.uns.ac.rs.bitcoinpayment.service;
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import tim18.ftn.uns.ac.rs.bitcoinpayment.repository.MerchantRepository;
 
 @Service
 public class MerchantService {
+	
+	Logger logger = LoggerFactory.getLogger(MerchantService.class);
 	
 	@Autowired
 	private MerchantRepository merchantRepository;
@@ -28,6 +32,7 @@ public class MerchantService {
 		Optional<Merchant> merchant = merchantRepository.findByApplicationId(appId);
 
 		if (!merchant.isPresent()) {
+			logger.error("Merchant with appId " + appId + " not found.");
 			throw new NotFoundException(appId, Merchant.class.getSimpleName());
 		}
 
@@ -40,10 +45,13 @@ public class MerchantService {
 		if (!merchantOpt.isPresent()) {
 			Merchant merchant = new Merchant(merchantInfoDTO, appId);
 			saveMerchant(merchant);
+			logger.info("Saved merchant with coingate token " + merchantInfoDTO.getCoingateToken() + " and application with id" + appId);
 		} else {
 			Merchant merchant = merchantOpt.get();
 			merchant.setCoingateToken(merchantInfoDTO.getCoingateToken());
 			saveMerchant(merchant);
+			logger.info("Updated merchant with coingate token " + merchantInfoDTO.getCoingateToken() + " and application with id" + appId);
+
 		}
 		return "http://localhost:8300/view/successfulConfig";
 	}

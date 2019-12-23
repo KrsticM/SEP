@@ -1,5 +1,7 @@
 package tim18.ftn.uns.ac.rs.bitcoinpayment.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -25,6 +27,8 @@ import tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService;
 @RestController
 public class BitcoinPaymentController {
 	
+	Logger logger = LoggerFactory.getLogger(BitcoinPaymentController.class);
+	
 	@Autowired 
 	private PaymentService paymentService;
 	
@@ -36,7 +40,7 @@ public class BitcoinPaymentController {
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public Order createOrder(@RequestBody OrderDTO orderDTO) throws NotFoundException { // Mora se znati kom prodavcu se uplacuje, koliko se uplacuje
-		System.out.println("U kontroleru kreiranje ordera");
+		logger.info("Creating order"); // TODO: koja aplikacija
 		System.out.println(orderDTO);
 		
 		Order o = new Order();
@@ -46,12 +50,13 @@ public class BitcoinPaymentController {
 		o.setStatus(OrderStatus.CREATED);
 		
 		Order savedOrder = orderService.saveOrder(o);
+		logger.info("Saved order " + savedOrder.getId()); // TODO: koja aplikacija
 		return savedOrder;
 	}
 	
 	@RequestMapping(value = "/pay/{appId}/{orderId}", method = RequestMethod.GET)
 	public ModelAndView pay(@PathVariable Integer appId, @PathVariable Integer orderId) throws NotFoundException { // Mora se znati kom prodavcu se uplacuje, koliko se uplacuje
-		System.out.println("U kontroleru");
+		logger.info("Bitcoin controller: appId: " + appId + ", orderId: " + orderId); 
 		System.out.println("App ID: " + appId + " OrderId: " + orderId);
 		String redirectUrl = paymentService.pay(appId, orderId); // TODO: Promeniti (prvi parametar je appId)
 		System.out.println("REDIRECR URL: " + redirectUrl);
@@ -62,12 +67,15 @@ public class BitcoinPaymentController {
 	@RequestMapping(value = "/complete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String complete(@RequestBody CompletePaymentDTO completePaymentDTO) throws NotFoundException {
 		System.out.println("Complete payment");
+		logger.info("Complete payment for order with id " + completePaymentDTO.getOrder_id()); 
+
 		System.out.println(completePaymentDTO);
 		
 		Order o = orderService.findById(completePaymentDTO.getOrder_id());
 		o.setStatus(OrderStatus.COMPLETED);
 		orderService.saveOrder(o);
-		
+		logger.info("Order with id " + completePaymentDTO.getOrder_id() + " is completed"); 
+
 		CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
 		completePaymentResponseDTO.setOrder_id(o.getOrderIdScienceCenter());
 		completePaymentResponseDTO.setStatus("COMPLETED");

@@ -2,6 +2,8 @@ package tim18.ftn.uns.ac.rs.bitcoinpayment.service;
 
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +21,8 @@ import tim18.ftn.uns.ac.rs.bitcoinpayment.model.OrderStatus;
 @Service
 public class PaymentService {
 	
+	Logger logger = LoggerFactory.getLogger(PaymentService.class);
+	
 	@Autowired
 	private MerchantService merchantService;
 
@@ -32,8 +36,11 @@ public class PaymentService {
 	public String pay(Integer appId, Integer orderId) throws NotFoundException {
 		
 		Merchant merchant = merchantService.findByAppId(appId);
-		Order order = orderService.findById(orderId);
+		logger.info("Payment to the seller " + merchant.getCoingateToken());
 		
+		Order order = orderService.findById(orderId);
+		logger.info("OrderId: " + order.getId());
+
 		BTCOrder btcOrder = new BTCOrder();
 		btcOrder.setOrder_id(order.getId().toString());
 		btcOrder.setPrice_amount(order.getPrice());
@@ -43,6 +50,8 @@ public class PaymentService {
 		btcOrder.setCallback_url("http://localhost:8080/api/bitcoin/complete/payment");
 		btcOrder.setToken(token);
 
+		logger.info("Payment amount " + order.getPrice());
+		
 		String clientSecret = "Bearer " + merchant.getCoingateToken(); 
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Authorization", clientSecret);
@@ -52,6 +61,8 @@ public class PaymentService {
 
 		order.setStatus(OrderStatus.PAID);
 		System.out.println(responseEntity);
+		logger.info("Saving order" + order.getId() + " for application: " + appId + ", order status: " + order.getStatus()); // TODO: koja aplikacija
+
 		return responseEntity.getBody().getPayment_url();
 	}
 

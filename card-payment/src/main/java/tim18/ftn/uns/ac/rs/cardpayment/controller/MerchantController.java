@@ -1,6 +1,8 @@
 package tim18.ftn.uns.ac.rs.cardpayment.controller;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,14 +18,15 @@ import tim18.ftn.uns.ac.rs.cardpayment.service.MerchantService;
 @RequestMapping("/merchant")
 public class MerchantController {
 	
+	Logger logger = LoggerFactory.getLogger(MerchantController.class);
+	
 	@Autowired
 	private MerchantService merchantService;
 
 	
 	@RequestMapping(value = "/addOrUpdate/{appId}", method = RequestMethod.POST)
 	public String addOrUpdateConfig(@PathVariable Integer appId, @RequestBody MerchantInfoDTO merchantInfoDTO) throws NotFoundException {
-		System.err.println("Merchant id: " + merchantInfoDTO.getMerchantId());
-		System.err.println("Merchant password: " + merchantInfoDTO.getMerchantPassword());		
+		logger.info("Adding or updating config for merchant with id " + merchantInfoDTO.getMerchantId() + " and application with id " + appId); 	
 		return merchantService.addOrUpdateConfig(merchantInfoDTO, appId);
 	}
 	
