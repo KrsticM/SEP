@@ -2,7 +2,26 @@
   border-radius: 1rem;
 }
 
-
 .bg-color {
 	background: #f5f5f5;
+}
+
+.btn-plavo, .btn-primary:active {
+	color: #fff;
+	background: #33cabb;
+	vertical-align: middle;
+	border: none;
+}
+
+/* Change color of buttons when hovered or focused*/
+.btn-plavo:hover, .btn-primary:focus {
+	color: #fff;
+	outline: none;
+	background: #31bfb1;
+}
+
+/* Change color of icons in input forms*/
+.ikonica{
+	color: #33cabb;
+	width: 15px;
 }

@@ -17,7 +17,7 @@
 	  <!-- Register text -->
 	  <div class="row mb-4">
 	    <div class="col-lg-6 mx-auto text-center">
-	      <h1 class="display-4 ">Register</h1>
+	      <h1 class="display-4 " style="color:#33cabb;">Register</h1>
 	    </div>
 	  </div>
 	  <!-- End -->
@@ -31,18 +31,18 @@
 	            <form  th:action="@{'http://localhost:8400/merchant/addOrUpdate/' + ${appId}}" id="registerForm" role="form" method="POST">
 	            	<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
+							<span class="input-group-text"><i class="fas fa-user ikonica"></i></span>
 						</div>
 						<input id="merchantId" name="merchantId" type="text" class="form-control" placeholder="Merchant id">						
 					</div>	              
 	              	<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
+							<span class="input-group-text"><i class="fas fa-key ikonica"></i></span>
 						</div>
 						<input  id="merchantPassword" name="merchantPassword" type="password" class="form-control" placeholder="Merchant password">
 				 	</div>         
 	           
-	              	<button type="submit" class="subscribe btn btn-info btn-block rounded-pill shadow-sm"> Register  </button>
+	              	<button type="submit" class="subscribe btn btn-plavo btn-block rounded-pill shadow-sm"> Register  </button>
 	            </form>
 	          </div>
 	          <!-- End registration form-->
