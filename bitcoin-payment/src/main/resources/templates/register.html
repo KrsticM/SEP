@@ -28,20 +28,14 @@
 	       
 	          <!-- registration form -->
 	          <div>
-	            <form  th:action="@{'http://localhost:8400/merchant/addOrUpdate/' + ${appId}}" id="registerForm" role="form" method="POST">
+	            <form  th:action="@{'http://localhost:8300/merchant/addOrUpdate/' + ${appId}}" id="registerForm" role="form" method="POST">
 	            	<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input id="merchantId" name="merchantId" type="text" class="form-control" placeholder="Merchant id">						
+						<input id="coingateToken" name="coingateToken" type="text" class="form-control" placeholder="Coingate token">						
 					</div>	              
-	              	<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						<input  id="merchantPassword" name="merchantPassword" type="password" class="form-control" placeholder="Merchant password">
-				 	</div>         
-	           
+	              	
 	              	<button type="submit" class="subscribe btn btn-info btn-block rounded-pill shadow-sm"> Register  </button>
 	            </form>
 	          </div>
@@ -53,7 +47,7 @@
 	</div>
 	<script>
 		$(document).ready(function(){
-			alert('registracija');
+			alert('registracija bit-coin');
 			var formId = 'registerForm';
 			$('#' + formId).submit(function (e) {
 				handleFormRegister(e, formId);
@@ -85,7 +79,7 @@
 				success: function(odgovor){
 					console.log('objekat', obj);
 					console.log(odgovor);
-					window.location.href = odgovor;
+					// window.location.href = odgovor;
 				},
 				error: function(odgovor){
 					alert(odgovor.responseText);

@@ -2,15 +2,17 @@ package tim18.ftn.uns.ac.rs.cardpayment.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/view")
 public class ViewController {
 	
-	@RequestMapping(value = "/register") 
-	public String form(Model model) { // Ovde ce se verovato primati app token umesto app id
+	@RequestMapping(value = "/register/{appId}") 
+	public String form(@PathVariable Integer appId, Model model) { // Ovde ce se verovato primati app token umesto app id
 		System.out.println("Form ");
+		model.addAttribute("appId", appId);
 		return "register";
 	}
 	
@@ -32,5 +34,12 @@ public class ViewController {
 		System.out.println("errorURL ");
 		return "error";
 	}
+	
+	@RequestMapping(value = "/successfulConfig") 
+	public String successfulConfig(Model model) { 
+		System.out.println("successfulConfig ");
+		return "successfulConfig";
+	}
+	
 
 }

@@ -20,6 +20,7 @@ import tim18.ftn.uns.ac.rs.sciencecenter.dto.PaymentRequestDTO;
 import tim18.ftn.uns.ac.rs.sciencecenter.exceptions.NotFoundException;
 import tim18.ftn.uns.ac.rs.sciencecenter.model.Item;
 import tim18.ftn.uns.ac.rs.sciencecenter.model.Order;
+import tim18.ftn.uns.ac.rs.sciencecenter.model.OrderStatus;
 import tim18.ftn.uns.ac.rs.sciencecenter.service.ItemService;
 import tim18.ftn.uns.ac.rs.sciencecenter.service.OrderService;
 
@@ -62,6 +63,7 @@ public class ItemController {
 		Order o = new Order();
 		o.setPrice(price);
 		o.setCallbackUrl("http://localhost:8008/order/complete");
+		o.setStatus(OrderStatus.CREATED);
 		Order savedOrder = orderService.saveOrder(o);
 		
 		String paymentConcentratorUrl = "http://localhost:8762/payment-concentrator";

@@ -76,4 +76,17 @@ public class OrderService {
         orderRepository.save(order);
         return order;
 	}
+	
+	public String getOrderDetails(int orderId) throws UnsupportedEncodingException {
+		Order order = orderRepository.getOne(orderId);
+		RestTemplate restTemplate = new RestTemplate();
+        String paypalAPI = "https://api.sandbox.paypal.com/v2/checkout/orders/"
+        	+ URLEncoder.encode(order.getPaypalOrderId(), "UTF-8");
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Authorization", "Bearer " + tokenService.getAccessToken(order.getMerchant()));
+        HttpEntity<String> entity = new HttpEntity<String>("", headers); 
+        return restTemplate.postForObject(paypalAPI, entity, String.class);
+	}
 }

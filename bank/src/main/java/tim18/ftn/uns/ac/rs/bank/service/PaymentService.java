@@ -3,9 +3,14 @@ package tim18.ftn.uns.ac.rs.bank.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import tim18.ftn.uns.ac.rs.bank.dto.ClientDTO;
+import tim18.ftn.uns.ac.rs.bank.dto.CompletePaymentResponseDTO;
 import tim18.ftn.uns.ac.rs.bank.dto.PaymentRequestDTO;
 import tim18.ftn.uns.ac.rs.bank.dto.PaymentResponseDTO;
 import tim18.ftn.uns.ac.rs.bank.exceptions.NotFoundException;
@@ -27,6 +32,9 @@ public class PaymentService {
 	@Autowired
 	private TransactionService transactionService;
 	
+	@Autowired
+	private RestTemplate restTemplate;
+	
 	public PaymentRequest getPaymentRequest(Integer id) throws NotFoundException {
 		Optional<PaymentRequest> paymentRequest = paymentRepository.findById(id);
 		if(!paymentRequest.isPresent()) {
@@ -46,6 +54,7 @@ public class PaymentService {
 		paymentRequest.setSuccessUrl(paymentRequestDTO.getSuccessUrl());
 		paymentRequest.setFailedUrl(paymentRequestDTO.getFailedUrl());
 		paymentRequest.setErrorUrl(paymentRequestDTO.getErrorUrl());
+		paymentRequest.setCallbackUrl(paymentRequestDTO.getCallbackUrl());
 		PaymentRequest ret = paymentRepository.save(paymentRequest);
 		return new PaymentResponseDTO(ret.getId(), "http://localhost:5005/view/form");
 	}
@@ -94,6 +103,15 @@ public class PaymentService {
 		clientService.save(merchant);
 		transaction.setStatus(TransactionStatus.SUCCESSFUL);
 		transactionService.save(transaction);		
+		
+		CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
+		completePaymentResponseDTO.setOrder_id(paymentRequest.getMerchantOrderId());
+		completePaymentResponseDTO.setStatus("PAID");
+		
+		ResponseEntity<String> responseEntity = restTemplate.exchange(paymentRequest.getCallbackUrl() + "/complete", HttpMethod.POST,
+				new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
+		System.out.println(responseEntity.getBody());
+		
 		return paymentRequest.getSuccessUrl();
 	}
 }

@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import tim18.ftn.uns.ac.rs.paymentconcentrator.model.User;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.model.temporary.CustomUserDetails;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.service.AuthenticationService;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.service.CustomUserDetailsService;

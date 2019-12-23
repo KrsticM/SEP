@@ -14,6 +14,7 @@ import tim18.ftn.uns.ac.rs.bitcoinpayment.exeptions.NotFoundException;
 import tim18.ftn.uns.ac.rs.bitcoinpayment.model.BTCOrder;
 import tim18.ftn.uns.ac.rs.bitcoinpayment.model.Merchant;
 import tim18.ftn.uns.ac.rs.bitcoinpayment.model.Order;
+import tim18.ftn.uns.ac.rs.bitcoinpayment.model.OrderStatus;
 
 @Service
 public class PaymentService {
@@ -34,11 +35,11 @@ public class PaymentService {
 		Order order = orderService.findById(orderId);
 		
 		BTCOrder btcOrder = new BTCOrder();
-		btcOrder.setOrder_id(order.getOrderIdScienceCenter().toString());
+		btcOrder.setOrder_id(order.getId().toString());
 		btcOrder.setPrice_amount(order.getPrice());
-		btcOrder.setCancel_url(url + "/cancelBtc");
+		btcOrder.setCancel_url(url + "/view/cancelBtc");
 		token = UUID.randomUUID().toString();
-		btcOrder.setSuccess_url(url + "/successBtc");
+		btcOrder.setSuccess_url(url + "/view/successBtc");
 		btcOrder.setCallback_url("http://localhost:8080/api/bitcoin/complete/payment");
 		btcOrder.setToken(token);
 
@@ -49,7 +50,7 @@ public class PaymentService {
 		ResponseEntity<BTCOrder> responseEntity = new RestTemplate().exchange(sandboxUrl, HttpMethod.POST,
 				new HttpEntity<BTCOrder>(btcOrder, headers), BTCOrder.class);
 
-
+		order.setStatus(OrderStatus.PAID);
 		System.out.println(responseEntity);
 		return responseEntity.getBody().getPayment_url();
 	}

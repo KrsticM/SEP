@@ -13,6 +13,8 @@ import tim18.ftn.uns.ac.rs.cardpayment.dto.PaymentRequestDTO;
 import tim18.ftn.uns.ac.rs.cardpayment.dto.PaymentResponseDTO;
 import tim18.ftn.uns.ac.rs.cardpayment.exceptions.NotFoundException;
 import tim18.ftn.uns.ac.rs.cardpayment.model.Merchant;
+import tim18.ftn.uns.ac.rs.cardpayment.model.Order;
+import tim18.ftn.uns.ac.rs.cardpayment.model.OrderStatus;
 
 @Service
 public class CardPaymentService {
@@ -20,25 +22,35 @@ public class CardPaymentService {
 	@Autowired
 	private MerchantService merchantService;
 	
+	@Autowired
+	private OrderService orderService;
+	
 	private String url = "http://localhost:8400/view";
 	private String bankUrl = "http://localhost:5005/payment/create";
 
-	public String pay(Integer applicationId, Double amount) throws NotFoundException {
+	public String pay(Integer applicationId, Integer orderId) throws NotFoundException {
 		
 		Merchant merchant = merchantService.findByAppId(applicationId);
+		Order order = orderService.findById(orderId);
+		
 		
 		PaymentRequestDTO paymentRequestDTO = new PaymentRequestDTO();			
 		paymentRequestDTO.setMerchantId(merchant.getMerchantId());
 		paymentRequestDTO.setMerchantPassword(merchant.getMerchantPassword());
-		paymentRequestDTO.setAmount(amount);
-		paymentRequestDTO.setMerchantOrderId("Order123456");
+		paymentRequestDTO.setAmount(order.getPrice());
+		paymentRequestDTO.setMerchantOrderId(order.getId());
 		paymentRequestDTO.setMerchantTimestamp(new Date());
 		paymentRequestDTO.setSuccessUrl(url + "/successURL");
 		paymentRequestDTO.setFailedUrl(url + "/failedURL");
 		paymentRequestDTO.setErrorUrl(url + "/errorURL");
 		
+		paymentRequestDTO.setCallbackUrl("http://localhost:8762/card-payment");
+		
 		ResponseEntity<PaymentResponseDTO> responseEntity = new RestTemplate().exchange(bankUrl, HttpMethod.POST,
 				new HttpEntity<PaymentRequestDTO>(paymentRequestDTO), PaymentResponseDTO.class);
+		
+		order.setOrderStatus(OrderStatus.PAID);
+		orderService.saveOrder(order);
 		
 		return responseEntity.getBody().getPaymentUrl() + "/" + responseEntity.getBody().getPaymentId();
 	}

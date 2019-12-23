@@ -35,10 +35,13 @@ public class PaymentRequest {
 	private Double amount;
 	
 	@Column(nullable = false)
-	private String merchantOrderId;
+	private Integer merchantOrderId;
 	
 	@Column(nullable = false)
 	private Date merchantTimestamp;
+	
+	@Column
+	private String callbackUrl;
 	
 	@Column(nullable = false)
 	private String successUrl;
