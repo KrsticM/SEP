@@ -39,7 +39,7 @@ public class AccessTokenService {
         this.accessTokenRepository = accessTokenRepository;
     }
 
-    public String getAccessToken(String appId) throws UnsupportedEncodingException {
+    public String getAccessToken(Integer appId) throws UnsupportedEncodingException {
         Optional<AccessToken> token = accessTokenRepository.findById(appId);
         if(token.isPresent()){
             return token.get().getToken();

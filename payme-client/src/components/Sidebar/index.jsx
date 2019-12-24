@@ -59,27 +59,11 @@ function Sidebar() {
           <React.Fragment>
             <List>
               <ListItem>
-                <ListItemText className={classes.linkText}>
-                  My application
-                </ListItemText>
-              </ListItem>
-              <ListItem>
-                <List disablePadding>
-                  <ListItem>
-                    <Link href="/settings/payment_methods">
-                      <ListItemText className={classes.linkText}>
-                        Payment methods
-                      </ListItemText>
-                    </Link>
-                  </ListItem>
-                  <ListItem>
-                    <Link href="/settings/generate_token">
-                      <ListItemText className={classes.linkText}>
-                        Settings
-                      </ListItemText>
-                    </Link>
-                  </ListItem>
-                </List>
+                <Link href="/settings/applications">
+                  <ListItemText className={classes.linkText}>
+                    My applications
+                  </ListItemText>
+                </Link>
               </ListItem>
             </List>
             <Divider className={classes.divider} />

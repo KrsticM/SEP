@@ -32,6 +32,7 @@ public class ViewController {
 	
 	// Primer poziva: http://localhost:8762/payment-concentrator/choosePaymentMethod/1d5d705c-c332-477c-8c1a-33e277b251ef
 	// Body:
+	// AppId: UUID
 	// OrderId : Integer
 	// OrderPrice : Double
 	// CallBackUrl : String

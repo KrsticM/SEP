@@ -14,7 +14,7 @@ public class OrderDTO {
 	private Double price;
 
 	@NotBlank(message = "Please, enter an app ID.")
-	private String appId;
+	private Integer appId;
 
 	@NotBlank(message = "Please, enter payer detail.")
 	private String payer;

@@ -10,7 +10,7 @@ function Landing(props) {
   };
 
   const handleGoToDashboard = () => {
-    const jwt = sessionStorage.getItem('jwt');
+    const jwt = sessionStorage.getItem('authUser');
     if (!jwt) {
       props.history.push('/login');
     } else {

@@ -21,9 +21,9 @@ function Docs(props) {
         </Typography>
         <br />
         <Typography variant="body2" component="p" >
-          {"After registering, you need to generate API key you will then use to access PayMe API."}
-          {"API key should be sent inside Authorization header for every request using our API endpoints."}
-          {"Please take care of how you store your API key."}
+          {"After registering, you need to add new application. You will then be able to configure payment methods for your applications."}
+          {"This app id will then be further used for further payment management."}
+          {"Please take care of how you store your app ids."}
         </Typography>
         <div
           className="card__button"
@@ -31,15 +31,11 @@ function Docs(props) {
           <Button
             variant="contained"
             color="primary"
-            onClick={() => props.history.push('/settings/generate_token')}
+            onClick={() => props.history.push('/settings/applications')}
           >
-            Generate my API key
+            See my apps
           </Button>
         </div>
-        <Typography variant="body2" component="p" >
-          {"Once you have obtained your API key, make sure to enable and configure payment methods you want to use."}
-          {"The list of all available payment methods can be found "}<a href="/settings/payment_methods">here</a>{"."}
-        </Typography>
         <br />
         <br />
         <Typography variant="body2" component="p" color="primary">

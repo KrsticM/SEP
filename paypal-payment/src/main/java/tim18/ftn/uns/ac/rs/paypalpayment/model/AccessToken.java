@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 public class AccessToken {
 
 	@Id
-	private String appId;
+	private Integer appId;
 	
 	@Column
 	@Convert(converter = StringConverter.class)
@@ -27,7 +27,7 @@ public class AccessToken {
 		
 	}
 	
-	public AccessToken(String applicationId, String accessToken, long expiresIn) {
+	public AccessToken(Integer applicationId, String accessToken, long expiresIn) {
 		this.appId = applicationId;
 		this.token = accessToken;
 		this.expiresAt = LocalDateTime.now().plusSeconds(expiresIn);

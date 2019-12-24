@@ -18,8 +18,8 @@ public class MerchantService {
 	 * @param RegistrationDTO registration data
 	 * @return Merchant
 	 */
-	public Merchant registerMerchant(MerchantRegisterDTO registrationDTO) {
-		Merchant merchant = registrationDTO.createMerchant();
+	public Merchant registerMerchant(Integer appId, MerchantRegisterDTO registrationDTO) {
+		Merchant merchant = registrationDTO.createMerchant(appId);
 		return merchantRepository.save(merchant);
 	}
 }

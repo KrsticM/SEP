@@ -11,11 +11,6 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Icon from '@material-ui/core/Icon';
 import './Signup.css';
 
-const AUTHORITY = {
-  PERSONAL: 'PERSONAL',
-  ENTERPRISE: 'ENTERPRISE'
-};
-
 const requiredFields = [
   {
     value: 'email',
@@ -46,8 +41,7 @@ function Signup(props) {
     organizationName: '',
     email: '',
     password: '',
-    website: '',
-    authority: AUTHORITY.PERSONAL
+    website: ''
   });
 
   const [errors, setErrors] = useState({});
@@ -65,13 +59,6 @@ function Signup(props) {
       });
     }
   };
-
-  const selectAuthority = (type) => () => {
-    setState({
-      ...state,
-      authority: type
-    });
-  }
 
   const validateForm = () => {
     const validationErrors = {};
@@ -92,7 +79,7 @@ function Signup(props) {
       return;
     }
     try {
-      const { data, status } = await axios.post('http://localhost:8100/auth/register', state);
+      const { data, status } = await axios.post('http://localhost:8762/payment-concentrator/auth/register', state);
       if (status !== 200) {
         toast.error('Something went wrong');
         return;
@@ -139,27 +126,6 @@ function Signup(props) {
           value={state.organizationName}
           onChange={handleChange}
         />
-        <FormControl component="fieldset">
-          <FormLabel required>Account type</FormLabel>
-          <ButtonGroup size="large">
-            <Button
-              variant="outlined"
-              color={(state.authority === AUTHORITY.PERSONAL) ? 'primary' : 'default'}
-              startIcon={<Icon>person</Icon>}
-              onClick={selectAuthority(AUTHORITY.PERSONAL)}
-            >
-              Personal
-            </Button>
-            <Button
-              variant="outlined"
-              color={(state.authority === AUTHORITY.ENTERPRISE) ? 'primary' : 'default'}
-              startIcon={<Icon>account_balance</Icon>}
-              onClick={selectAuthority(AUTHORITY.ENTERPRISE)}
-            >
-              Enterprise
-            </Button>
-          </ButtonGroup>
-        </FormControl>
         <div className="signup__actions">
           <Button
             variant="contained"

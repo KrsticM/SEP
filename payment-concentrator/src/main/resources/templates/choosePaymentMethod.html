@@ -21,7 +21,7 @@
 			<td th:text="${method.name}" />
 			<td><a class="link"
 				th:href="@{'http://localhost:8762/' + ${method.name}} + '/pay/' +  ${appId}"
-				th:attr="create_url=@{'http://localhost:8762/' + ${method.name}} + '/create/', order_id=${orderId}, order_price=${orderPrice}, callback_url=${callbackUrl}" >
+				th:attr="create_url=@{'http://localhost:8762/' + ${method.name}} + '/create/', app_id=${appId}, order_id=${orderId}, order_price=${orderPrice}, callback_url=${callbackUrl}" >
 					Izaberi</a></td>
 		</tr>
 	</table>
@@ -33,6 +33,7 @@
 				  
 				  
 				  console.log($(this).attr('create_url'));
+				  console.log($(this).attr('app_id'));
 				  console.log($(this).attr('order_id'));
 				  console.log($(this).attr('order_price'));
 				  console.log($(this).attr('callback_url'));
@@ -47,6 +48,7 @@
 					contentType: "application/json",
 					data: JSON.stringify({'orderIdScienceCenter':$(this).attr('order_id'),
 						'price':$(this).attr('order_price'),
+						'appId':$(this).attr('app_id'),
 						'callbackUrl': $(this).attr('callback_url')}),
 					success: function(odgovor){
 						console.log(odgovor);

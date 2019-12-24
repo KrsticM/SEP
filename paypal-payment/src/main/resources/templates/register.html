@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+<link href="../static/css/register.css" rel="stylesheet" th:href="@{/css/register.css}"/>
+<title>Register</title>
+
+<link href="../static/css/bootstrap.min.css" rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body class="bg-color">
+
+	<div class="container py-5">	
+	  <!-- Register text -->
+	  <div class="row mb-4">
+	    <div class="col-lg-6 mx-auto text-center">
+	      <h1 class="display-4 ">Register</h1>
+	    </div>
+	  </div>
+	  <!-- End -->
+	
+	  <div class="row">
+	    <div class="col-lg-5 mx-auto">
+	      <div class="bg-white rounded-lg shadow-sm p-5">
+	       
+	          <!-- registration form -->
+	          <div>
+	            <form  th:action="@{'http://localhost:8200/merchant/addOrUpdate/' + ${appId}}" id="registerForm" role="form" method="POST">
+	            	<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input id="clientId" name="clientId" type="text" class="form-control" placeholder="Paypal client ID">						
+					</div>	              
+	            	<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input id="clientSecret" name="clientSecret" type="text" class="form-control" placeholder="Paypal client secret">						
+					</div>	      	              	
+	              	<button type="submit" class="subscribe btn btn-info btn-block rounded-pill shadow-sm"> Register  </button>
+	            </form>
+	          </div>
+	          <!-- End registration form-->
+
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<script>
+		$(document).ready(function(){
+			alert('registracija paypal');
+			var formId = 'registerForm';
+			$('#' + formId).submit(function (e) {
+				handleFormRegister(e, formId);
+			}
+			
+			);
+		});
+		
+		function handleFormRegister(e, formId) {
+			var form = $('#' + formId);
+			e.preventDefault();
+			
+			var input = $('#' + formId + ' :input');
+			var obj = {};
+			
+			for(var i = 0; i < input.length; i++){
+				if(input[i].name){
+					obj[input[i].name] = input[i].value;
+				}
+			}
+			
+			
+			
+			$.ajax({
+				type: form.attr('method'),
+				url: form.attr('action'),
+				contentType: "application/json",
+				data: JSON.stringify(obj),
+				success: function(odgovor){
+					// window.location.href = odgovor;
+				},
+				error: function(odgovor){
+					alert(odgovor.responseText);
+				}
+			});
+		}
+		
+		
+	</script>
+	
+</body>
+</html>
+
+

@@ -41,7 +41,7 @@ public class Order {
 	private Boolean executed;
 
 	@Column
-	private String merchant;
+	private Integer merchant;
 
 	@Column
 	private String callbackUrl;
@@ -51,7 +51,7 @@ public class Order {
 	}
 
 	public Order(
-		String merchantId,
+		Integer merchantId,
 		String payer,
 		Double price,
 		String callbackUrl) {

@@ -11,19 +11,15 @@ import tim18.ftn.uns.ac.rs.paypalpayment.model.Merchant;
 @Getter
 @Setter
 public class MerchantRegisterDTO {
-
-	@NotBlank(message = "Please, enter an app ID.")
-	private String appId;
-
 	@NotBlank(message = "Please, enter a client ID for your paypal account.")
 	private String clientId;
 
 	@NotBlank(message = "Please, enter a secret for your paypal account.")
 	private String clientSecret;
 
-	public Merchant createMerchant() {
+	public Merchant createMerchant(Integer appId) {
 		Merchant ret = new Merchant();
-		ret.setAppId(this.appId);
+		ret.setAppId(appId);
 		ret.setClientId(this.clientId);
 		ret.setClientSecret(this.clientSecret);
 		return ret;

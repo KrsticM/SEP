@@ -48,15 +48,18 @@ function Login(props) {
       return;
     }
     try {
-      const { data, status } = await axios.post('http://localhost:8100/auth/login', state);
+      const { data, status } = await axios.post('http://localhost:8762/payment-concentrator/auth/login', state);
+      console.log(data, status);
       if (!data.token || status !== 200) {
         toast.error('Something went wrong');
         return;
       }
+      console.log(data);
       toast.success('Login successful!');
       sessionStorage.setItem('authUser', data.token);
       props.history.replace('/get_started');
     } catch (error) {
+      console.log(error);
       toast.error(error.message || 'Unspecified error occured', {
         autoClose: 3000,
       });

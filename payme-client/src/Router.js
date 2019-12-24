@@ -13,6 +13,7 @@ import ApiRefs from './containers/Docs/ApiRefs';
 import Signup from './containers/Signup';
 import Login from './containers/Login';
 import PaymentServices from './containers/Settings/PaymentServices';
+import Applications from './containers/Settings/Applications';
 import TokenGenerating from './containers/Settings/TokenGenerating';
 
 const AuthRoute = ({ path, children }) => {
@@ -73,8 +74,8 @@ function Router() {
         <PrivateRoute path="/settings/payment_methods">
           <PaymentServices />
         </PrivateRoute>
-        <PrivateRoute path="/settings/generate_token">
-          <TokenGenerating />
+        <PrivateRoute path="/settings/applications">
+          <Applications />
         </PrivateRoute>
         <Route path="/">
           <Landing />

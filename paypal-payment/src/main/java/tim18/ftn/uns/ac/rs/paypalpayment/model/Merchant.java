@@ -16,7 +16,7 @@ public class Merchant {
 
 
 	@Id
-	private String appId;
+	private Integer appId;
 	
 	@Column
 	@Convert(converter = StringConverter.class)
@@ -30,7 +30,7 @@ public class Merchant {
 		
 	}
 	
-	public Merchant(String appId, String clientId, String clientSecret) {
+	public Merchant(Integer appId, String clientId, String clientSecret) {
 		this.appId = appId;
 		this.clientId = clientId;
 		this.clientSecret = clientSecret;
