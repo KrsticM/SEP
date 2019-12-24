@@ -73,6 +73,7 @@
 					obj[input[i].name] = input[i].value;
 				}
 			}
+			console.log(obj);
 			
 			
 			
@@ -82,7 +83,7 @@
 				contentType: "application/json",
 				data: JSON.stringify(obj),
 				success: function(odgovor){
-					// window.location.href = odgovor;
+					window.location.href = odgovor;
 				},
 				error: function(odgovor){
 					alert(odgovor.responseText);

@@ -78,7 +78,14 @@ public class BitcoinPaymentController {
 
 		CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
 		completePaymentResponseDTO.setOrder_id(o.getOrderIdScienceCenter());
-		completePaymentResponseDTO.setStatus("COMPLETED");
+		
+		if(completePaymentDTO.getStatus().contentEquals("PAID")) {
+			completePaymentResponseDTO.setStatus("COMPLETED");
+		}
+		else {
+			completePaymentResponseDTO.setStatus("FAILED");
+		}
+		
 		
 		ResponseEntity<String> responseEntity = restTemplate.exchange(o.getCallbackUrl(), HttpMethod.POST,
 				new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);

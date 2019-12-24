@@ -31,7 +31,7 @@ public class OrderService {
         String defJson = "{\n" +
                 "  \"intent\": \"CAPTURE\",\n" +
                 "  \"application_context\": {\n" +
-                "    \"return_url\": \"" + order.getCallbackUrl() + "\",\n" +
+                "    \"return_url\": \"" + order.getCallbackUrl() + "\"\n" +
                 "  },\n" +
                 "  \"purchase_units\": [{\n" +
                 "    \"amount\": {\n" +
@@ -46,10 +46,10 @@ public class OrderService {
         headers.set("Authorization", "Bearer " + tokenService.getAccessToken(order.getMerchant()));
 
         HttpEntity<String> entity = new HttpEntity<String>(defJson, headers);
+        System.out.println(tokenService.getAccessToken(order.getMerchant()));
         System.out.println(defJson);
         String jsonResponse = restTemplate.postForObject(paypalAPI, entity, String.class);
         Gson gson = new Gson();
-        order.setCreateTime(gson.fromJson(jsonResponse, JsonObject.class).get("create_time").getAsString());
         order.setPaypalOrderId(gson.fromJson(jsonResponse, JsonObject.class).get("id").getAsString());
         orderRepository.save(order);
         return order;

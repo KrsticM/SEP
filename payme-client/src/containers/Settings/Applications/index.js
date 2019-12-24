@@ -29,6 +29,7 @@ function Applications(props) {
     axios.get('http://localhost:8762/payment-concentrator/app')
       .then(async (response) => {
         const { data } = response;
+        console.log(data);
         const applications = data.map((application) => ({
           name: application.name,
           appId: application.id
@@ -65,6 +66,10 @@ function Applications(props) {
           autoClose: 3000,
         });
       });
+  }
+
+  const configureApp = (appId) => {
+    props.history.push(`/settings/applications/${appId}`);
   }
 
   const deleteApp = (appId) => {
@@ -118,7 +123,7 @@ function Applications(props) {
                   <Button
                     variant="contained"
                     color="primary"
-                    disabled
+                    onClick={() => configureApp(item.appId)}
                   >
                     Configure
                   </Button>

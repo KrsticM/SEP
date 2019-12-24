@@ -20,8 +20,9 @@ public class ViewController {
 	}
 	
 	@RequestMapping(value = "/register/{appId}") 
-	public String form(@PathVariable Integer appId, Model model) {
+	public String form(@PathVariable String appId, Model model) {
 		System.out.println("Register form ");
+		System.out.println(appId);
 		model.addAttribute("appId", appId);
 		return "register";
 	}

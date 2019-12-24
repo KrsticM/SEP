@@ -12,11 +12,9 @@ import tim18.ftn.uns.ac.rs.paypalpayment.model.Order;
 @Setter
 public class OrderDTO {
 	private Double price;
-
-	@NotBlank(message = "Please, enter an app ID.")
+	
 	private Integer appId;
 
-	@NotBlank(message = "Please, enter payer detail.")
 	private String payer;
 
 	@NotBlank(message = "Please, enter callback url.")

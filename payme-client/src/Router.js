@@ -71,7 +71,7 @@ function Router() {
         <AuthRoute path="/login">
           <Login />
         </AuthRoute>
-        <PrivateRoute path="/settings/payment_methods">
+        <PrivateRoute path="/settings/applications/:appId">
           <PaymentServices />
         </PrivateRoute>
         <PrivateRoute path="/settings/applications">

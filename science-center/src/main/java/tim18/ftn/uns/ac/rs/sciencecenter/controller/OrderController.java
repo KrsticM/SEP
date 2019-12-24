@@ -32,6 +32,13 @@ public class OrderController {
 			orderService.saveOrder(o);
 			return "Success";
 		}
+		else if(completePaymentDTO.getStatus().contentEquals("FAILED")) {
+			Order o = orderService.findById(completePaymentDTO.getOrder_id());
+			o.setStatus(OrderStatus.FAILED);	
+			orderService.saveOrder(o);
+			return "Failed";
+		}
+		
 		return "Error";
 	}
 	

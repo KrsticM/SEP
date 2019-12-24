@@ -113,7 +113,8 @@ public class PaymentMethodService {
 	}
 	
 	public List<PaymentMethod> getPaymentMethods(UUID appApiKey) throws NotFoundException {
-		Application app = applicationService.findByApiKey(appApiKey.toString());		
+		Application app = applicationService.findByApiKey(appApiKey.toString());
+		System.out.println(app.toString());
 		
 		List<PaymentMethod> ret = new ArrayList<PaymentMethod>();
 		for(PaymentMethod pm: app.getMethods()) {

@@ -4,43 +4,87 @@
 <meta charset="UTF-8" />
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <title>Choose payment method</title>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+	rel="stylesheet" type="text/css" />
+
+<style>
+.rounded-lg {
+  border-radius: 1rem;
+}
+
+.bg-color {
+	background: #f5f5f5;
+}
+
+.nesto {
+	    padding: 10px;
+	    border-bottom: 1px solid lightgrey;
+
+}
+
+.btn-plavo, .btn-primary:active {
+	color: #fff;
+	background: #33cabb;
+	vertical-align: middle;
+	border: none;
+}
+
+/* Change color of buttons when hovered or focused*/
+.btn-plavo:hover, .btn-primary:focus {
+	color: #fff;
+	outline: none;
+	background: #31bfb1;
+}
+</style>
 </head>
-<body>
-	<h4>Welcome to Thymeleaf Spring Boot web application</h4>
-	<p>Application ID:</p>
-	<p th:text="${appId}"></p>
+<body class="bg-color">
 
-	<p>Order ID:
-	<p>
-	<p th:text="${orderId}"></p>
 
-	<p>Izaberite metodu kojom želite da platite:</p>
-	<table>
-		<tr th:each="method: ${paymentMethods}">
-			<td th:text="${method.id}" />
-			<td th:text="${method.name}" />
-			<td><a class="link"
-				th:href="@{'http://localhost:8762/' + ${method.name}} + '/pay/' +  ${appId}"
-				th:attr="create_url=@{'http://localhost:8762/' + ${method.name}} + '/create/', app_id=${appId}, order_id=${orderId}, order_price=${orderPrice}, callback_url=${callbackUrl}" >
-					Izaberi</a></td>
-		</tr>
-	</table>
+	<div class="row mb-4">
+		<div class="col-lg-12 mx-auto text-center">
+			<h1 class="display-4 " style="color:#33cabb;">Choose payment method</h1>
+		</div>
+	</div>
+
+
+	<br/>
+
+	<div class="row">
+		<div class="col-sm-4" th:each="method: ${paymentMethods}">
+			<div class="card text-center">
+				<div class="card-body">
+			    	<h5 class="card-title nesto" th:text="${method.name}"></h5>
+
+			        <button class="btn btn-plavo link"
+			        th:href="@{'http://localhost:8762/' + ${method.name}} + '/pay/' +  ${appId}"
+					th:attr="create_url=@{'http://localhost:8762/' + ${method.name}} + '/create/', order_id=${orderId}, order_price=${orderPrice}, callback_url=${callbackUrl}" >
+					Choose
+					</button>
+			    </div>
+			</div>
+		</div>
+	</div>
+
 
 	<script>
 		$(document).ready(function(){
 			$( ".link" ).click(function(e) {
 				  e.preventDefault();
-				  
-				  
+
+
 				  console.log($(this).attr('create_url'));
 				  console.log($(this).attr('app_id'));
 				  console.log($(this).attr('order_id'));
 				  console.log($(this).attr('order_price'));
 				  console.log($(this).attr('callback_url'));
-				  
+
 				  console.log("REDIRECT URL: ")
 				  console.log($(this).attr('href'));
-				  
+
 				  var hrefUrl = $(this).attr('href');
 				  $.ajax({
 				  	type: 'POST',
@@ -52,21 +96,17 @@
 						'callbackUrl': $(this).attr('callback_url')}),
 					success: function(odgovor){
 						console.log(odgovor);
-						
+
 						var url = hrefUrl + "/" + odgovor.id
 						console.log(url);
-					
+
 						window.location.href = url;
 					},
 					error: function(odgovor){
 						alert(odgovor.responseText);
 					}
 				  });
-				  
-				  // Url na koji cemo izvrsiti redirect
-				  
-				  
-				  alert( "Handler for .click() called." );
+
 			});
 		});
 	</script>

@@ -19,25 +19,30 @@ function PaymentServices(props) {
   });
 
   useEffect(() => {
+    const { appId } = props.match.params;
+    console.log(props);
     if (state.loaded) {
       return;
     }
-    axios.get('http://localhost:8100/payment/all-services')
+    axios.get('http://localhost:8762/payment-concentrator/payment/all-services')
       .then(async (response) => {
         const { data } = response;
 
-        const methodResponse = await axios.get('http://localhost:8100/user/my-payment-methods');
+        const methodResponse = await axios.get(
+          'http://localhost:8762/payment-concentrator/payment-method/' + appId
+        );
         if (!methodResponse.data) {
           toast.error('Unspecified error occured', {
             autoClose: 3000,
           });
           return;
         }
-        console.log(methodResponse.data);
-        const availableMethods = data.map((service) => ({
-          name: service,
-          enabled: !!methodResponse.data.find((item) => (item.name === service))
-        }));
+        const availableMethods = data
+          .filter((item) => item !== 'pc-gateway')
+          .map((service) => ({
+            name: service,
+            enabled: !!methodResponse.data.find((item) => (item.name === service))
+          }));
         setState({
           availableMethods,
           loaded: true
@@ -51,29 +56,11 @@ function PaymentServices(props) {
   }, [state.loaded]);
 
   const enableMethod = (methodName) => {
-    axios.post(`http://localhost:8100/user/add-method/${methodName}`)
-      .then(async (response) => {
-        const { status } = response;
-        if (status !== 200) {
-          toast.error('Unspecified error occured', {
-            autoClose: 3000,
-          });
-          return
-        }
-        const availableMethods = state.availableMethods.map((method) => ({
-          name: method.name,
-          enabled: (method.name === methodName) ? true : method.enabled
-        }));
-        setState({
-          availableMethods,
-          loaded: true
-        });
-        toast.success("Payment method disabled successfully");
-      })
-      .catch((error) => {
-        toast.error(error.message || 'Unspecified error occured', {
-          autoClose: 3000,
-        });
+    console.log(methodName);
+    const { appId } = props.match.params;
+    axios.post(`http://localhost:8762/payment-concentrator/payment-method/${appId}/${methodName}`)
+      .then(() => {
+        window.location = `http://localhost:8762/${methodName}/view/register/${appId}`;
       });
   }
 

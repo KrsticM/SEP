@@ -22,3 +22,5 @@
 2019-12-23 20:41:13,507 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-7] OrderId: 999
 2019-12-23 20:41:13,510 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-7] Payment amount 10.0
 2019-12-23 20:41:14,105 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-7] Saving order999 for application: 999, order status: PAID
+2019-12-24 11:00:33,784 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-24 11:00:59,290 INFO org.springframework.boot.StartupInfoLogger [main] Started CardPaymentApplication in 56.583 seconds (JVM running for 57.416)
