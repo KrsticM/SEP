@@ -1,0 +1,20 @@
+2019-12-25 06:20:39,579 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 06:20:47,847 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 29.51 seconds (JVM running for 30.117)
+2019-12-25 06:27:38,542 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 06:27:46,586 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 29.259 seconds (JVM running for 29.824)
+2019-12-25 06:28:36,261 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.MerchantController [http-nio-8300-exec-3] Adding or updating config for merchant with coingate tokenxHdExMvwHJzNbKhmdQTF_WRLuovaEF18M_rypaEV and application with id 4
+2019-12-25 06:28:36,594 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.MerchantService [http-nio-8300-exec-3] Saved merchant with coingate token xHdExMvwHJzNbKhmdQTF_WRLuovaEF18M_rypaEV and application with id4
+2019-12-25 06:29:35,104 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-10] Creating order
+2019-12-25 06:29:35,149 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-10] Saved order 1
+2019-12-25 06:29:35,240 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-1] Bitcoin controller: appId: 4, orderId: 1
+2019-12-25 06:29:35,321 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-1] Payment to the seller xHdExMvwHJzNbKhmdQTF_WRLuovaEF18M_rypaEV
+2019-12-25 06:29:35,398 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-1] OrderId: 1
+2019-12-25 06:29:35,401 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-1] Payment amount 1.0
+2019-12-25 06:29:36,825 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-1] Saving order1 for application: 4, order status: PAID
+2019-12-25 06:30:56,200 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-6] Creating order
+2019-12-25 06:30:56,214 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-6] Saved order 2
+2019-12-25 06:30:56,242 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-7] Bitcoin controller: appId: 4, orderId: 2
+2019-12-25 06:30:56,262 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-7] Payment to the seller xHdExMvwHJzNbKhmdQTF_WRLuovaEF18M_rypaEV
+2019-12-25 06:30:56,266 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-7] OrderId: 2
+2019-12-25 06:30:56,267 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-7] Payment amount 1.0
+2019-12-25 06:30:56,674 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-7] Saving order2 for application: 4, order status: PAID
