@@ -12,3 +12,39 @@
 2019-12-25 08:30:51,080 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 10.733 seconds (JVM running for 11.284)
 2019-12-25 08:33:09,278 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
 2019-12-25 08:33:18,692 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 10.774 seconds (JVM running for 11.354)
+2019-12-25 10:35:42,126 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 10:35:57,608 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 20.08 seconds (JVM running for 21.491)
+2019-12-25 10:54:01,938 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 10:54:16,162 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 18.88 seconds (JVM running for 20.295)
+2019-12-25 10:58:51,519 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 10:59:05,952 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 18.966 seconds (JVM running for 20.379)
+2019-12-25 11:01:52,843 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 11:02:06,950 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 18.642 seconds (JVM running for 20.013)
+2019-12-25 11:06:58,303 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 11:07:12,650 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 18.879 seconds (JVM running for 20.28)
+2019-12-25 11:11:18,941 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-8] Adding application with name Test app for user with id 3
+2019-12-25 11:11:18,948 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-8] Saving application with name Test app for user jelena.surlan9@gmail.com
+2019-12-25 11:11:51,569 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-1] Adding application with name Test app for user with id 3
+2019-12-25 11:11:51,573 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-1] Saving application with name Test app for user jelena.surlan9@gmail.com
+2019-12-25 11:13:05,616 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.PaymentMethodController [http-nio-8100-exec-1] Adding payment method bitcoin-payment for application 13
+2019-12-25 11:13:05,628 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.PaymentMethodService [http-nio-8100-exec-1] Method bitcoin-payment is saved for application with id 13 and user with id 3
+2019-12-25 11:16:21,927 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-7] Adding application with name Test app for user with id 3
+2019-12-25 11:16:21,932 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-7] Saving application with name Test app for user jelena.surlan9@gmail.com
+2019-12-25 11:26:35,390 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.PaymentMethodController [http-nio-8100-exec-3] Adding payment method paypal-payment for application 13
+2019-12-25 11:26:35,397 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.PaymentMethodService [http-nio-8100-exec-3] Method paypal-payment is saved for application with id 13 and user with id 3
+2019-12-25 11:31:09,566 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.PaymentMethodController [http-nio-8100-exec-4] Adding payment method card-payment for application 13
+2019-12-25 11:31:09,572 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.PaymentMethodService [http-nio-8100-exec-4] Method card-payment is saved for application with id 13 and user with id 3
+2019-12-25 11:33:27,342 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-10] Adding application with name Test app for user with id 3
+2019-12-25 11:33:27,346 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-10] Saving application with name Test app for user jelena.surlan9@gmail.com
+2019-12-25 11:36:22,626 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 11:36:37,111 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 19.137 seconds (JVM running for 20.553)
+2019-12-25 11:39:38,403 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-1] Adding application with name Test app for user with id 1
+2019-12-25 11:39:38,410 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-1] Saving application with name Test app for user krsticm1996@gmail.com
+2019-12-25 11:40:01,374 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-5] Adding application with name Test app for user with id 1
+2019-12-25 11:40:01,379 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-5] Saving application with name Test app for user krsticm1996@gmail.com
+2019-12-25 11:40:19,836 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.PaymentMethodController [http-nio-8100-exec-3] Adding payment method bitcoin-payment for application 1
+2019-12-25 11:40:19,870 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.PaymentMethodService [http-nio-8100-exec-3] Method bitcoin-payment is saved for application with id 1 and user with id 1
+2019-12-25 11:40:33,595 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.PaymentMethodController [http-nio-8100-exec-9] Adding payment method paypal-payment for application 1
+2019-12-25 11:40:33,653 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.PaymentMethodService [http-nio-8100-exec-9] Method paypal-payment is saved for application with id 1 and user with id 1
+2019-12-25 11:40:39,753 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.PaymentMethodController [http-nio-8100-exec-5] Adding payment method card-payment for application 1
+2019-12-25 11:40:39,809 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.PaymentMethodService [http-nio-8100-exec-5] Method card-payment is saved for application with id 1 and user with id 1

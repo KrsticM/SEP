@@ -70,6 +70,7 @@ public class PaymentService {
 		Optional<Client> clientOpt = clientService.getClient(clientDTO.getPanNumber());
 		if(!clientOpt.isPresent()) {
 			transaction.setStatus(TransactionStatus.FAILED);
+			failPayment(paymentRequest);
 			return paymentRequest.getFailedUrl();
 		}
 		
@@ -80,12 +81,14 @@ public class PaymentService {
 				|| !client.getExpirationDate().equals(tempDate)) {
 			System.err.println("ne podudara se");
 			transaction.setStatus(TransactionStatus.FAILED);
+			failPayment(paymentRequest);
 			return paymentRequest.getFailedUrl();
 		}
 
 		if (paymentRequest.getAmount() > client.getAvailableFunds()) {
 			System.err.println("nema sredstava");
 			transaction.setStatus(TransactionStatus.FAILED);
+			failPayment(paymentRequest);
 			return paymentRequest.getFailedUrl();
 		}
 
@@ -94,6 +97,7 @@ public class PaymentService {
 		if (!merchant.getMerchantPassword().equals(paymentRequest.getMerchantPassword())){
 			System.err.println("nije dobar merchant");
 			transaction.setStatus(TransactionStatus.ERROR);
+			failPayment(paymentRequest);
 			return paymentRequest.getErrorUrl();
 		}
 
@@ -113,5 +117,14 @@ public class PaymentService {
 		System.out.println(responseEntity.getBody());
 		
 		return paymentRequest.getSuccessUrl();
+	}
+	
+	private void failPayment(PaymentRequest paymentRequest) {
+		CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
+		completePaymentResponseDTO.setOrder_id(paymentRequest.getMerchantOrderId());
+		completePaymentResponseDTO.setStatus("FAILED");
+		ResponseEntity<String> responseEntity = restTemplate.exchange(paymentRequest.getCallbackUrl() + "/complete", HttpMethod.POST,
+				new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
+		System.out.println(responseEntity.getBody());
 	}
 }

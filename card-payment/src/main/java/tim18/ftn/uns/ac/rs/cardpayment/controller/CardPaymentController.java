@@ -74,7 +74,7 @@ public class CardPaymentController {
 			Order order = orderService.findById(completePayment.getOrder_id());
 			order.setOrderStatus(OrderStatus.COMPLETED);
 			orderService.saveOrder(order);
-			logger.info("Order with id " + completePayment.getOrder_id() + "is completed"); 
+			logger.info("Order with id " + completePayment.getOrder_id() + "is paid"); 
 			
 			CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
 			completePaymentResponseDTO.setOrder_id(order.getOrderIdScienceCenter());
@@ -85,6 +85,24 @@ public class CardPaymentController {
 
 
 			return responseEntity.getBody();
+			
+		}
+		else if(completePayment.getStatus().contentEquals("FAILED")) {
+			Order order = orderService.findById(completePayment.getOrder_id());
+			order.setOrderStatus(OrderStatus.FAILED);
+			orderService.saveOrder(order);
+			logger.info("Order with id " + completePayment.getOrder_id() + "is failed"); 
+			
+			CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
+			completePaymentResponseDTO.setOrder_id(order.getOrderIdScienceCenter());
+			completePaymentResponseDTO.setStatus("FAILED");
+
+			ResponseEntity<String> responseEntity = restTemplate.exchange(order.getCallbackUrl(), HttpMethod.POST,
+					new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
+
+
+			return responseEntity.getBody();
+			
 			
 		}
 		logger.info("Order with id " + completePayment.getOrder_id() + "is not paid"); 
