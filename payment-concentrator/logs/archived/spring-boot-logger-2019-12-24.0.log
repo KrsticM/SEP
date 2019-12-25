@@ -1,0 +1,10 @@
+2019-12-24 13:57:51,895 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-24 13:58:07,247 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 20.156 seconds (JVM running for 21.597)
+2019-12-24 14:05:45,705 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-24 14:05:59,938 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 18.878 seconds (JVM running for 20.335)
+2019-12-24 14:10:56,515 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-24 14:11:10,736 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 18.85 seconds (JVM running for 20.169)
+2019-12-24 14:18:33,487 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-24 14:18:47,498 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 18.623 seconds (JVM running for 19.986)
+2019-12-24 17:17:14,606 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-24 17:17:24,223 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 30.869 seconds (JVM running for 31.438)

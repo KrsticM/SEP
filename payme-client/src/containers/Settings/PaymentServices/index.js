@@ -56,12 +56,16 @@ function PaymentServices(props) {
   }, [state.loaded]);
 
   const enableMethod = (methodName) => {
-    console.log(methodName);
     const { appId } = props.match.params;
     axios.post(`http://localhost:8762/payment-concentrator/payment-method/${appId}/${methodName}`)
       .then(() => {
         window.location = `http://localhost:8762/${methodName}/view/register/${appId}`;
       });
+  }
+
+  const configureMethod = (methodName) => {
+    const { appId } = props.match.params;
+    window.location = `http://localhost:8762/${methodName}/view/register/${appId}`;
   }
 
   const disableMethod = (methodName) => {
@@ -118,7 +122,7 @@ function PaymentServices(props) {
                           <Button
                             variant="contained"
                             color="primary"
-                            disabled
+                            onClick={() => configureMethod(item.name)}
                           >
                             Configure
                           </Button>

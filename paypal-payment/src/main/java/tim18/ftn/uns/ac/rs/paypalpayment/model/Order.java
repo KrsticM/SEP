@@ -17,7 +17,7 @@ public class Order {
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer orderId;
+	private Integer id;
 
 	@Column
 	private String paypalOrderId;
@@ -50,11 +50,7 @@ public class Order {
 		super();
 	}
 
-	public Order(
-		Integer merchantId,
-		String payer,
-		Double price,
-		String callbackUrl) {
+	public Order(Integer merchantId, String payer, Double price, String callbackUrl) {
 		this.merchant = merchantId;
 		this.payer = payer;
 		this.price = price;

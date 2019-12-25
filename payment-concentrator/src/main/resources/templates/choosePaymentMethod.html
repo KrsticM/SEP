@@ -61,7 +61,7 @@
 
 			        <button class="btn btn-plavo link"
 			        th:href="@{'http://localhost:8762/' + ${method.name}} + '/pay/' +  ${appId}"
-					th:attr="create_url=@{'http://localhost:8762/' + ${method.name}} + '/create/', order_id=${orderId}, order_price=${orderPrice}, callback_url=${callbackUrl}" >
+					th:attr="create_url=@{'http://localhost:8762/' + ${method.name}} + '/create/', app_id=${appId}, order_id=${orderId}, order_price=${orderPrice}, callback_url=${callbackUrl}" >
 					Choose
 					</button>
 			    </div>

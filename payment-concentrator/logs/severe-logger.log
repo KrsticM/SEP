@@ -1,10 +1,14 @@
-2019-12-24 13:57:51,895 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-12-24 13:58:07,247 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 20.156 seconds (JVM running for 21.597)
-2019-12-24 14:05:45,705 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-12-24 14:05:59,938 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 18.878 seconds (JVM running for 20.335)
-2019-12-24 14:10:56,515 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-12-24 14:11:10,736 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 18.85 seconds (JVM running for 20.169)
-2019-12-24 14:18:33,487 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-12-24 14:18:47,498 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 18.623 seconds (JVM running for 19.986)
-2019-12-24 17:17:14,606 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-12-24 17:17:24,223 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 30.869 seconds (JVM running for 31.438)
+2019-12-25 06:10:28,539 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 06:10:58,735 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 61.694 seconds (JVM running for 62.381)
+2019-12-25 06:19:21,250 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.PaymentMethodController [http-nio-8100-exec-2] Adding payment method card-payment for application 4
+2019-12-25 06:19:21,425 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.PaymentMethodService [http-nio-8100-exec-2] Method card-payment is saved for application with id 4 and user with id 1
+2019-12-25 06:22:24,755 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.PaymentMethodController [http-nio-8100-exec-7] Adding payment method bitcoin-payment for application 4
+2019-12-25 06:22:24,781 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.PaymentMethodService [http-nio-8100-exec-7] Method bitcoin-payment is saved for application with id 4 and user with id 1
+2019-12-25 07:00:31,978 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 07:00:41,720 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 30.942 seconds (JVM running for 31.468)
+2019-12-25 07:06:48,941 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 07:06:58,416 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 30.612 seconds (JVM running for 31.109)
+2019-12-25 08:30:41,661 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 08:30:51,080 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 10.733 seconds (JVM running for 11.284)
+2019-12-25 08:33:09,278 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 08:33:18,692 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 10.774 seconds (JVM running for 11.354)

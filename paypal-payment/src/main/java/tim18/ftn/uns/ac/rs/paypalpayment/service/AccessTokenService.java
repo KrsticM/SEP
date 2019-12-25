@@ -40,10 +40,10 @@ public class AccessTokenService {
     }
 
     public String getAccessToken(Integer appId) throws UnsupportedEncodingException {
-        Optional<AccessToken> token = accessTokenRepository.findById(appId);
-        if(token.isPresent()){
-            return token.get().getToken();
-        }
+//        Optional<AccessToken> token = accessTokenRepository.findById(appId);
+//        if(token.isPresent()){
+//            return token.get().getToken();
+//        }
 
         Merchant merchant = merchantRepository.getOne(appId);
         // TODO: Decrypt merchant id and secret

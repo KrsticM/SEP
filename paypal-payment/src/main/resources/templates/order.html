@@ -3,6 +3,10 @@
 <script src="https://www.paypal.com/sdk/js?client-id=sb&commit=false"></script>
  
 <script>
+var appId = [[${appId}]];
+var orderId = [[${orderId}]];
+
+console.log(orderId, appId);
  
 paypal.Buttons({
  
@@ -20,26 +24,30 @@ paypal.Buttons({
  
         /* Set up a url on your server to create the order */
  
-        var CREATE_URL = 'http://localhost:8200/create';
+        var GET_ORDER_URL = 'http://localhost:8200/getOrder/' + orderId;
  
  
         /* Make a call to your server to set up the payment */
  
-        return fetch(CREATE_URL)
+        return fetch(GET_ORDER_URL)
          .then(function(res) {
           return res.json();
          }).then(function(data) {
-          return data.orderID;
+        	console.log(data);
+          return data.id;
          });
  
     },
     /* onApprove() is called when the buyer approves the payment */
- 
+ 	onCancel: function() {
+        window.location = 'http://localhost:8200/view/cancelURL';
+ 		
+ 	},
     onApprove: function(data, actions) {
  
         /* Set up a url on your server to execute the payment */
  
-        var EXECUTE_URL = 'http://localhost:8200/pay' + appId + '/' + orderId;
+        var EXECUTE_URL = 'http://localhost:8200/capturePayment/' + appId + '/' + orderId;
  
         /* Set up the data you need to pass to your server */
  
@@ -47,9 +55,14 @@ paypal.Buttons({
  
         return fetch(EXECUTE_URL)
         .then(function(res) {
-         return res.json();
+          return res.json();
         }).then(function(details) {
-         alert('Transaction funds captured from ' + details.payer_given_name);
+          alert('Transaction funds captured!');
+          window.location = 'http://localhost:8200/view/successURL';
+        }).catch(function(error) {
+      	  console.log(error);
+      	  alert('An error occured');
+          window.location = 'http://localhost:8200/view/errorURL';
         });
  
     }
