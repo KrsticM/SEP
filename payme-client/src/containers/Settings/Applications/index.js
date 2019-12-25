@@ -47,8 +47,13 @@ function Applications(props) {
   };
 
   const addApp = (methodName) => {
+    var name = prompt("Please enter app name");
+    if (!name) {
+      alert("No name specified!");
+      return;
+    }
     axios.post(`http://localhost:8762/payment-concentrator/app`, {
-      name: 'Test app'
+      name
     })
       .then(async (response) => {
         const { status } = response;

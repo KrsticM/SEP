@@ -15,43 +15,47 @@ import ListItemText from '@material-ui/core/ListItemText';
 function PaymentServices(props) {
   const [state, setState] = useState({
     availableMethods: [],
+    application: undefined,
     loaded: false
   });
 
   useEffect(() => {
     const { appId } = props.match.params;
-    console.log(props);
     if (state.loaded) {
       return;
     }
-    axios.get('http://localhost:8762/payment-concentrator/payment/all-services')
-      .then(async (response) => {
-        const { data } = response;
+    axios.get(`http://localhost:8762/payment-concentrator/app/${appId}`)
+      .then(async (appResponse) => {
+        axios.get('http://localhost:8762/payment-concentrator/payment/all-services')
+          .then(async (response) => {
+            const { data } = response;
 
-        const methodResponse = await axios.get(
-          'http://localhost:8762/payment-concentrator/payment-method/' + appId
-        );
-        if (!methodResponse.data) {
-          toast.error('Unspecified error occured', {
-            autoClose: 3000,
+            const methodResponse = await axios.get(
+              'http://localhost:8762/payment-concentrator/payment-method/' + appId
+            );
+            if (!methodResponse.data) {
+              toast.error('Unspecified error occured', {
+                autoClose: 3000,
+              });
+              return;
+            }
+            const availableMethods = data
+              .filter((item) => item !== 'pc-gateway')
+              .map((service) => ({
+                name: service,
+                enabled: !!methodResponse.data.find((item) => (item.name === service))
+              }));
+            setState({
+              application: appResponse.data,
+              availableMethods,
+              loaded: true
+            });
+          })
+          .catch((error) => {
+            toast.error(error.message || 'Unspecified error occured', {
+              autoClose: 3000,
+            });
           });
-          return;
-        }
-        const availableMethods = data
-          .filter((item) => item !== 'pc-gateway')
-          .map((service) => ({
-            name: service,
-            enabled: !!methodResponse.data.find((item) => (item.name === service))
-          }));
-        setState({
-          availableMethods,
-          loaded: true
-        });
-      })
-      .catch((error) => {
-        toast.error(error.message || 'Unspecified error occured', {
-          autoClose: 3000,
-        });
       });
   }, [state.loaded]);
 
@@ -69,7 +73,8 @@ function PaymentServices(props) {
   }
 
   const disableMethod = (methodName) => {
-    axios.delete(`http://localhost:8100/user/remove-method/${methodName}`)
+    const { appId } = props.match.params;
+    axios.delete(`http://localhost:8762/payment-concentrator/payment-method/${appId}/${methodName}`)
       .then(async (response) => {
         const { status } = response;
         if (status !== 200) {
@@ -78,15 +83,8 @@ function PaymentServices(props) {
           });
           return
         }
-        const availableMethods = state.availableMethods.map((method) => ({
-          name: method.name,
-          enabled: (method.name === methodName) ? false : method.enabled
-        }));
-        setState({
-          availableMethods,
-          loaded: true
-        });
         toast.success("Payment method disabled successfully");
+        window.location.reload();
       })
       .catch((error) => {
         toast.error(error.message || 'Unspecified error occured', {
@@ -100,10 +98,21 @@ function PaymentServices(props) {
     return null;
   }
 
+  const { application } = state;
+  console.log(application);
+
   return (
     <Card className="card__container">
       <CardContent>
-        <Typography variant="h5" component="h2" color="primary">
+        <div style={{marginBottom: 20}}>
+          <Typography variant="h6" component="h5" color="primary">
+            {"App name: " +(application && application.name)}
+          </Typography>
+          <Typography variant="h7" component="h5" color="primary">
+            {"App key: " +(application && application.token)}
+          </Typography>
+        </div>
+        <Typography variant="h4" component="h5" color="primary">
           {"Available payment methods"}
         </Typography>
         <List>

@@ -58,6 +58,7 @@ function Login(props) {
       toast.success('Login successful!');
       sessionStorage.setItem('authUser', data.token);
       props.history.replace('/get_started');
+      window.location.reload();
     } catch (error) {
       console.log(error);
       toast.error(error.message || 'Unspecified error occured', {

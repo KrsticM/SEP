@@ -54,6 +54,12 @@ public class ApplicationController {
 		return new ResponseEntity<>(applicationService.removeApplication(userId, appId), HttpStatus.OK);
 	}
 	
+	@PreAuthorize("hasAnyRole('USER')")
+	@RequestMapping(value = "/{appId}", method = RequestMethod.GET)
+	public ResponseEntity<?> getApplication(@RequestHeader(value="UserId") Integer userId, @PathVariable Integer appId) throws NotFoundException { // User je sistem prodavaca		
+		logger.info("GET application with id " + appId + " for user with id " + userId);
+		return new ResponseEntity<>(applicationService.getApplication(userId, appId), HttpStatus.OK);
+	}
 	
 	// TODO: Regenerate api key
 	@PreAuthorize("hasAnyRole('USER')")

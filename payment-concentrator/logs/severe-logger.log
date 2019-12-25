@@ -12,3 +12,49 @@
 2019-12-25 08:30:51,080 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 10.733 seconds (JVM running for 11.284)
 2019-12-25 08:33:09,278 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
 2019-12-25 08:33:18,692 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 10.774 seconds (JVM running for 11.354)
+2019-12-25 11:42:04,437 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 11:42:22,369 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 39.265 seconds (JVM running for 40.0)
+2019-12-25 13:41:05,963 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-9] Adding application with name App name test for user with id 2
+2019-12-25 13:41:05,980 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-9] Saving application with name App name test for user user2@test.com
+2019-12-25 13:41:11,723 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.PaymentMethodController [http-nio-8100-exec-7] Adding payment method paypal-payment for application 7
+2019-12-25 13:41:11,738 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.PaymentMethodService [http-nio-8100-exec-7] Method paypal-payment is saved for application with id 7 and user with id 2
+2019-12-25 13:41:29,712 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.PaymentMethodController [http-nio-8100-exec-5] Removing payment method paypal-payment for application 7
+2019-12-25 13:41:29,722 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.PaymentMethodService [http-nio-8100-exec-5] Method paypal-payment is removed for application with id 7 and user with id 2
+2019-12-25 13:46:16,756 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 13:46:27,461 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 31.992 seconds (JVM running for 32.555)
+2019-12-25 13:47:44,211 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-4] Removing application with id 7 for user with id 2
+2019-12-25 13:47:44,298 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-4] Application with id 7 is removed.
+2019-12-25 13:51:11,179 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-3] Removing application with id 7 for user with id 2
+2019-12-25 13:51:11,363 ERROR tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-3] Application with id 7 not found.
+2019-12-25 13:51:11,578 ERROR tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-4] Application with id 7 not found.
+2019-12-25 13:51:45,276 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-7] Adding application with name Application name for user with id 2
+2019-12-25 13:51:45,292 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-7] Saving application with name Application name for user user2@test.com
+2019-12-25 13:51:47,515 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-4] Removing application with id 8 for user with id 2
+2019-12-25 13:51:47,610 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-4] Application with id 8 is removed.
+2019-12-25 13:52:27,066 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-1] Removing application with id 8 for user with id 2
+2019-12-25 13:52:27,248 ERROR tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-1] Application with id 8 not found.
+2019-12-25 13:52:27,639 ERROR tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-6] Application with id 8 not found.
+2019-12-25 13:53:56,482 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 13:57:17,185 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 13:57:37,132 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 42.375 seconds (JVM running for 44.327)
+2019-12-25 14:02:08,506 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-4] Adding application with name Application central for user with id 2
+2019-12-25 14:02:08,529 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-4] Saving application with name Application central for user user2@test.com
+2019-12-25 14:02:12,702 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-1] GET application with id 9 for user with id 2
+2019-12-25 14:02:12,960 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-5] GET application with id 9 for user with id 2
+2019-12-25 14:02:57,135 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-1] GET application with id 9 for user with id 2
+2019-12-25 14:04:36,546 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-2] GET application with id 9 for user with id 2
+2019-12-25 14:04:53,325 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-6] GET application with id 9 for user with id 2
+2019-12-25 14:05:07,352 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-4] GET application with id 9 for user with id 2
+2019-12-25 14:05:19,066 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-8] GET application with id 9 for user with id 2
+2019-12-25 14:05:21,614 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-4] GET application with id 9 for user with id 2
+2019-12-25 14:05:29,059 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-2] GET application with id 9 for user with id 2
+2019-12-25 14:06:53,926 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-7] GET application with id 9 for user with id 2
+2019-12-25 14:07:00,518 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-6] GET application with id 9 for user with id 2
+2019-12-25 14:07:25,847 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-2] GET application with id 9 for user with id 2
+2019-12-25 14:07:39,209 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-4] GET application with id 9 for user with id 2
+2019-12-25 14:07:41,781 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-1] GET application with id 9 for user with id 2
+2019-12-25 14:07:54,218 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-7] GET application with id 9 for user with id 2
+2019-12-25 14:08:03,921 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-6] GET application with id 9 for user with id 2
+2019-12-25 14:08:34,176 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-2] GET application with id 9 for user with id 2
+2019-12-25 14:08:43,780 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-4] GET application with id 9 for user with id 2
+2019-12-25 14:10:31,111 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-6] GET application with id 9 for user with id 2

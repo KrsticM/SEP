@@ -72,6 +72,21 @@ public class ApplicationService {
 
 		return app.get();
 	}
+	
+	public ApplicationResponseDTO getApplication(Integer userId, Integer appId) throws NotFoundException {
+		Optional<Application> app = applicationRepository.findById(appId);
+
+		if (!app.isPresent()) {
+			logger.error("Application with id " + appId + " not found.");
+			throw new NotFoundException(appId, Application.class.getSimpleName());
+		}
+
+		if (!app.get().getUser().getId().equals(userId)) {
+			logger.error("User has no permission to access application with id " + appId);
+			throw new NotFoundException(appId, Application.class.getSimpleName());
+		}
+		return new ApplicationResponseDTO(app.get());
+	}
 
 	public List<ApplicationResponseDTO> getApplications(Integer userId) throws NotFoundException {
 		User user = userService.findUserById(userId);
