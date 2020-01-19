@@ -65,7 +65,7 @@ public class PaymentMethodService {
 
 		Application app = applicationService.findById(appId);
 		if(!app.getUser().getId().equals(userId)) {
-			// TODO: logger.errror
+			logger.error("User with id " + userId + " does not have an application with id " + appId + ".");
 			throw new NotFoundException(appId, Application.class.getSimpleName());
 		}	
 		
@@ -87,7 +87,7 @@ public class PaymentMethodService {
 		}
 		
 		if(!app.getUser().getId().equals(userId)) {
-			// TODO: logger.errror
+			logger.error("User with id " + userId + " does not have an application with id " + appId + ".");
 			throw new NotFoundException(appId, Application.class.getSimpleName());
 		}		
 
@@ -101,7 +101,7 @@ public class PaymentMethodService {
 		Application app = applicationService.findById(appId);
 		
 		if(!app.getUser().getId().equals(userId)) {
-			// TODO: logger.errror
+			logger.error("User with id " + userId + " does not have an application with id " + appId + ".");
 			throw new NotFoundException(appId, Application.class.getSimpleName());
 		}		
 		

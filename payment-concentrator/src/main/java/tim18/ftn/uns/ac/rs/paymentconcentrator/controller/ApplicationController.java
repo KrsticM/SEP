@@ -36,6 +36,7 @@ public class ApplicationController {
 	@PreAuthorize("hasAnyRole('USER')") 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> getApplications(@RequestHeader(value="UserId") Integer userId) throws NotFoundException { // User je sistem prodavaca
+		logger.info("Loading all applications of user with id " + userId);
 		return new ResponseEntity<>(applicationService.getApplications(userId), HttpStatus.OK);
 	}
 
@@ -57,7 +58,7 @@ public class ApplicationController {
 	@PreAuthorize("hasAnyRole('USER')")
 	@RequestMapping(value = "/{appId}", method = RequestMethod.GET)
 	public ResponseEntity<?> getApplication(@RequestHeader(value="UserId") Integer userId, @PathVariable Integer appId) throws NotFoundException { // User je sistem prodavaca		
-		logger.info("GET application with id " + appId + " for user with id " + userId);
+		logger.info("Load application with id " + appId + " for user with id " + userId);
 		return new ResponseEntity<>(applicationService.getApplication(userId, appId), HttpStatus.OK);
 	}
 	

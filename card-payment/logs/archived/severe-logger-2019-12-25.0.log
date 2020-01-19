@@ -1,0 +1,56 @@
+2019-12-25 06:12:24,615 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 06:12:48,492 INFO org.springframework.boot.StartupInfoLogger [main] Started CardPaymentApplication in 55.196 seconds (JVM running for 55.751)
+2019-12-25 06:19:39,284 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.MerchantController [http-nio-8400-exec-3] Adding or updating config for merchant with id merchant and application with id 4
+2019-12-25 06:19:39,727 INFO tim18.ftn.uns.ac.rs.cardpayment.service.MerchantService [http-nio-8400-exec-3] Saved merchant with id merchant and application with id4
+2019-12-25 06:31:25,737 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-1] Creating order
+2019-12-25 06:31:25,779 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-1] Saved order 1
+2019-12-25 06:31:25,872 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-2] Card payment controller: appId: 4, orderId: 1
+2019-12-25 06:31:25,922 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-2] Payment to the seller merchant
+2019-12-25 06:31:25,980 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-2] OrderId: 1
+2019-12-25 06:31:25,984 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-2] Payment amount 1.0
+2019-12-25 06:31:26,816 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-2] Saving order1 for application: 4, order status: PAID
+2019-12-25 06:49:16,791 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-8] Creating order
+2019-12-25 06:49:16,826 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-8] Saved order 2
+2019-12-25 06:49:16,860 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-9] Card payment controller: appId: 4, orderId: 2
+2019-12-25 06:49:16,994 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-9] Payment to the seller merchant
+2019-12-25 06:49:17,029 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-9] OrderId: 2
+2019-12-25 06:49:17,030 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-9] Payment amount 1.0
+2019-12-25 06:49:17,164 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-9] Saving order2 for application: 4, order status: PAID
+2019-12-25 11:07:40,465 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 11:07:53,781 INFO org.springframework.boot.StartupInfoLogger [main] Started CardPaymentApplication in 17.89 seconds (JVM running for 19.249)
+2019-12-25 11:53:26,807 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 11:53:40,353 INFO org.springframework.boot.StartupInfoLogger [main] Started CardPaymentApplication in 18.188 seconds (JVM running for 19.571)
+2019-12-25 11:56:30,192 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 11:56:43,767 INFO org.springframework.boot.StartupInfoLogger [main] Started CardPaymentApplication in 18.281 seconds (JVM running for 19.673)
+2019-12-25 12:28:51,733 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-4] Creating order
+2019-12-25 12:28:51,833 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-4] Saved order 5
+2019-12-25 12:28:51,872 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-5] Card payment controller: appId: 1, orderId: 5
+2019-12-25 12:28:52,050 ERROR tim18.ftn.uns.ac.rs.cardpayment.service.MerchantService [http-nio-8400-exec-5] Merchant with appId 1 not found.
+2019-12-25 12:28:52,348 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-6] Card payment controller: appId: 1, orderId: 5
+2019-12-25 12:28:52,350 ERROR tim18.ftn.uns.ac.rs.cardpayment.service.MerchantService [http-nio-8400-exec-6] Merchant with appId 1 not found.
+2019-12-25 12:30:05,786 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.MerchantController [http-nio-8400-exec-1] Adding or updating config for merchant with id jaseyrae9 and application with id 1
+2019-12-25 12:30:05,795 INFO tim18.ftn.uns.ac.rs.cardpayment.service.MerchantService [http-nio-8400-exec-1] Saved merchant with id jaseyrae9 and application with id1
+2019-12-25 12:30:38,931 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-6] Creating order
+2019-12-25 12:30:38,935 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-6] Saved order 6
+2019-12-25 12:30:38,954 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-7] Card payment controller: appId: 1, orderId: 6
+2019-12-25 12:30:38,988 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-7] Payment to the seller jaseyrae9
+2019-12-25 12:30:39,058 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-7] OrderId: 6
+2019-12-25 12:30:39,060 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-7] Payment amount 0.1
+2019-12-25 12:30:39,724 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-7] Saving order6 for application: 1, order status: PAID
+2019-12-25 12:31:16,162 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-1] Complete payment for order with id 6
+2019-12-25 12:31:16,170 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-1] Order with id 6is completed
+2019-12-25 12:41:23,673 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 12:41:36,630 INFO org.springframework.boot.StartupInfoLogger [main] Started CardPaymentApplication in 17.252 seconds (JVM running for 18.471)
+2019-12-25 14:37:31,149 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 14:37:44,941 INFO org.springframework.boot.StartupInfoLogger [main] Started CardPaymentApplication in 18.447 seconds (JVM running for 19.84)
+2019-12-25 14:40:36,046 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.MerchantController [http-nio-8400-exec-4] Adding or updating config for merchant with id micaID and application with id 3
+2019-12-25 14:40:36,365 INFO tim18.ftn.uns.ac.rs.cardpayment.service.MerchantService [http-nio-8400-exec-4] Saved merchant with id micaID and application with id3
+2019-12-25 14:43:06,715 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-3] Creating order
+2019-12-25 14:43:06,778 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-3] Saved order 7
+2019-12-25 14:43:06,810 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-4] Card payment controller: appId: 1, orderId: 7
+2019-12-25 14:43:06,842 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-4] Payment to the seller jaseyrae9
+2019-12-25 14:43:06,875 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-4] OrderId: 7
+2019-12-25 14:43:06,877 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-4] Payment amount 0.1
+2019-12-25 14:43:07,351 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-4] Saving order7 for application: 1, order status: PAID
+2019-12-25 19:52:29,742 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-25 19:52:43,514 INFO org.springframework.boot.StartupInfoLogger [main] Started CardPaymentApplication in 18.468 seconds (JVM running for 19.897)

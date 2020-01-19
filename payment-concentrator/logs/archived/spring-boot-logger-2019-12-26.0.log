@@ -1,0 +1,41 @@
+2019-12-26 10:42:23,421 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-26 10:42:32,001 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 12.017 seconds (JVM running for 12.77)
+2019-12-26 10:43:53,431 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-1] Creating order 
+2019-12-26 10:43:53,474 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-1] Saving order with id 9
+2019-12-26 11:48:23,174 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2019-12-26 11:48:31,723 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 11.904 seconds (JVM running for 12.645)
+2019-12-26 11:49:55,447 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-1] Creating order 
+2019-12-26 11:49:55,498 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-1] Saving order with id 10
+2019-12-26 12:08:53,472 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-5] Creating order 
+2019-12-26 12:08:53,475 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-5] Saving order with id 11
+2019-12-26 12:10:03,706 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-10] Creating order 
+2019-12-26 12:10:03,708 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-10] Saving order with id 12
+2019-12-26 12:11:23,960 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-5] Creating order 
+2019-12-26 12:11:23,963 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-5] Saving order with id 13
+2019-12-26 13:05:05,715 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-1] Loading all applications of user with id 1
+2019-12-26 13:05:56,935 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-3] Load application with id 1 for user with id 1
+2019-12-26 13:05:57,027 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.PaymentMethodController [http-nio-8100-exec-9] Getting payment methods of user with id 1
+2019-12-26 13:13:15,898 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-2] Loading all applications of user with id 1
+2019-12-26 13:13:40,284 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-4] Adding application with name Nova aplikacija for user with id 1
+2019-12-26 13:13:40,288 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.ApplicationService [http-nio-8100-exec-4] Saving application with name Nova aplikacija for user krsticm1996@gmail.com
+2019-12-26 13:13:40,386 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-7] Loading all applications of user with id 1
+2019-12-26 13:14:29,716 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-6] Load application with id 1 for user with id 1
+2019-12-26 13:14:29,780 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.PaymentMethodController [http-nio-8100-exec-2] Getting payment methods of user with id 1
+2019-12-26 13:14:35,695 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-4] Loading all applications of user with id 1
+2019-12-26 13:14:37,683 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-7] Load application with id 4 for user with id 1
+2019-12-26 13:14:37,743 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.PaymentMethodController [http-nio-8100-exec-8] Getting payment methods of user with id 1
+2019-12-26 13:14:40,167 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.PaymentMethodController [http-nio-8100-exec-2] Adding payment method bitcoin-payment for application 4
+2019-12-26 13:14:40,175 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.service.PaymentMethodService [http-nio-8100-exec-2] Method bitcoin-payment is saved for application with id 4 and user with id 1
+2019-12-26 13:14:58,100 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.ApplicationController [http-nio-8100-exec-4] Loading all applications of user with id 1
+2019-12-26 13:16:14,654 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-9] Creating order 
+2019-12-26 13:16:14,659 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-9] Saving order with id 14
+2019-12-26 13:18:31,954 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-1] Creating order 
+2019-12-26 13:18:31,960 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-1] Saving order with id 15
+2019-12-26 13:19:00,556 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-4] Creating order 
+2019-12-26 13:19:00,559 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-4] Saving order with id 16
+2019-12-26 13:22:37,727 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-6] Creating order 
+2019-12-26 13:22:37,732 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-6] Saving order with id 17
+2019-12-26 13:28:11,118 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-2] Creating order 
+2019-12-26 13:28:11,123 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-2] Saving order with id 18
+2019-12-26 13:28:40,208 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-5] Creating order 
+2019-12-26 13:28:40,214 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-5] Saving order with id 19

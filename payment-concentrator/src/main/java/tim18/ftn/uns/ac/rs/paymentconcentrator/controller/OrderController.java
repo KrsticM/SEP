@@ -1,5 +1,7 @@
 package tim18.ftn.uns.ac.rs.paymentconcentrator.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,12 +17,15 @@ import tim18.ftn.uns.ac.rs.paymentconcentrator.service.OrderService;
 @RequestMapping("/order")
 public class OrderController {
 
+	Logger logger = LoggerFactory.getLogger(OrderController.class);
+
 	@Autowired
 	private OrderService orderService;
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	private Order createOrder(@RequestBody OrderInformationDTO orderInformationDTO) {
 		System.out.println("[CONTROLLER]: /order/create");
+		logger.info("Creating order ");
 		System.err.println(orderInformationDTO);
 		
 		Order o = new Order();
@@ -29,6 +34,7 @@ public class OrderController {
 		o.setCallbackUrl(orderInformationDTO.getCallbackUrl());
 		
 		Order savedOrder = orderService.saveOrder(o);
+		logger.info("Saving order with id " + savedOrder.getId());
 		return savedOrder;
 	}
 	

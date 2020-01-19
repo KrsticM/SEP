@@ -1,0 +1,97 @@
+2020-01-18 14:34:10,282 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-18 14:34:20,435 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 12.982 seconds (JVM running for 14.325)
+2020-01-18 14:36:48,107 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-1] Creating order for bitcoin.
+2020-01-18 14:36:48,189 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-1] Saved order 20
+2020-01-18 14:36:48,242 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-2] Bitcoin controller: appId: 1, orderId: 20
+2020-01-18 14:36:48,430 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-2] Payment to the seller xHdExMvwHJzNbKhmdQTF_WRLuovaEF18M_rypaEV
+2020-01-18 14:36:48,459 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-2] OrderId: 20
+2020-01-18 14:36:48,460 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-2] Payment amount 100.0
+2020-01-18 14:36:49,404 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-2] Saving order20 for application: 1, order status: PAID
+2020-01-18 14:45:39,702 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-18 14:45:49,894 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 13.017 seconds (JVM running for 14.408)
+2020-01-18 15:00:40,555 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-18 15:00:50,600 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 12.833 seconds (JVM running for 14.157)
+2020-01-18 15:16:32,647 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-18 15:16:42,928 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 13.142 seconds (JVM running for 14.447)
+2020-01-18 15:19:19,395 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-18 15:19:29,664 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 13.13 seconds (JVM running for 14.442)
+2020-01-18 15:28:16,616 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-18 15:28:26,948 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 13.11 seconds (JVM running for 14.458)
+2020-01-18 15:31:42,987 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-18 15:31:53,505 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 13.394 seconds (JVM running for 14.779)
+2020-01-18 15:33:42,814 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-18 15:33:53,251 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 13.314 seconds (JVM running for 14.617)
+2020-01-18 15:34:52,647 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-1] Creating order for bitcoin.
+2020-01-18 15:37:02,946 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-18 15:37:13,138 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 12.954 seconds (JVM running for 14.324)
+2020-01-18 15:38:26,611 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-1] Creating order for bitcoin.
+2020-01-18 15:38:26,726 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-1] Saved order 1
+2020-01-18 15:38:26,786 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-2] Bitcoin controller: appId: 1, orderId: 1
+2020-01-18 15:38:26,962 ERROR tim18.ftn.uns.ac.rs.bitcoinpayment.service.MerchantService [http-nio-8300-exec-2] Merchant with appId 1 not found.
+2020-01-18 15:38:27,262 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-3] Bitcoin controller: appId: 1, orderId: 1
+2020-01-18 15:38:27,264 ERROR tim18.ftn.uns.ac.rs.bitcoinpayment.service.MerchantService [http-nio-8300-exec-3] Merchant with appId 1 not found.
+2020-01-18 15:40:56,531 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-5] Creating order for bitcoin.
+2020-01-18 15:40:56,545 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-5] Saved order 2
+2020-01-18 15:40:56,564 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-6] Bitcoin controller: appId: 1, orderId: 2
+2020-01-18 15:40:56,566 ERROR tim18.ftn.uns.ac.rs.bitcoinpayment.service.MerchantService [http-nio-8300-exec-6] Merchant with appId 1 not found.
+2020-01-18 15:40:56,812 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-7] Bitcoin controller: appId: 1, orderId: 2
+2020-01-18 15:40:56,814 ERROR tim18.ftn.uns.ac.rs.bitcoinpayment.service.MerchantService [http-nio-8300-exec-7] Merchant with appId 1 not found.
+2020-01-18 15:42:21,458 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-8] Creating order for bitcoin.
+2020-01-18 15:42:21,473 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-8] Saved order 3
+2020-01-18 15:42:21,491 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-10] Bitcoin controller: appId: 1, orderId: 3
+2020-01-18 15:42:21,525 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-10] Payment to the seller xHdExMvwHJzNbKhmdQTF_WRLuovaEF18M_rypaEV
+2020-01-18 15:42:21,558 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-10] OrderId: 3
+2020-01-18 15:42:21,558 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-10] Payment amount 200.0
+2020-01-18 15:42:22,169 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-10] Saving order3 for application: 1, order status: WAITING
+2020-01-18 15:44:11,706 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-18 15:44:21,900 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 13.0 seconds (JVM running for 14.33)
+2020-01-18 15:45:43,192 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-1] Creating order for bitcoin.
+2020-01-18 15:45:43,293 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-1] Saved order 4
+2020-01-18 15:45:43,354 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-2] Bitcoin controller: appId: 1, orderId: 4
+2020-01-18 15:45:43,566 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-2] Payment to the seller xHdExMvwHJzNbKhmdQTF_WRLuovaEF18M_rypaEV
+2020-01-18 15:45:43,595 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-2] OrderId: 4
+2020-01-18 15:45:43,596 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-2] Payment amount 200.0
+2020-01-18 15:45:44,336 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-2] Saving order4 for application: 1, order status: WAITING
+2020-01-18 15:48:45,618 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-18 15:48:55,926 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 13.1 seconds (JVM running for 14.472)
+2020-01-18 15:50:04,962 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-18 15:50:15,312 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 13.396 seconds (JVM running for 14.74)
+2020-01-18 15:51:09,075 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-18 15:51:19,516 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 13.309 seconds (JVM running for 14.726)
+2020-01-18 15:52:22,585 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-1] Creating order for bitcoin.
+2020-01-18 15:52:22,698 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-1] Saved order 5
+2020-01-18 15:52:22,750 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-2] Bitcoin controller: appId: 1, orderId: 5
+2020-01-18 15:52:22,768 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-2] Payment to the seller xHdExMvwHJzNbKhmdQTF_WRLuovaEF18M_rypaEV
+2020-01-18 15:52:22,795 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-2] OrderId: 5
+2020-01-18 15:52:22,796 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-2] Payment amount 200.0
+2020-01-18 15:52:23,845 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-2] Saving order5 for application: 1, order status: WAITING
+2020-01-18 15:55:18,935 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-18 15:55:28,975 INFO org.springframework.boot.StartupInfoLogger [main] Started BitcoinPaymentApplication in 12.828 seconds (JVM running for 14.143)
+2020-01-18 15:56:21,279 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-2] Creating order for bitcoin.
+2020-01-18 15:56:21,387 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-2] Saved order 6
+2020-01-18 15:56:21,440 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-1] Bitcoin controller: appId: 1, orderId: 6
+2020-01-18 15:56:21,447 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-1] Payment to the seller xHdExMvwHJzNbKhmdQTF_WRLuovaEF18M_rypaEV
+2020-01-18 15:56:21,462 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-1] OrderId: 6
+2020-01-18 15:56:21,463 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-1] Payment amount 200.0
+2020-01-18 15:56:22,155 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-1] Saving order6 for application: 1, order status: WAITING
+2020-01-18 17:52:56,481 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-4] Creating order for bitcoin.
+2020-01-18 17:52:56,494 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-4] Saved order 7
+2020-01-18 17:52:56,509 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-5] Bitcoin controller: appId: 1, orderId: 7
+2020-01-18 17:52:56,513 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-5] Payment to the seller xHdExMvwHJzNbKhmdQTF_WRLuovaEF18M_rypaEV
+2020-01-18 17:52:56,516 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-5] OrderId: 7
+2020-01-18 17:52:56,517 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-5] Payment amount 200.0
+2020-01-18 17:52:56,943 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-5] Saving order7 for application: 1, order status: WAITING
+2020-01-18 17:53:38,087 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-6] Creating order for bitcoin.
+2020-01-18 17:53:38,091 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-6] Saved order 8
+2020-01-18 17:53:38,110 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-7] Bitcoin controller: appId: 1, orderId: 8
+2020-01-18 17:53:38,112 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-7] Payment to the seller xHdExMvwHJzNbKhmdQTF_WRLuovaEF18M_rypaEV
+2020-01-18 17:53:38,116 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-7] OrderId: 8
+2020-01-18 17:53:38,117 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-7] Payment amount 200.0
+2020-01-18 17:53:38,567 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-7] Saving order8 for application: 1, order status: WAITING
+2020-01-18 17:57:31,022 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-10] Creating order for bitcoin.
+2020-01-18 17:57:31,036 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-10] Saved order 9
+2020-01-18 17:57:31,054 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.controller.BitcoinPaymentController [http-nio-8300-exec-9] Bitcoin controller: appId: 1, orderId: 9
+2020-01-18 17:57:31,057 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-9] Payment to the seller xHdExMvwHJzNbKhmdQTF_WRLuovaEF18M_rypaEV
+2020-01-18 17:57:31,062 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-9] OrderId: 9
+2020-01-18 17:57:31,063 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-9] Payment amount 100.0
+2020-01-18 17:57:31,646 INFO tim18.ftn.uns.ac.rs.bitcoinpayment.service.PaymentService [http-nio-8300-exec-9] Saving order9 for application: 1, order status: WAITING

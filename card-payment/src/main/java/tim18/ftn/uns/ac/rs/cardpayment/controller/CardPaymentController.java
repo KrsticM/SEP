@@ -41,7 +41,7 @@ public class CardPaymentController {
 	// TODO: prebaciti u servise
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public Order createOrder(@RequestBody OrderDTO orderDTO) throws NotFoundException { // Mora se znati kom prodavcu se uplacuje, koliko se uplacuje
-		logger.info("Creating order"); // TODO: koja aplikacija
+		logger.info("Creating order for card payment"); // TODO: koja aplikacija
 		System.out.println(orderDTO);
 		
 		Order o = new Order();
@@ -67,7 +67,7 @@ public class CardPaymentController {
 	// TODO: prebaciti u servise
 	@RequestMapping(value = "/complete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String complete(@RequestBody CompletePaymentDTO completePayment) throws NotFoundException {
-		logger.info("Complete payment for order with id " + completePayment.getOrder_id()); 
+		logger.info("Complete card payment for order with id " + completePayment.getOrder_id()); 
 		System.out.println("Complete payment");
 		System.out.println(completePayment);
 		if(completePayment.getStatus().contentEquals("PAID")) {
@@ -91,7 +91,7 @@ public class CardPaymentController {
 			Order order = orderService.findById(completePayment.getOrder_id());
 			order.setOrderStatus(OrderStatus.FAILED);
 			orderService.saveOrder(order);
-			logger.info("Order with id " + completePayment.getOrder_id() + "is failed"); 
+			logger.info("Order with id " + completePayment.getOrder_id() + " failed."); 
 			
 			CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
 			completePaymentResponseDTO.setOrder_id(order.getOrderIdScienceCenter());

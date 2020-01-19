@@ -60,7 +60,7 @@ public class CardPaymentService {
 		order.setOrderStatus(OrderStatus.PAID);
 		orderService.saveOrder(order);
 		
-		logger.info("Saving order" + order.getId() + " for application: " + applicationId + ", order status: " + order.getOrderStatus()); // TODO: koja aplikacija
+		logger.info("Saving order" + order.getId() + " for application: " + applicationId + ", order status: " + order.getOrderStatus()); 
 		return responseEntity.getBody().getPaymentUrl() + "/" + responseEntity.getBody().getPaymentId();
 	}
 

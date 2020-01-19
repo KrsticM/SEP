@@ -40,7 +40,7 @@ public class BitcoinPaymentController {
 	
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public Order createOrder(@RequestBody OrderDTO orderDTO) throws NotFoundException { // Mora se znati kom prodavcu se uplacuje, koliko se uplacuje
-		logger.info("Creating order"); // TODO: koja aplikacija
+		logger.info("Creating order for bitcoin."); // TODO: koja aplikacija
 		System.out.println(orderDTO);
 		
 		Order o = new Order();
@@ -58,7 +58,7 @@ public class BitcoinPaymentController {
 	public ModelAndView pay(@PathVariable Integer appId, @PathVariable Integer orderId) throws NotFoundException { // Mora se znati kom prodavcu se uplacuje, koliko se uplacuje
 		logger.info("Bitcoin controller: appId: " + appId + ", orderId: " + orderId); 
 		System.out.println("App ID: " + appId + " OrderId: " + orderId);
-		String redirectUrl = paymentService.pay(appId, orderId); // TODO: Promeniti (prvi parametar je appId)
+		String redirectUrl = paymentService.pay(appId, orderId); 
 		System.out.println("REDIRECR URL: " + redirectUrl);
 	
 		return new ModelAndView("redirect:" + redirectUrl);
@@ -67,7 +67,7 @@ public class BitcoinPaymentController {
 	@RequestMapping(value = "/complete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public String complete(@RequestBody CompletePaymentDTO completePaymentDTO) throws NotFoundException {
 		System.out.println("Complete payment");
-		logger.info("Complete payment for order with id " + completePaymentDTO.getOrder_id()); 
+		logger.info("Complete bitcoin payment for order with id " + completePaymentDTO.getOrder_id()); 
 
 		System.out.println(completePaymentDTO);
 		
@@ -84,7 +84,7 @@ public class BitcoinPaymentController {
 		}
 		else {
 			completePaymentResponseDTO.setStatus("FAILED");
-		}
+		} // TODO: Expired..
 		
 		
 		ResponseEntity<String> responseEntity = restTemplate.exchange(o.getCallbackUrl(), HttpMethod.POST,

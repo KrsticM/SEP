@@ -46,6 +46,7 @@ public class PaymentMethodController {
 	@GetMapping("/{appId}")
 	public ResponseEntity<?> getUserPaymentMethods(@RequestHeader("UserId") Integer userId, @PathVariable Integer appId)
 			throws NotFoundException {
+		logger.info("Getting payment methods of user with id " + userId);
 		return new ResponseEntity<>(paymentMethodService.getPaymentMethods(userId, appId), HttpStatus.OK);
 	}
 }

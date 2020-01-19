@@ -2,9 +2,12 @@ package tim18.ftn.uns.ac.rs.bitcoinpayment.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.EqualsAndHashCode;
@@ -36,5 +39,20 @@ public class Order {
 	
 	@Column
 	private OrderStatus status;
+	
+	@Column
+	private Integer orderIdCoinGate;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn
+	private Merchant merchant;
+
+	@Override
+	public String toString() {
+		return "Order [id=" + id + ", orderIdScienceCenter=" + orderIdScienceCenter + ", price=" + price
+				+ ", callbackUrl=" + callbackUrl + ", status=" + status + "]";
+	}
+	
+	
 	
 }

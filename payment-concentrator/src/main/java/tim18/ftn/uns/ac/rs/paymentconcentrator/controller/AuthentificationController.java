@@ -3,6 +3,8 @@ package tim18.ftn.uns.ac.rs.paymentconcentrator.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +25,8 @@ import tim18.ftn.uns.ac.rs.paymentconcentrator.service.RegistrationService;
 @RestController
 @RequestMapping("/auth")
 public class AuthentificationController {
+	
+	Logger logger = LoggerFactory.getLogger(AuthentificationController.class);
 
 	@Autowired
 	private RegistrationService registrationService;
@@ -32,6 +36,7 @@ public class AuthentificationController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<User> registerUser(@RequestBody @Valid RegistrationDTO registrationDTO) {
+		logger.info("Registration user with email " + registrationDTO.getEmail() + ".");
 		User user = registrationService.registerUser(registrationDTO);
 		return ResponseEntity.ok(user);
 	}

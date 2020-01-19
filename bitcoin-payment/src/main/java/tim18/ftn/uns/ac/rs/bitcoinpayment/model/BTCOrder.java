@@ -12,12 +12,14 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity
+@ToString
 public class BTCOrder implements Serializable  {
 	/**
 	 * 
@@ -36,7 +38,7 @@ public class BTCOrder implements Serializable  {
 	private Double price_amount;
 	
 	@Column
-	private String price_currency = "BTC";
+	private String price_currency = "USD";
 	
 	@Column
 	private String receive_currency = "DO_NOT_CONVERT";

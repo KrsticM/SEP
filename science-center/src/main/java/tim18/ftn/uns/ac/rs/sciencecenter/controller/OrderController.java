@@ -1,5 +1,7 @@
 package tim18.ftn.uns.ac.rs.sciencecenter.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,6 +42,11 @@ public class OrderController {
 		}
 		
 		return "Error";
+	}
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public List<Order> completedOrders() {
+		return orderService.findAll();
 	}
 	
 }

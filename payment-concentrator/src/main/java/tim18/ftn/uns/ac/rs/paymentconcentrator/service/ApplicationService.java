@@ -49,7 +49,7 @@ public class ApplicationService {
 		}
 
 		if (!app.get().getUser().getId().equals(userId)) {
-			// TODO: logger.error
+			logger.error("User with id " + userId + " does not have an application with id " + appId + ".");			
 			throw new NotFoundException(appId, Application.class.getSimpleName());
 		}
 

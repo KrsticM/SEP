@@ -1,5 +1,7 @@
 package tim18.ftn.uns.ac.rs.paymentconcentrator.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,8 @@ import tim18.ftn.uns.ac.rs.paymentconcentrator.model.User;
 @Service
 public class RegistrationService {
 
+	Logger logger = LoggerFactory.getLogger(RegistrationService.class);
+	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
@@ -28,6 +32,7 @@ public class RegistrationService {
 	 */
 	public User registerUser(RegistrationDTO registrationDTO) {
 		User user = registrationDTO.createUser();
+		logger.info("Saving user with email " + registrationDTO.getEmail() + ".");
 		return saveUser(user, registrationDTO.getPassword());
 	}
 
