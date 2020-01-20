@@ -30,7 +30,7 @@ public class CardPaymentService {
 	private OrderService orderService;
 	
 	private String url = "http://localhost:8400/view";
-	private String bankUrl = "http://localhost:5005/payment/create";
+	private String bankUrl = "http://localhost:5005/payment/create";  // banka prodavca
 
 	public String pay(Integer applicationId, Integer orderId) throws NotFoundException {
 		

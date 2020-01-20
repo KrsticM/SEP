@@ -1,22 +1,27 @@
-2019-12-26 10:33:32,699 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-12-26 10:33:41,120 INFO org.springframework.boot.StartupInfoLogger [main] Started CardPaymentApplication in 11.798 seconds (JVM running for 12.537)
-2019-12-26 10:44:06,372 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-1] Creating order for card payment
-2019-12-26 10:44:06,464 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-1] Saved order 8
-2019-12-26 10:44:06,504 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-2] Card payment controller: appId: 1, orderId: 8
-2019-12-26 10:44:06,596 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-2] Payment to the seller jaseyrae9
-2019-12-26 10:44:06,611 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-2] OrderId: 8
-2019-12-26 10:44:06,611 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-2] Payment amount 0.1
-2019-12-26 10:44:06,811 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-2] Saving order8 for application: 1, order status: PAID
-2019-12-26 10:44:38,480 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-3] Complete card payment for order with id 8
-2019-12-26 10:44:38,483 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-3] Order with id 8is failed
-2019-12-26 12:03:04,086 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
-2019-12-26 12:03:12,284 INFO org.springframework.boot.StartupInfoLogger [main] Started CardPaymentApplication in 11.54 seconds (JVM running for 12.278)
-2019-12-26 13:22:40,127 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-3] Creating order for card payment
-2019-12-26 13:22:40,194 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-3] Saved order 9
-2019-12-26 13:22:40,250 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-1] Card payment controller: appId: 1, orderId: 9
-2019-12-26 13:22:40,387 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-1] Payment to the seller jaseyrae9
-2019-12-26 13:22:40,411 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-1] OrderId: 9
-2019-12-26 13:22:40,411 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-1] Payment amount 100.0
-2019-12-26 13:22:40,803 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-1] Saving order9 for application: 1, order status: PAID
-2019-12-26 13:23:07,302 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-2] Complete card payment for order with id 9
-2019-12-26 13:23:07,310 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-2] Order with id 9is paid
+2020-01-20 15:26:36,919 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-20 15:26:50,312 INFO org.springframework.boot.StartupInfoLogger [main] Started CardPaymentApplication in 16.595 seconds (JVM running for 18.379)
+2020-01-20 15:29:08,996 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-1] Creating order for card payment
+2020-01-20 15:29:09,329 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-1] Saved order 18
+2020-01-20 15:29:09,484 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-2] Card payment controller: appId: 2, orderId: 18
+2020-01-20 15:29:10,021 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-2] Payment to the seller jaseyrae9
+2020-01-20 15:29:10,095 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-2] OrderId: 18
+2020-01-20 15:29:10,103 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-2] Payment amount 10.0
+2020-01-20 15:29:12,180 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-2] Saving order18 for application: 2, order status: PAID
+2020-01-20 15:30:17,195 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-4] Complete card payment for order with id 18
+2020-01-20 15:30:17,320 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-4] Order with id 18is paid
+2020-01-20 15:31:30,603 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-2] Creating order for card payment
+2020-01-20 15:31:30,657 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-2] Saved order 19
+2020-01-20 15:31:30,741 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-3] Card payment controller: appId: 2, orderId: 19
+2020-01-20 15:31:30,798 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-3] Payment to the seller jaseyrae9
+2020-01-20 15:31:30,810 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-3] OrderId: 19
+2020-01-20 15:31:30,811 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-3] Payment amount 10.0
+2020-01-20 15:31:31,003 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-3] Saving order19 for application: 2, order status: PAID
+2020-01-20 15:31:42,603 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-4] Complete card payment for order with id 19
+2020-01-20 15:31:42,615 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-4] Order with id 19is paid
+2020-01-20 15:34:33,880 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-9] Creating order for card payment
+2020-01-20 15:34:34,138 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-9] Saved order 20
+2020-01-20 15:34:34,519 INFO tim18.ftn.uns.ac.rs.cardpayment.controller.CardPaymentController [http-nio-8400-exec-1] Card payment controller: appId: 2, orderId: 20
+2020-01-20 15:34:34,570 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-1] Payment to the seller jaseyrae9
+2020-01-20 15:34:34,590 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-1] OrderId: 20
+2020-01-20 15:34:34,592 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-1] Payment amount 10.0
+2020-01-20 15:34:35,209 INFO tim18.ftn.uns.ac.rs.cardpayment.service.CardPaymentService [http-nio-8400-exec-1] Saving order20 for application: 2, order status: PAID

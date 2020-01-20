@@ -51,7 +51,7 @@ public class CardPaymentController {
 		o.setOrderStatus(OrderStatus.CREATED);
 		
 		Order savedOrder = orderService.saveOrder(o);
-		logger.info("Saved order " + savedOrder.getId()); // TODO: koja aplikacija
+		logger.info("Saved order " + savedOrder.getId()); 
 		return savedOrder;
 	}
 	
