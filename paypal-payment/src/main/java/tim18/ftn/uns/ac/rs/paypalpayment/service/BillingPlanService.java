@@ -19,22 +19,25 @@ public class BillingPlanService {
 	@Autowired
     AccessTokenService tokenService;
 	
-//	public String createProduct(Order order) {
-//		RestTemplate restTemplate = new RestTemplate();
-//        String paypalAPI = "https://api.sandbox.paypal.com/v1/catalogs/products";
-//        String defJson = "{\n" +
-//                "  \"name\": \"Item " + order.getId() + "\",\n" +
-//                "  \"type\": \"" + order.getType() + "\",\n" +
-//                "  \"category\": \"" order.getCategory() + "\"\n" +
-//                "  }]\n" +
-//                "}";
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaType.APPLICATION_JSON);
-//        headers.set("Authorization", "Bearer " + tokenService.getAccessToken(order.getMerchant()));
-//
-//        HttpEntity<String> entity = new HttpEntity<String>(defJson, headers);
-//	}
+	public String createProduct(Order order) throws UnsupportedEncodingException {
+		RestTemplate restTemplate = new RestTemplate();
+        String paypalAPI = "https://api.sandbox.paypal.com/v1/catalogs/products";
+        String defJson = "{\n" +
+                "  \"name\": \"Item " + order.getId() + "\",\n" +
+                "  \"type\": \"DIGITAL\",\n" +
+                "  \"category\": \"BOOKS_AND_MAGAZINES\"\n" +
+                "  }]\n" +
+                "}";
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set("Authorization", "Bearer " + tokenService.getAccessToken(order.getMerchant()));
+
+        HttpEntity<String> entity = new HttpEntity<String>(defJson, headers);
+
+        String jsonResponse = restTemplate.postForObject(paypalAPI, entity, String.class);
+        return jsonResponse;
+	}
 	
 	public String createBillingPlan(Order order, String productId) throws UnsupportedEncodingException {
 		RestTemplate restTemplate = new RestTemplate();
@@ -47,14 +50,20 @@ public class BillingPlanService {
                 "      \"interval_unit\": \"MONTH\",\n" +
                 "      \"interval_count\": 1\n" +
                 "    },\n" +
+                "    \"pricing_scheme\": {\n" +
+            	"	    \"fixed_price\": {\n" +
+                "    	  \"value\": \"" + order.getPrice() + "\",\n" +
+                "     	  \"currency_code\": \"EUR\"\n" +
+                "    	},\n" +
+                "    },\n" +
                 "	\"tenure_type\": \"REGULAR\",\n" +
                 "	\"sequence\": 1,\n" +
                 "	\"total_cycles\": 12\n" +
-                "  }]\n" +
+                "  }],\n" +
                 "  \"payment_preferences\": {\n" +
                 "    \"payment_failure_threshold\": 3,\n" +
                 "    \"auto_bill_outstanding\": true\n" +
-                "  },\n" +
+                "  }\n" +
                 "}";
 
         HttpHeaders headers = new HttpHeaders();
