@@ -46,7 +46,7 @@ public class OrderController {
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Order> completedOrders() {
-		return orderService.findAll();
+		return orderService.findAllCompleted();
 	}
 	
 }

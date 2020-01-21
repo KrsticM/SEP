@@ -10,6 +10,10 @@ const Header = () => {
         <Link to="/cart">
             <button>Korpa</button>
         </Link>
+
+        <Link to="/completed">
+            <button>Kupljeno</button>
+        </Link>
        
     </StyledHeader>  
     )
