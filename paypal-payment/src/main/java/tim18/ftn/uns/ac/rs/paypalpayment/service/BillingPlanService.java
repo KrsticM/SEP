@@ -8,22 +8,30 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
 import tim18.ftn.uns.ac.rs.paypalpayment.model.Order;
+import tim18.ftn.uns.ac.rs.paypalpayment.model.PaypalPlan;
+import tim18.ftn.uns.ac.rs.paypalpayment.model.PaypalProduct;
+import tim18.ftn.uns.ac.rs.paypalpayment.repository.PaypalProductRepository;
 
+@Service
 public class BillingPlanService {
 	@Autowired
     AccessTokenService tokenService;
 	
-	public String createProduct(Order order) throws UnsupportedEncodingException {
+	@Autowired
+	PaypalProductRepository productRepository;
+	
+	public PaypalProduct createProduct(Order order) throws UnsupportedEncodingException {
 		RestTemplate restTemplate = new RestTemplate();
         String paypalAPI = "https://api.sandbox.paypal.com/v1/catalogs/products";
         String defJson = "{\n" +
-                "  \"name\": \"Item " + order.getId() + "\",\n" +
+                "  \"name\": \"Order " + order.getId() + "\",\n" +
                 "  \"type\": \"DIGITAL\",\n" +
                 "  \"category\": \"BOOKS_AND_MAGAZINES\"\n" +
                 "  }]\n" +
@@ -36,15 +44,22 @@ public class BillingPlanService {
         HttpEntity<String> entity = new HttpEntity<String>(defJson, headers);
 
         String jsonResponse = restTemplate.postForObject(paypalAPI, entity, String.class);
-        return jsonResponse;
+        Gson gson = new Gson();
+        PaypalProduct product = new PaypalProduct(
+        		order.getMerchant(),
+        		gson.fromJson(jsonResponse, JsonObject.class).get("id").getAsString(),
+        		gson.fromJson(jsonResponse, JsonObject.class).get("name").getAsString()
+        );
+        productRepository.save(product);
+        return product;
 	}
 	
-	public String createBillingPlan(Order order, String productId) throws UnsupportedEncodingException {
+	public PaypalPlan createBillingPlan(PaypalProduct product, Order order) throws UnsupportedEncodingException {
 		RestTemplate restTemplate = new RestTemplate();
         String paypalAPI = "https://api.sandbox.paypal.com/v1/billing/plans";
         String defJson = "{\n" +
-                "  \"name\": \"Subscription for order " + order.getId() + "\",\n" +
-                "  \"product_id\": \"" + order.getId() + "\",\n" +
+                "  \"name\": \"Subscription for " + product.getName() + "\",\n" +
+                "  \"product_id\": \"" + product.getProductId() + "\",\n" +
                 "  \"billing_cycles\": [{\n" +
                 "    \"frequency\": {\n" +
                 "      \"interval_unit\": \"MONTH\",\n" +
@@ -54,7 +69,7 @@ public class BillingPlanService {
             	"	    \"fixed_price\": {\n" +
                 "    	  \"value\": \"" + order.getPrice() + "\",\n" +
                 "     	  \"currency_code\": \"EUR\"\n" +
-                "    	},\n" +
+                "    	}\n" +
                 "    },\n" +
                 "	\"tenure_type\": \"REGULAR\",\n" +
                 "	\"sequence\": 1,\n" +
@@ -68,13 +83,21 @@ public class BillingPlanService {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set("Authorization", "Bearer " + tokenService.getAccessToken(order.getMerchant()));
+        headers.set("Authorization", "Bearer " + tokenService.getAccessToken(product.getMerchant()));
 
         HttpEntity<String> entity = new HttpEntity<String>(defJson, headers);
-        System.out.println(tokenService.getAccessToken(order.getMerchant()));
         System.out.println(defJson);
         String jsonResponse = restTemplate.postForObject(paypalAPI, entity, String.class);
-        return jsonResponse;
+        Gson gson = new Gson();
+        PaypalPlan billingPlan = new PaypalPlan(
+        	product.getMerchant(),
+        	gson.fromJson(jsonResponse, JsonObject.class).get("id").getAsString(),
+    		product.getProductId(),
+    		product.getName(),
+    		gson.fromJson(jsonResponse, JsonObject.class).get("status").getAsString()
+    	);
+        		
+        return billingPlan;
 	}
 	
 
