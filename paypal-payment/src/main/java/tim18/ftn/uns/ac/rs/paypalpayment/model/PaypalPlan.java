@@ -37,9 +37,6 @@ public class PaypalPlan {
 	private String status;
 
 	@Column
-	private String createTime;
-
-	@Column
 	private LocalDateTime createTimestamp;
 
 	@Column
@@ -56,5 +53,12 @@ public class PaypalPlan {
 		this.name = name;
 		this.status = status;
 		this.createTimestamp = LocalDateTime.now();
+	}
+
+	@Override
+	public String toString() {
+		return "PaypalPlan [id=" + id + ", planId=" + planId + ", productId=" + productId + ", name=" + name
+				+ ", status=" + status + ", createTimestamp=" + createTimestamp
+				+ ", merchant=" + merchant + "]";
 	}
 }

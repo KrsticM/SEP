@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 import tim18.ftn.uns.ac.rs.paypalpayment.model.Order;
 import tim18.ftn.uns.ac.rs.paypalpayment.model.PaypalPlan;
 import tim18.ftn.uns.ac.rs.paypalpayment.model.PaypalProduct;
+import tim18.ftn.uns.ac.rs.paypalpayment.repository.PaypalPlanRepository;
 import tim18.ftn.uns.ac.rs.paypalpayment.repository.PaypalProductRepository;
 
 @Service
@@ -26,6 +27,9 @@ public class BillingPlanService {
 	
 	@Autowired
 	PaypalProductRepository productRepository;
+	
+	@Autowired
+	PaypalPlanRepository planRepository;
 	
 	public PaypalProduct createProduct(Order order) throws UnsupportedEncodingException {
 		RestTemplate restTemplate = new RestTemplate();
@@ -96,10 +100,13 @@ public class BillingPlanService {
     		product.getName(),
     		gson.fromJson(jsonResponse, JsonObject.class).get("status").getAsString()
     	);
-        		
+        planRepository.save(billingPlan); 		
         return billingPlan;
 	}
 	
+	public PaypalPlan getPlan(int planId) {
+		return planRepository.getOne(planId);
+	}
 
 	public ResponseEntity<String> getPlanDetails(int planId, int appId) throws UnsupportedEncodingException {
 		String paypalAPI = "https://api.sandbox.paypal.com/v1/billing/plans/"

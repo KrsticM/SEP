@@ -3,6 +3,7 @@ package tim18.ftn.uns.ac.rs.paypalpayment.service;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -39,6 +40,7 @@ public class AccessTokenService {
         this.accessTokenRepository = accessTokenRepository;
     }
 
+    @Transactional
     public String getAccessToken(Integer appId) throws UnsupportedEncodingException {
 //        Optional<AccessToken> token = accessTokenRepository.findById(appId);
 //        if(token.isPresent()){
@@ -72,18 +74,5 @@ public class AccessTokenService {
         accessTokenRepository.save(accessToken);
 
         return accessToken.getToken();
-    }
-
-
-
-    @Scheduled(fixedRate = 600000)
-    private void cleanSpentTokens(){
-        List<AccessToken> expired = StreamSupport
-        	.stream(accessTokenRepository.findAll().spliterator(), false)
-            .filter(token -> token.getExpiresAt().isAfter(LocalDateTime.now()))
-            .collect(Collectors.toList());
-
-        System.out.println("Cleaning access tokens that are expired");
-        accessTokenRepository.deleteAll(expired);
     }
 }

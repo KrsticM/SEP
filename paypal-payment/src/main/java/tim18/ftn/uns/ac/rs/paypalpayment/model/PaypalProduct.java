@@ -47,4 +47,10 @@ public class PaypalProduct {
 		this.name = name;
 		this.createTimestamp = LocalDateTime.now();
 	}
+
+	@Override
+	public String toString() {
+		return "PaypalProduct [id=" + id + ", productId=" + productId + ", name=" + name + ", merchant=" + merchant
+				+ ", createTimestamp=" + createTimestamp + "]";
+	}
 }

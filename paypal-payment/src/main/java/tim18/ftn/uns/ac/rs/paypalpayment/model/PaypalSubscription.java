@@ -26,6 +26,9 @@ public class PaypalSubscription {
 
 	@Column
 	private String subscriptionId;
+	
+	@Column
+	private String planId;
 
 	@Column
 	private String approveURL;
@@ -44,11 +47,18 @@ public class PaypalSubscription {
 		super();
 	}
 	
-	public PaypalSubscription(Integer merchantId, String subscriptionId, String approveURL, String status) {
+	public PaypalSubscription(Integer merchantId, String subscriptionId, String planId, String approveURL, String status) {
 		this.merchant = merchantId;
+		this.planId = planId;
 		this.subscriptionId = subscriptionId;
 		this.approveURL = approveURL;
 		this.status = status;
 		this.createTimestamp = LocalDateTime.now();
+	}
+
+	@Override
+	public String toString() {
+		return "PaypalSubscription [id=" + id + ", subscriptionId=" + subscriptionId + ", approveURL=" + approveURL
+				+ ", status=" + status + ", merchant=" + merchant + ", createTimestamp=" + createTimestamp + "]";
 	}
 }
