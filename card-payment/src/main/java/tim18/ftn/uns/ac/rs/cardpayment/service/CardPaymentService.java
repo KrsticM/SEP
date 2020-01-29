@@ -57,7 +57,7 @@ public class CardPaymentService {
 		ResponseEntity<PaymentResponseDTO> responseEntity = new RestTemplate().exchange(bankUrl, HttpMethod.POST,
 				new HttpEntity<PaymentRequestDTO>(paymentRequestDTO), PaymentResponseDTO.class);
 		
-		order.setOrderStatus(OrderStatus.PAID);
+		//order.setOrderStatus(OrderStatus.PAID);
 		orderService.saveOrder(order);
 		
 		logger.info("Saving order" + order.getId() + " for application: " + applicationId + ", order status: " + order.getOrderStatus()); 

@@ -41,6 +41,9 @@ public class Order {
 	private OrderStatus status;
 	
 	@Column
+	private Integer ticks;
+	
+	@Column
 	private Integer orderIdCoinGate;
 	
 	@ManyToOne(fetch = FetchType.EAGER)

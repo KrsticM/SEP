@@ -1,5 +1,6 @@
 package tim18.ftn.uns.ac.rs.cardpayment.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
@@ -32,5 +33,9 @@ public class OrderService {
 		}
 		
 		return order.get();
+	}
+	
+	public List<Order> findAll() {
+		return orderRepository.findAll();
 	}
 }

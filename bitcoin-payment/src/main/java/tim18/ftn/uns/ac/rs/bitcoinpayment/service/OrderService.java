@@ -35,4 +35,5 @@ public class OrderService {
 	public List<Order> findAllByStatus(OrderStatus status) {
 		return orderRepository.findAllByStatus(status);
 	}
+	
 }

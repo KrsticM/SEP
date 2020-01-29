@@ -1,6 +1,7 @@
 package tim18.ftn.uns.ac.rs.paymentconcentrator.service;
 
 import java.util.Optional;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,12 +24,12 @@ public class OrderService {
 		return orderRepository.save(order);
 	}
 	
-	public Order findById(Integer id) throws NotFoundException {
+	public Order findById(UUID id) throws NotFoundException {
 		Optional<Order> order = orderRepository.findById(id);
 		
 		if(!order.isPresent()) {
 			logger.error("Order with id " + id + " not found." );
-			throw new NotFoundException(id, Order.class.getSimpleName());
+			throw new NotFoundException(id.toString(), Order.class.getSimpleName());
 		}
 		
 		return order.get();

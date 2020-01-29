@@ -38,7 +38,7 @@ public class ViewController {
 	// CallBackUrl : String
 	
 	@RequestMapping(value = "/choosePaymentMethod/{appApiKey}/{orderId}", method = RequestMethod.GET) 
-	public String index(@PathVariable UUID appApiKey, @PathVariable Integer orderId, Model model) throws NotFoundException { // @RequestBody PaymentInformationDTO paymentInformationDTO
+	public String index(@PathVariable UUID appApiKey, @PathVariable UUID orderId, Model model) throws NotFoundException { // @RequestBody PaymentInformationDTO paymentInformationDTO
 		System.out.println(appApiKey);
 		List<PaymentMethod> paymentMethods = paymentMethodService.getPaymentMethods(appApiKey);
 		System.out.println(paymentMethods);

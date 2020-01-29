@@ -49,6 +49,7 @@ public class CardPaymentController {
 		o.setPrice(orderDTO.getPrice());
 		o.setCallbackUrl(orderDTO.getCallbackUrl());
 		o.setOrderStatus(OrderStatus.CREATED);
+		o.setTicks(0);
 		
 		Order savedOrder = orderService.saveOrder(o);
 		logger.info("Saved order " + savedOrder.getId()); 

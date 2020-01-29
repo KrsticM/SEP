@@ -1,5 +1,7 @@
 package tim18.ftn.uns.ac.rs.sciencecenter.dto;
 
+import java.util.UUID;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class OrderResponseDTO {
-	private Integer id;
+	private UUID id;
 	private Integer orderIdScienceCenter;
 	private Double price;
 	private String callbackUrl;
