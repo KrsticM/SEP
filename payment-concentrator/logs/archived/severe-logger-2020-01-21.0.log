@@ -1,0 +1,14 @@
+2020-01-20 15:25:46,089 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-20 15:26:01,963 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 18.798 seconds (JVM running for 20.638)
+2020-01-20 15:28:58,879 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-1] Creating order 
+2020-01-20 15:28:59,522 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-1] Saving order with id 18
+2020-01-20 15:31:28,658 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-4] Creating order 
+2020-01-20 15:31:28,778 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-4] Saving order with id 19
+2020-01-20 15:34:31,601 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-7] Creating order 
+2020-01-20 15:34:31,789 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-7] Saving order with id 20
+2020-01-21 20:09:39,736 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-21 20:09:54,421 INFO org.springframework.boot.StartupInfoLogger [main] Started PaymentConcentratorApplication in 35.851 seconds (JVM running for 36.44)
+2020-01-21 20:22:46,714 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-1] Creating order 
+2020-01-21 20:22:47,090 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-1] Saving order with id 3
+2020-01-21 20:25:04,055 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-3] Creating order 
+2020-01-21 20:25:04,071 INFO tim18.ftn.uns.ac.rs.paymentconcentrator.controller.OrderController [http-nio-8100-exec-3] Saving order with id 4

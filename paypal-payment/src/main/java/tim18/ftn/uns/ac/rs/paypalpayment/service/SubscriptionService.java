@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
@@ -98,22 +99,26 @@ public class SubscriptionService {
             headers.setContentType(MediaType.APPLICATION_JSON);
             headers.set("Authorization", "Bearer " + tokenService.getAccessToken(subscription.getMerchant()));
             HttpEntity entity = new HttpEntity(headers);
-	    	ResponseEntity<String> subscriptionDetail = restTemplate.exchange(
+            try {
+	            ResponseEntity<String> subscriptionDetail = restTemplate.exchange(
 	        		paypalAPI, HttpMethod.GET, entity, String.class);
-	    	Gson gson = new Gson();
-	    	String response = subscriptionDetail.getBody();
-	    	String status = gson.fromJson(response, JsonObject.class).get("status").getAsString();
-	    	if(status.contentEquals("APPROVED")) {
-//	    		Aktiviranje subskripcije
-	    		String paypalAPIActivate = "https://api.sandbox.paypal.com/v1/billing/subscriptions/"
-		        	+ subscription.getSubscriptionId() + "/activate";
-	    		HttpEntity<String> postEntity = new HttpEntity<String>("", headers); 
-		    	String responseActivation = restTemplate.postForObject(paypalAPIActivate, postEntity, String.class);
-				subscription.setStatus("ACTIVE");
-	    	}
-	    	System.out.println(subscription.toString());
-	    	
-	    	subscription.setStatus(status);
+		    	Gson gson = new Gson();
+		    	String response = subscriptionDetail.getBody();
+		    	String status = gson.fromJson(response, JsonObject.class).get("status").getAsString();
+		    	if(status.contentEquals("APPROVED")) {
+	//	    		Aktiviranje subskripcije
+		    		String paypalAPIActivate = "https://api.sandbox.paypal.com/v1/billing/subscriptions/"
+			        	+ subscription.getSubscriptionId() + "/activate";
+		    		HttpEntity<String> postEntity = new HttpEntity<String>("", headers); 
+			    	String responseActivation = restTemplate.postForObject(paypalAPIActivate, postEntity, String.class);
+					subscription.setStatus("ACTIVE");
+		    	}
+		    	System.out.println(subscription.toString());
+		    	
+		    	subscription.setStatus(status);
+            }  catch (final HttpClientErrorException e) {
+            	subscription.setStatus("ERROR");
+            }
 	    }
     	subscriptionRepository.saveAll(checkSubscriptions);
 	    

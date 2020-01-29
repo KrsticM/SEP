@@ -39,6 +39,9 @@ public class Order {
 
 	@Column
 	private Boolean executed;
+	
+	@Column
+	private String status;
 
 	@Column
 	private Integer merchant;
