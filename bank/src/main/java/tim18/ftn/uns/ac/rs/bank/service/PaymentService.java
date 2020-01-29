@@ -143,6 +143,7 @@ public class PaymentService {
 			// To nije ova banka idemo na pcc
 			System.out.println("Nisu iz iste banke idemo na pcc");
 			Transaction saved = transactionService.save(transaction);
+			System.err.println("posle cuvanja transakcije");
 			// ACQUIRER_ORDER_ID = saved.id
 			// ACQUIRER_TIMESTAMP
 			PccRequestDTO pccRequestDTO = new PccRequestDTO();
@@ -154,11 +155,13 @@ public class PaymentService {
 			pccRequestDTO.setPanNumber(clientDTO.getPanNumber());
 			pccRequestDTO.setYy(clientDTO.getYy());
 			pccRequestDTO.setAmount(paymentRequest.getAmount());
-			
+			System.err.println("posle pccRequestDTO");
+
 			HttpHeaders headers = new HttpHeaders();
 		    headers.setContentType(MediaType.APPLICATION_JSON);
 		    HttpEntity<PccRequestDTO> request = new HttpEntity<PccRequestDTO>(pccRequestDTO, headers);
-		    
+			System.err.println("posle request");
+
 		    String merchantId = paymentRequest.getMerchantId();
 			Client merchant = clientService.getClientByMerchantId(merchantId);
 			if (!merchant.getMerchantPassword().equals(paymentRequest.getMerchantPassword())){
@@ -168,26 +171,44 @@ public class PaymentService {
 				return paymentRequest.getErrorUrl();
 			} // Ako ne potoji prodavac nece se ni otici do kupca
 		    
+			
 		    // Ovde dobijamo podatke o uspesnosti transakcije
 		    AcquirerResponseDTO response = restTemplate.postForObject(pccUrl + "/payRedirect", request, AcquirerResponseDTO.class);
 		  
-		    
-		    if(response.getIsAuthentificated() && response.getIsTransactionAutorized()) {    	
+			System.err.println("posle response " + response);
+
+		    if(response.getIsAuthentificated() && response.getIsTransactionAutorized()) { 
+				System.err.println(" usao u if ");
+
 		    	merchant.setAvailableFunds(merchant.getAvailableFunds() + paymentRequest.getAmount());
 				clientService.save(merchant);
 				transaction.setStatus(TransactionStatus.SUCCESSFUL);
 				transactionService.save(transaction);
-				
+				System.err.println("posles skidanja merchantu para");
+
 				// Obavetavamo KP o uspesnosti transakcije
 			    CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
 				completePaymentResponseDTO.setOrder_id(paymentRequest.getMerchantOrderId());
 				completePaymentResponseDTO.setStatus("PAID");
-				
+				System.err.println("obavestavanja kpa");
+
 				ResponseEntity<String> responseEntity = restTemplate.exchange(paymentRequest.getCallbackUrl() + "/complete", HttpMethod.POST,
 						new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
 				System.out.println(responseEntity.getBody());
 			     
 				return paymentRequest.getSuccessUrl();
+		    }
+		    
+		    // TODO: failed i error url
+		    
+		    if(!response.getIsAuthentificated()) {    	
+		    	System.err.println("error");
+				return paymentRequest.getErrorUrl();
+
+		    }
+		    if(!response.getIsTransactionAutorized()) {   
+		    	System.err.println("fail");
+				return paymentRequest.getFailedUrl();
 		    }
 		   
 		    return paymentRequest.getErrorUrl();

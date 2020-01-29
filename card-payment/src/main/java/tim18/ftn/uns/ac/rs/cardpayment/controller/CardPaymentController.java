@@ -79,11 +79,12 @@ public class CardPaymentController {
 			CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
 			completePaymentResponseDTO.setOrder_id(order.getOrderIdScienceCenter());
 			completePaymentResponseDTO.setStatus("COMPLETED");
-
+			
+			System.err.println("aaaa");
 			ResponseEntity<String> responseEntity = restTemplate.exchange(order.getCallbackUrl(), HttpMethod.POST,
 					new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
 
-
+			System.err.println(responseEntity.getBody());
 			return responseEntity.getBody();
 			
 		}
