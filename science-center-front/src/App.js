@@ -4,6 +4,7 @@ import Header from './components/elements/Header'
 import { Router } from '@reach/router';
 import Home from './components/elements/Home'
 import Cart from './components/elements/Cart'
+import Orders from './components/elements/Orders';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Router>
           <Home path="/"/>
           <Cart path="/cart"/>
+          <Orders path = "/completed"/>
         </Router>
         
       </div>

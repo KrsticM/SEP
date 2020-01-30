@@ -38,4 +38,7 @@ public class Order {
 	@Column
 	private OrderStatus orderStatus;
 	
+	@Column
+	private Integer ticks;
+	
 }

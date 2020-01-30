@@ -19,7 +19,7 @@ public class PccService {
 		
 		Optional<Client> clientOpt = clientService.getClient(pccRequestDTO.getPanNumber());
 		if(!clientOpt.isPresent()) {
-			return failPayment(pccRequestDTO); // Ako klijent sa tim PAN-om ne postoji u ovoj banci
+			return failAuthentification(pccRequestDTO); // Ako klijent sa tim PAN-om ne postoji u ovoj banci
 		} 
 		
 		Client client = clientOpt.get();
@@ -27,7 +27,7 @@ public class PccService {
 		if (!client.getCardHolder().equals(pccRequestDTO.getCardHolder()) || !client.getCvv().equals(pccRequestDTO.getCvv())
 				|| !client.getExpirationDate().equals(tempDate)) {
 			System.err.println("PccService: Podaci se ne podudaraju. ");
-			return failPayment(pccRequestDTO);
+			return failAuthentification(pccRequestDTO);
 		}
 
 		if (pccRequestDTO.getAmount() > client.getAvailableFunds()) {
@@ -50,9 +50,18 @@ public class PccService {
 		return ret;
 	}
 
-	private PccResponseDTO failPayment(PccRequestDTO pccRequestDTO) {
+	private PccResponseDTO failAuthentification(PccRequestDTO pccRequestDTO) {
 		PccResponseDTO ret = new PccResponseDTO();
 		ret.setIsAuthentificated(false);
+		ret.setIsTransactionAutorized(false);
+		ret.setAcquirerOrderId(pccRequestDTO.getAcquirerOrderId());
+		ret.setAcquirerTimestamp(pccRequestDTO.getAcquirerTimestamp());
+		return ret;
+	}
+	
+	private PccResponseDTO failPayment(PccRequestDTO pccRequestDTO) {
+		PccResponseDTO ret = new PccResponseDTO();
+		ret.setIsAuthentificated(true);
 		ret.setIsTransactionAutorized(false);
 		ret.setAcquirerOrderId(pccRequestDTO.getAcquirerOrderId());
 		ret.setAcquirerTimestamp(pccRequestDTO.getAcquirerTimestamp());

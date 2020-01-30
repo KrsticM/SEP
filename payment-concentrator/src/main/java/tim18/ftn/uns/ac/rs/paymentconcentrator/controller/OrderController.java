@@ -32,6 +32,7 @@ public class OrderController {
 		o.setOrderIdScienceCenter(orderInformationDTO.getId());
 		o.setPrice(orderInformationDTO.getPrice());
 		o.setCallbackUrl(orderInformationDTO.getCallbackUrl());
+		o.setTicks(0);
 		
 		Order savedOrder = orderService.saveOrder(o);
 		logger.info("Saving order with id " + savedOrder.getId());

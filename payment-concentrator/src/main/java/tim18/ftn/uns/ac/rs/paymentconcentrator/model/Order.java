@@ -1,11 +1,14 @@
 package tim18.ftn.uns.ac.rs.paymentconcentrator.model;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -23,8 +26,9 @@ public class Order {
 
 	@EqualsAndHashCode.Include
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	@GeneratedValue(generator = "UUID")
+	@GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+	private UUID id;
 
 	@Column
 	private Integer orderIdScienceCenter;
@@ -34,5 +38,8 @@ public class Order {
 	
 	@Column
 	private String callbackUrl;
+	
+	@Column
+	private Integer ticks;
 	
 }

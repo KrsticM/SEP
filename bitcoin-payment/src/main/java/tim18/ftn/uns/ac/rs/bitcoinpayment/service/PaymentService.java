@@ -71,7 +71,6 @@ public class PaymentService {
 		
 		order.setOrderIdCoinGate(responseEntity.getBody().getId());
 		order.setMerchant(merchant);
-		order.setStatus(OrderStatus.WAITING);
 		orderService.saveOrder(order);
 		
 		System.out.println(responseEntity);
@@ -84,7 +83,7 @@ public class PaymentService {
 	@Scheduled(fixedDelay = 180000)
 	public void fetchCoingate() {
 	    System.out.println("Proveravanje transakcija... ");
-	    List<Order> unfinishedOrders = orderService.findAllByStatus(OrderStatus.WAITING);
+	    List<Order> unfinishedOrders = orderService.findAllByStatus(OrderStatus.CREATED);
 	    
 	    for(Order order : unfinishedOrders) {
 	    	System.out.println(order);

@@ -48,6 +48,7 @@ public class BitcoinPaymentController {
 		o.setPrice(orderDTO.getPrice());
 		o.setCallbackUrl(orderDTO.getCallbackUrl());
 		o.setStatus(OrderStatus.CREATED);
+		o.setTicks(0);
 		
 		Order savedOrder = orderService.saveOrder(o);
 		logger.info("Saved order " + savedOrder.getId()); // TODO: koja aplikacija
