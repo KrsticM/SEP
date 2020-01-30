@@ -1,5 +1,17 @@
-<div id="paypal-button-container"></div>
- 
+<div>
+	<h4>
+		Pay for your order single time
+	</h4>
+	<div id="paypal-button-container"></div>
+	
+	<p>or</p>
+	<h4>
+		Activate a subscription
+	</h4>
+	<a th:href="@{http://localhost:8200/view/subscribe(orderId=${orderId})}">
+		SUBSCRIBE NOW
+	</a>
+</div>
 <script src="https://www.paypal.com/sdk/js?client-id=sb&commit=false"></script>
  
 <script>

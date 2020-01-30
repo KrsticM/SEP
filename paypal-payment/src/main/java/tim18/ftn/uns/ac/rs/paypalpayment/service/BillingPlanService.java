@@ -58,7 +58,7 @@ public class BillingPlanService {
         return product;
 	}
 	
-	public PaypalPlan createBillingPlan(PaypalProduct product, Order order) throws UnsupportedEncodingException {
+	public PaypalPlan createBillingPlan(PaypalProduct product, Order order, Integer duration) throws UnsupportedEncodingException {
 		RestTemplate restTemplate = new RestTemplate();
         String paypalAPI = "https://api.sandbox.paypal.com/v1/billing/plans";
         String defJson = "{\n" +
@@ -77,7 +77,7 @@ public class BillingPlanService {
                 "    },\n" +
                 "	\"tenure_type\": \"REGULAR\",\n" +
                 "	\"sequence\": 1,\n" +
-                "	\"total_cycles\": 12\n" +
+                "	\"total_cycles\": " + duration + "\n" +
                 "  }],\n" +
                 "  \"payment_preferences\": {\n" +
                 "    \"payment_failure_threshold\": 3,\n" +

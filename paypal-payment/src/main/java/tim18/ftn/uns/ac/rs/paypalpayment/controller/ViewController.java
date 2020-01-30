@@ -22,6 +22,14 @@ public class ViewController {
 		model.addAttribute("redirect", order.getCallbackUrl());
 		return "success";
 	}
+	
+	@RequestMapping(value = "/subscribe")
+	public String subscribeForPaypal(@RequestParam("orderId") Integer orderId, Model model) {
+		Order order = orderService.getOrder(orderId);
+		model.addAttribute("orderId", orderId);
+		model.addAttribute("appId", order.getMerchant());
+		return "subscriptionDetails";
+	}
 
 	@RequestMapping(value = "/paypal_payment/{orderId}")
 	public String paypal(@PathVariable Integer orderId, Model model) {	
