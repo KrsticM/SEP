@@ -32,6 +32,10 @@ public class PaypalSubscription {
 	
 	@Column
 	private String planId;
+	
+	@Column
+	private Double monthlyPrice;
+
 
 	@Column
 	private String approveURL;
@@ -41,9 +45,18 @@ public class PaypalSubscription {
 
 	@Column
 	private Integer merchant;
+	
+	@Column
+	private String subscriber;
+	
+	@Column
+	private Integer durationMonths;
 
 	@Column
 	private LocalDateTime createTimestamp;
+
+	@Column
+	private LocalDateTime transactionCheckTimestamp;
 	
 
 	public PaypalSubscription() {

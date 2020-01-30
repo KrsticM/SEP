@@ -1,6 +1,11 @@
 package tim18.ftn.uns.ac.rs.paypalpayment.service;
 
 import java.io.UnsupportedEncodingException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,11 +21,15 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import tim18.ftn.uns.ac.rs.paypalpayment.dto.SubscriptionPlanDTO;
 import tim18.ftn.uns.ac.rs.paypalpayment.model.Order;
 import tim18.ftn.uns.ac.rs.paypalpayment.model.PaypalPlan;
 import tim18.ftn.uns.ac.rs.paypalpayment.model.PaypalSubscription;
+import tim18.ftn.uns.ac.rs.paypalpayment.repository.OrderRepository;
 import tim18.ftn.uns.ac.rs.paypalpayment.repository.PaypalSubscriptionRepository;
 
 @Service
@@ -31,11 +40,14 @@ public class SubscriptionService {
 	@Autowired
 	PaypalSubscriptionRepository subscriptionRepository;
 
+	@Autowired
+	OrderRepository ordersRepository;
+
 	public Optional<PaypalSubscription> getSubscriptionByPlanId(String planId) {
 		return subscriptionRepository.findByPlanId(planId);
 	}
 
-	public PaypalSubscription createSubscription(PaypalPlan plan, Order order, String payerEmail) throws UnsupportedEncodingException {
+	public PaypalSubscription createSubscription(PaypalPlan plan, Order order, SubscriptionPlanDTO subscriptionDTO) throws UnsupportedEncodingException {
 		RestTemplate restTemplate = new RestTemplate();
 		Optional<PaypalSubscription> alreadyCreated = subscriptionRepository.findByPlanId(plan.getPlanId());
 		if (alreadyCreated.isPresent()) {
@@ -46,7 +58,7 @@ public class SubscriptionService {
                 "  \"plan_id\": \"" + plan.getPlanId() + "\",\n" +
                 "  \"quantity\": 1,\n" +
                 "  \"subscirber\": {\n" +
-                "    \"email_address\": \"" + payerEmail + "\"\n" +
+                "    \"email_address\": \"" + subscriptionDTO.getEmail() + "\"\n" +
                 "  }" +
                 // It's a problem to redirect back for localhost!
 //                "  \"application_context\": {\n" +
@@ -78,7 +90,10 @@ public class SubscriptionService {
             	gson.fromJson(jsonResponse, JsonObject.class).get("status").getAsString()
         );
         
+        subscription.setMonthlyPrice(order.getPrice());
         subscription.setCallbackURL(order.getCallbackUrl());
+        subscription.setDurationMonths(subscriptionDTO.getSubscriptionDuration());
+        subscription.setSubscriber(subscriptionDTO.getEmail());
         
         subscriptionRepository.save(subscription);
         
@@ -97,6 +112,55 @@ public class SubscriptionService {
         HttpEntity entity = new HttpEntity(headers);
         return restTemplate.exchange(
         		paypalAPI, HttpMethod.GET, entity, String.class);
+	}
+	
+	@Scheduled(fixedDelay = 180000)
+	public void checkActiveSubscriptions() throws UnsupportedEncodingException {
+		List<PaypalSubscription> checkSubscriptions = subscriptionRepository.findAllByStatus("ACTIVE");
+		List<Order> transactionalOrders = new ArrayList<Order>();
+		for(PaypalSubscription subscription : checkSubscriptions) {
+	    	String paypalAPI = "https://api.sandbox.paypal.com/v1/billing/subscriptions/"
+	            	+ subscription.getSubscriptionId() + "/transactions";
+	    	LocalDateTime start = subscription.getTransactionCheckTimestamp();
+	    	if (start == null) {
+	    		start = subscription.getCreateTimestamp();
+	    	}
+	    	ZonedDateTime transactionsStart = ZonedDateTime.of(start, ZoneId.systemDefault());
+	        
+	    	LocalDateTime end = LocalDateTime.now();
+	    	ZonedDateTime transactionsEnd =  ZonedDateTime.of(end, ZoneId.systemDefault());
+	    	paypalAPI = paypalAPI + "?start_time=" + transactionsStart.format(DateTimeFormatter.ISO_INSTANT) + "&end_time=" + transactionsEnd.format(DateTimeFormatter.ISO_INSTANT);
+	    	RestTemplate restTemplate = new RestTemplate();
+    		HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.set("Authorization", "Bearer " + tokenService.getAccessToken(subscription.getMerchant()));
+            HttpEntity entity = new HttpEntity(headers);
+        	try {
+	            ResponseEntity<String> transactions = restTemplate.exchange(
+	        		paypalAPI, HttpMethod.GET, entity, String.class);
+	            Gson gson = new Gson();
+		    	String response = transactions.getBody();
+		    	JsonArray transactionResponse = gson.fromJson(response, JsonObject.class).get("transactions").getAsJsonArray();
+		    	for (JsonElement oneTrans: transactionResponse) {
+		    		Order order = new Order(
+		    			subscription.getMerchant(),
+		    			subscription.getSubscriber(),
+		    			subscription.getMonthlyPrice(),
+		    			subscription.getCallbackURL()
+		    		);
+		    		order.setExecuted(true);
+		    		order.setStatus(gson.fromJson(oneTrans, JsonObject.class).get("status").getAsString());
+		    		order.setPaypalOrderId(gson.fromJson(oneTrans, JsonObject.class).get("id").getAsString());
+		    		order.setRelatedSubscription(subscription.getSubscriptionId());
+		    		transactionalOrders.add(order);
+		    	}
+            }  catch (final HttpClientErrorException e) {
+            	subscription.setStatus("ERROR");
+            }
+            subscription.setTransactionCheckTimestamp(end);
+		}
+    	ordersRepository.saveAll(transactionalOrders);
+    	subscriptionRepository.saveAll(checkSubscriptions);
 	}
 	
 

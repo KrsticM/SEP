@@ -48,6 +48,9 @@ public class Order {
 
 	@Column
 	private String callbackUrl;
+	
+	@Column
+	private String relatedSubscription;
 
 	public Order() {
 		super();

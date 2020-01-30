@@ -51,3 +51,23 @@
 2020-01-30 19:56:59,810 INFO org.springframework.boot.StartupInfoLogger [main] Started PaypalPaymentApplication in 30.612 seconds (JVM running for 31.174)
 2020-01-30 20:09:36,312 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
 2020-01-30 20:09:45,725 INFO org.springframework.boot.StartupInfoLogger [main] Started PaypalPaymentApplication in 30.616 seconds (JVM running for 31.205)
+2020-01-30 20:40:55,983 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-30 20:41:05,908 INFO org.springframework.boot.StartupInfoLogger [main] Started PaypalPaymentApplication in 31.136 seconds (JVM running for 31.78)
+2020-01-30 20:43:57,338 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-30 20:44:06,700 INFO org.springframework.boot.StartupInfoLogger [main] Started PaypalPaymentApplication in 30.496 seconds (JVM running for 31.084)
+2020-01-30 20:48:38,530 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-30 20:48:48,252 INFO org.springframework.boot.StartupInfoLogger [main] Started PaypalPaymentApplication in 30.843 seconds (JVM running for 31.385)
+2020-01-30 20:55:16,912 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-30 20:55:26,430 INFO org.springframework.boot.StartupInfoLogger [main] Started PaypalPaymentApplication in 30.759 seconds (JVM running for 31.3)
+2020-01-30 20:56:34,307 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-30 20:56:43,516 INFO org.springframework.boot.StartupInfoLogger [main] Started PaypalPaymentApplication in 30.421 seconds (JVM running for 31.031)
+2020-01-30 21:00:15,765 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-30 21:00:24,749 INFO org.springframework.boot.StartupInfoLogger [main] Started PaypalPaymentApplication in 30.138 seconds (JVM running for 30.735)
+2020-01-30 21:03:47,224 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-30 21:04:00,677 INFO org.springframework.boot.StartupInfoLogger [main] Started PaypalPaymentApplication in 35.569 seconds (JVM running for 36.36)
+2020-01-30 21:07:48,098 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-30 21:08:02,438 INFO org.springframework.boot.StartupInfoLogger [main] Started PaypalPaymentApplication in 35.659 seconds (JVM running for 36.257)
+2020-01-30 21:09:26,882 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-30 21:09:40,136 INFO org.springframework.boot.StartupInfoLogger [main] Started PaypalPaymentApplication in 35.221 seconds (JVM running for 36.382)
+2020-01-30 21:20:21,094 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2020-01-30 21:20:30,409 INFO org.springframework.boot.StartupInfoLogger [main] Started PaypalPaymentApplication in 30.632 seconds (JVM running for 31.195)

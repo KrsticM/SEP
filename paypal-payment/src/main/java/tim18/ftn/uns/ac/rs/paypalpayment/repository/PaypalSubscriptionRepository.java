@@ -9,6 +9,7 @@ import tim18.ftn.uns.ac.rs.paypalpayment.model.PaypalSubscription;
 
 public interface PaypalSubscriptionRepository extends JpaRepository<PaypalSubscription, Integer>{
 	Optional<PaypalSubscription> findByPlanId(String planId);
+	Optional<PaypalSubscription> findBySubscriptionId(String subscriptionId);
 	List<PaypalSubscription> findAllByStatus(String status);
 }
 
