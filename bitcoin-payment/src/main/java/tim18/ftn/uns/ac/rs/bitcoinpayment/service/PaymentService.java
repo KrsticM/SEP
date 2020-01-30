@@ -80,7 +80,7 @@ public class PaymentService {
 	}
 
 	//Task koji ce proveravati sve narudzbine i menjati im stanja
-	@Scheduled(fixedDelay = 180000)
+	@Scheduled(fixedDelay = 60000)
 	public void fetchCoingate() {
 	    System.out.println("Proveravanje transakcija... ");
 	    List<Order> unfinishedOrders = orderService.findAllByStatus(OrderStatus.CREATED);

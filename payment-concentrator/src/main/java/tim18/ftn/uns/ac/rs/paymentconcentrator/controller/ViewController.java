@@ -51,6 +51,7 @@ public class ViewController {
 		Order o = orderService.findById(orderId);
 		
 		// Prosleduju se atributi koji su dobijeni od naucne centrale
+		model.addAttribute("orderIdSellerService", o.getId());
 		model.addAttribute("orderId", o.getOrderIdScienceCenter()); 
 		model.addAttribute("orderPrice", o.getPrice());
 		model.addAttribute("callbackUrl", o.getCallbackUrl()); 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tim18.ftn.uns.ac.rs.paymentconcentrator.dto.OrderInformationDTO;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.model.Order;
+import tim18.ftn.uns.ac.rs.paymentconcentrator.model.OrderStatus;
 import tim18.ftn.uns.ac.rs.paymentconcentrator.service.OrderService;
 
 @RestController
@@ -33,6 +34,7 @@ public class OrderController {
 		o.setPrice(orderInformationDTO.getPrice());
 		o.setCallbackUrl(orderInformationDTO.getCallbackUrl());
 		o.setTicks(0);
+		o.setStatus(OrderStatus.CREATED);
 		
 		Order savedOrder = orderService.saveOrder(o);
 		logger.info("Saving order with id " + savedOrder.getId());

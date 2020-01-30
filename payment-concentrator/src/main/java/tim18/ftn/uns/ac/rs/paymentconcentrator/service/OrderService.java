@@ -1,5 +1,6 @@
 package tim18.ftn.uns.ac.rs.paymentconcentrator.service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -33,5 +34,9 @@ public class OrderService {
 		}
 		
 		return order.get();
+	}
+
+	public List<Order> findAll() {
+		return orderRepository.findAll();
 	}
 }

@@ -34,4 +34,8 @@ public class OrderService {
 	public List<Order> findAllCompleted() {
 		return orderRepository.findAllByStatus(OrderStatus.COMPLETED);
 	}
+
+	public List<Order> findAll() {
+		return orderRepository.findAll();
+	}
 }
