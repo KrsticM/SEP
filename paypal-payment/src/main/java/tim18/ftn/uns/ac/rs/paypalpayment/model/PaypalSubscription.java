@@ -28,6 +28,9 @@ public class PaypalSubscription {
 	private String subscriptionId;
 	
 	@Column
+	private String callbackURL;
+	
+	@Column
 	private String planId;
 
 	@Column

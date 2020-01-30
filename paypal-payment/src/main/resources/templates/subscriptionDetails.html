@@ -37,6 +37,11 @@
           <div>
             <form id="forma" th:action="@{'http://localhost:8200/subscribe/' + ${orderId}}" method="POST" role="form">
               <div class="form-group">
+                <label for="cardHolder">Your email address</label>
+                <input
+                  type="email" name="email" id="email" placeholder="email@example.com" required
+                  class="form-control">
+              </div><div class="form-group">
                 <label for="cardHolder">Desired subscription duration (months)</label>
                 <input
                   type="number" name="subscriptionDuration" id="subscriptionDuration" placeholder="12" required

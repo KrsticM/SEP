@@ -67,6 +67,7 @@ public class AccessTokenService {
         AccessToken accessToken = new AccessToken();
         accessToken.setAppId(appId);
         accessToken.setToken(gson.fromJson(jsonResponse, JsonObject.class).get("access_token").getAsString());
+        System.out.println(accessToken.getToken());
         accessToken.setExpiresAt(
         	Long.parseLong(gson.fromJson(jsonResponse, JsonObject.class).get("expires_in").getAsString())
         );

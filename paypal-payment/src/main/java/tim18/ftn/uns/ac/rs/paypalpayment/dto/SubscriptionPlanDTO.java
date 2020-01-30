@@ -13,5 +13,9 @@ public class SubscriptionPlanDTO {
 
 	@NotBlank(message = "Please, enter subscription duration.")
 	private Integer subscriptionDuration;
+	
+
+	@NotBlank(message = "Please, enter your email address")
+	private String email;
 
 }

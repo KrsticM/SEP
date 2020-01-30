@@ -42,8 +42,8 @@ public class OrderService {
         String defJson = "{\n" +
                 "  \"intent\": \"CAPTURE\",\n" +
                 "  \"application_context\": {\n" +
-                "    \"return_url\": \"http://localhost:8200/view/successURL\",\n" +
-                "    \"cancel_url\": \"http://localhost:8200/view/cancelURL\"\n" +
+                "    \"return_url\": \"http://localhost:8200/view/successURL/" + order.getId() + "\",\n" +
+                "    \"cancel_url\": \"http://localhost:8200/view/cancelURL/" + order.getId() + "\"\n" +
                 "  },\n" +
                 "  \"purchase_units\": [{\n" +
                 "    \"amount\": {\n" +

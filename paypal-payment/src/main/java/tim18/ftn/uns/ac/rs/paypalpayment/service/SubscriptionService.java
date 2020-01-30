@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 
+import tim18.ftn.uns.ac.rs.paypalpayment.model.Order;
 import tim18.ftn.uns.ac.rs.paypalpayment.model.PaypalPlan;
 import tim18.ftn.uns.ac.rs.paypalpayment.model.PaypalSubscription;
 import tim18.ftn.uns.ac.rs.paypalpayment.repository.PaypalSubscriptionRepository;
@@ -30,7 +31,11 @@ public class SubscriptionService {
 	@Autowired
 	PaypalSubscriptionRepository subscriptionRepository;
 
-	public PaypalSubscription createSubscription(PaypalPlan plan) throws UnsupportedEncodingException {
+	public Optional<PaypalSubscription> getSubscriptionByPlanId(String planId) {
+		return subscriptionRepository.findByPlanId(planId);
+	}
+
+	public PaypalSubscription createSubscription(PaypalPlan plan, Order order, String payerEmail) throws UnsupportedEncodingException {
 		RestTemplate restTemplate = new RestTemplate();
 		Optional<PaypalSubscription> alreadyCreated = subscriptionRepository.findByPlanId(plan.getPlanId());
 		if (alreadyCreated.isPresent()) {
@@ -41,9 +46,16 @@ public class SubscriptionService {
                 "  \"plan_id\": \"" + plan.getPlanId() + "\",\n" +
                 "  \"quantity\": 1,\n" +
                 "  \"subscirber\": {\n" +
-                "    \"email_address\": \"TO_BE_ADDED\"\n" +
-                "  }\n" +
+                "    \"email_address\": \"" + payerEmail + "\"\n" +
+                "  }" +
+                // It's a problem to redirect back for localhost!
+//                "  \"application_context\": {\n" +
+//                "    \"return_url\": \"http://localhost:8200/view/successSubscriptionURL/" + plan.getId() + "/\",\n" +
+//                "    \"cancel_url\": \"http://localhost:8200/view/cancelSubscriptionURL/" + plan.getId() + "/\"\n" +
+//                "  }\n" +
                 "}";
+        
+        System.out.println(defJson);
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -65,6 +77,8 @@ public class SubscriptionService {
             		.getAsString(),
             	gson.fromJson(jsonResponse, JsonObject.class).get("status").getAsString()
         );
+        
+        subscription.setCallbackURL(order.getCallbackUrl());
         
         subscriptionRepository.save(subscription);
         

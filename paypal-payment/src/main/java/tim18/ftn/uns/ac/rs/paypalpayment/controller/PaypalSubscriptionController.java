@@ -48,7 +48,7 @@ public class PaypalSubscriptionController {
 		System.out.println("Product: \n" + product.toString());
 		System.out.println("Billing plan: \n" + plan.toString());
 		
-		PaypalSubscription createdSubscription = subscriptionService.createSubscription(plan);
+		PaypalSubscription createdSubscription = subscriptionService.createSubscription(plan, order, subscriptionDTO.getEmail());
 		System.out.println("Billing plan: \n" + plan.toString());
 		System.out.println("Response: \n" + createdSubscription.toString());
 
