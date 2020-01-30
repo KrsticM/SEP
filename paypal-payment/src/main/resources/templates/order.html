@@ -40,7 +40,7 @@ paypal.Buttons({
     },
     /* onApprove() is called when the buyer approves the payment */
  	onCancel: function() {
-        window.location = 'http://localhost:8200/view/cancelURL';
+        window.location = 'http://localhost:8200/view/cancelURL?orderId=' + orderId;
  		
  	},
     onApprove: function(data, actions) {
@@ -58,11 +58,11 @@ paypal.Buttons({
           return res.json();
         }).then(function(details) {
           alert('Transaction funds captured!');
-          window.location = 'http://localhost:8200/view/successURL';
+          window.location = 'http://localhost:8200/view/successURL?orderId=' + orderId;
         }).catch(function(error) {
       	  console.log(error);
       	  alert('An error occured');
-          window.location = 'http://localhost:8200/view/errorURL';
+          window.location = 'http://localhost:8200/view/errorURL?orderId=' + orderId;
         });
  
     }

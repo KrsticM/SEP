@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import tim18.ftn.uns.ac.rs.paypalpayment.model.Order;
 import tim18.ftn.uns.ac.rs.paypalpayment.service.OrderService;
@@ -16,7 +17,9 @@ public class ViewController {
 	OrderService orderService;
 
 	@RequestMapping(value = "/successURL")
-	public String successBtc() {	
+	public String successPayment(@RequestParam("orderId") Integer orderId, Model model) {
+		Order order = orderService.getOrder(orderId);
+		model.addAttribute("redirect", order.getCallbackUrl());
 		return "success";
 	}
 
@@ -30,12 +33,16 @@ public class ViewController {
 	}
 
 	@RequestMapping(value = "/errorURL")
-	public String errorBtc() {	
+	public String errorPayment(@RequestParam("orderId") Integer orderId, Model model) {	
+		Order order = orderService.getOrder(orderId);
+		model.addAttribute("redirect", order.getCallbackUrl());
 		return "error";
 	}
 
 	@RequestMapping(value = "/cancelURL")
-	public String cancelBtc() {	
+	public String cancelPayment(@RequestParam("orderId") Integer orderId, Model model) {	
+		Order order = orderService.getOrder(orderId);
+		model.addAttribute("redirect", order.getCallbackUrl());
 		return "cancel";
 	}
 	
