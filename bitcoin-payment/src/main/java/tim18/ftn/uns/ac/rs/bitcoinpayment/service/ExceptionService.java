@@ -37,7 +37,7 @@ public class ExceptionService {
 				System.out.println("Tick za order: " + order.getId() + " povecan za 1");
 			} else {
 				System.out.println("Order istekao: " + order.getId());
-				order.setStatus(OrderStatus.FAILED); // Nesto je poslo po zlu, javi to i naucnoj centrali
+				order.setStatus(OrderStatus.EXPIRED); // Nesto je poslo po zlu, javi to i naucnoj centrali
 				orderService.saveOrder(order);
 
 				CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();

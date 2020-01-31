@@ -83,55 +83,58 @@ public class PaymentService {
 	@Scheduled(fixedDelay = 60000)
 	public void fetchCoingate() {
 	    System.out.println("Proveravanje transakcija... ");
-	    List<Order> unfinishedOrders = orderService.findAllByStatus(OrderStatus.CREATED);
+	    List<Order> unfinishedOrders = orderService.findAll();
 	    
 	    for(Order order : unfinishedOrders) {
-	    	System.out.println(order);
 	    	
-	    	// Saljemo upit na coingate i zahtevamo informacije
-	    	String clientSecret = "Bearer " + order.getMerchant().getCoingateToken();
-			HttpHeaders headers = new HttpHeaders();
-			headers.add("Authorization", clientSecret);
-			System.out.println("Slanje zahteva za proveravanje narudzbine... 	" + clientSecret);
-			HttpEntity entity = new HttpEntity(headers);
-			
-			System.err.println("URL: " + sandboxUrl + "/" + order.getOrderIdCoinGate());
-			ResponseEntity<OrderInfoDTO> response = restTemplate.exchange(sandboxUrl + "/" + order.getOrderIdCoinGate(), HttpMethod.GET, entity, OrderInfoDTO.class);
-	    	System.out.println(response.getBody());
-	    	
-	    	CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
-			completePaymentResponseDTO.setOrder_id(order.getOrderIdScienceCenter());
-			
-	    	
-	    	OrderInfoDTO responseBody = response.getBody();
-	    	// Status paid (Kada je placanje uspesno proslo)
-	    	if(responseBody.getStatus().contentEquals("paid")) {
-	    		// Narudzbina je placenja, javi to naucnoj centrali
-	    		order.setStatus(OrderStatus.COMPLETED);
-	    		completePaymentResponseDTO.setStatus("COMPLETED");
-	    		orderService.saveOrder(order);
-		    	System.out.println(completePaymentResponseDTO);
-		    	restTemplate.exchange(order.getCallbackUrl(), HttpMethod.POST, new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
-	    	} 
+	    	if(order.getStatus() == OrderStatus.CREATED || order.getStatus() == OrderStatus.EXPIRED) // Proveri sve kreirane a i one koje su kod nas istekli
+	    	{
+	    		System.out.println(order);
+		    	
+		    	// Saljemo upit na coingate i zahtevamo informacije
+		    	String clientSecret = "Bearer " + order.getMerchant().getCoingateToken();
+				HttpHeaders headers = new HttpHeaders();
+				headers.add("Authorization", clientSecret);
+				System.out.println("Slanje zahteva za proveravanje narudzbine... 	" + clientSecret);
+				HttpEntity entity = new HttpEntity(headers);
+				
+				System.err.println("URL: " + sandboxUrl + "/" + order.getOrderIdCoinGate());
+				ResponseEntity<OrderInfoDTO> response = restTemplate.exchange(sandboxUrl + "/" + order.getOrderIdCoinGate(), HttpMethod.GET, entity, OrderInfoDTO.class);
+		    	System.out.println(response.getBody());
+		    	
+		    	CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
+				completePaymentResponseDTO.setOrder_id(order.getOrderIdScienceCenter());
+				
+		    	
+		    	OrderInfoDTO responseBody = response.getBody();
+		    	// Status paid (Kada je placanje uspesno proslo)
+		    	if(responseBody.getStatus().contentEquals("paid")) {
+		    		// Narudzbina je placenja, javi to naucnoj centrali
+		    		order.setStatus(OrderStatus.COMPLETED);
+		    		completePaymentResponseDTO.setStatus("COMPLETED");
+		    		orderService.saveOrder(order);
+			    	System.out.println(completePaymentResponseDTO);
+			    	restTemplate.exchange(order.getCallbackUrl(), HttpMethod.POST, new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
+		    	} 
 
-	    	// Status expired (Kada je isteklo vreme ili se prekine placanje)
-	    	else if(responseBody.getStatus().contentEquals("expired")) {
-	    		order.setStatus(OrderStatus.FAILED);
-	    		completePaymentResponseDTO.setStatus("FAILED");
-	    		orderService.saveOrder(order);
-		    	System.out.println(completePaymentResponseDTO);
-		    	restTemplate.exchange(order.getCallbackUrl(), HttpMethod.POST, new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
-	    	}
-	    	
-	    	else if(responseBody.getStatus().contentEquals("invalid")) {
-	    		order.setStatus(OrderStatus.FAILED);
-	    		completePaymentResponseDTO.setStatus("FAILED");
-	    		orderService.saveOrder(order);
-		    	System.out.println(completePaymentResponseDTO);
-		    	restTemplate.exchange(order.getCallbackUrl(), HttpMethod.POST, new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
+		    	// Status expired (Kada je isteklo vreme ili se prekine placanje)
+		    	else if(responseBody.getStatus().contentEquals("expired")) {
+		    		order.setStatus(OrderStatus.FAILED);
+		    		completePaymentResponseDTO.setStatus("FAILED");
+		    		orderService.saveOrder(order);
+			    	System.out.println(completePaymentResponseDTO);
+			    	restTemplate.exchange(order.getCallbackUrl(), HttpMethod.POST, new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
+		    	}
+		    	
+		    	else if(responseBody.getStatus().contentEquals("invalid")) {
+		    		order.setStatus(OrderStatus.FAILED);
+		    		completePaymentResponseDTO.setStatus("FAILED");
+		    		orderService.saveOrder(order);
+			    	System.out.println(completePaymentResponseDTO);
+			    	restTemplate.exchange(order.getCallbackUrl(), HttpMethod.POST, new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
+		    	}
 	    	}
 	    }
-	    
 	}
 	
 	/* 
