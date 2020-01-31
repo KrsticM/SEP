@@ -12,4 +12,5 @@ import lombok.ToString;
 public class CompletePaymentDTO {
 	private Integer order_id;
 	private String status;
+	private boolean is_subscription;
 }

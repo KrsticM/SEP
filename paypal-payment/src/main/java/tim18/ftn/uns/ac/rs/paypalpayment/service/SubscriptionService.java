@@ -25,6 +25,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import tim18.ftn.uns.ac.rs.paypalpayment.dto.CompletePaymentResponseDTO;
 import tim18.ftn.uns.ac.rs.paypalpayment.dto.SubscriptionPlanDTO;
 import tim18.ftn.uns.ac.rs.paypalpayment.model.Order;
 import tim18.ftn.uns.ac.rs.paypalpayment.model.PaypalPlan;
@@ -90,6 +91,7 @@ public class SubscriptionService {
             	gson.fromJson(jsonResponse, JsonObject.class).get("status").getAsString()
         );
         
+        subscription.setOrderScienceCenterId(order.getOrderIdScienceCenter());
         subscription.setMonthlyPrice(order.getPrice());
         subscription.setCallbackURL(order.getCallbackUrl());
         subscription.setDurationMonths(subscriptionDTO.getSubscriptionDuration());
@@ -146,6 +148,7 @@ public class SubscriptionService {
 		    			subscription.getMerchant(),
 		    			subscription.getSubscriber(),
 		    			subscription.getMonthlyPrice(),
+		    			subscription.getOrderScienceCenterId(),
 		    			subscription.getCallbackURL()
 		    		);
 		    		order.setExecuted(true);
@@ -190,12 +193,22 @@ public class SubscriptionService {
 		    		HttpEntity<String> postEntity = new HttpEntity<String>("", headers); 
 			    	String responseActivation = restTemplate.postForObject(paypalAPIActivate, postEntity, String.class);
 					subscription.setStatus("ACTIVE");
+				 	CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
+	    			completePaymentResponseDTO.setOrder_id(subscription.getOrderScienceCenterId());
+	    			completePaymentResponseDTO.setStatus("COMPLETED");
+	    			completePaymentResponseDTO.set_subscription(true);
+	    			restTemplate.exchange(subscription.getCallbackURL(), HttpMethod.POST, new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
 		    	}
 		    	System.out.println(subscription.toString());
 		    	
 		    	subscription.setStatus(status);
             }  catch (final HttpClientErrorException e) {
             	subscription.setStatus("ERROR");
+             	CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
+    			completePaymentResponseDTO.setOrder_id(subscription.getOrderScienceCenterId());
+    			completePaymentResponseDTO.setStatus("FAILED");
+    			completePaymentResponseDTO.set_subscription(true);
+    			restTemplate.exchange(subscription.getCallbackURL(), HttpMethod.POST, new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
             }
 	    }
     	subscriptionRepository.saveAll(checkSubscriptions);

@@ -31,15 +31,18 @@ public class OrderController {
 		if(completePaymentDTO.getStatus().contentEquals("COMPLETED")) {
 			Order o = orderService.findById(completePaymentDTO.getOrder_id());
 			o.setStatus(OrderStatus.COMPLETED);	
+			o.set_subscription(completePaymentDTO.is_subscription());
 			orderService.saveOrder(o);
 			return "Success";
 		}
 		else if(completePaymentDTO.getStatus().contentEquals("FAILED")) {
 			Order o = orderService.findById(completePaymentDTO.getOrder_id());
-			o.setStatus(OrderStatus.FAILED);	
+			o.setStatus(OrderStatus.FAILED);
+			o.set_subscription(completePaymentDTO.is_subscription());	
 			orderService.saveOrder(o);
 			return "Failed";
 		}
+		
 		
 		return "Error";
 	}

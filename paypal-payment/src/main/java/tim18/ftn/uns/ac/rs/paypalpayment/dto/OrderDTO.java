@@ -15,6 +15,8 @@ public class OrderDTO {
 	
 	private Integer appId;
 
+	private Integer orderIdScienceCenter;
+
 	private String payer;
 
 	@NotBlank(message = "Please, enter callback url.")
@@ -25,6 +27,7 @@ public class OrderDTO {
 			this.appId,
 			this.payer,
 			this.price,
+			this.orderIdScienceCenter,
 			this.callbackUrl
 		);
 		return ret;

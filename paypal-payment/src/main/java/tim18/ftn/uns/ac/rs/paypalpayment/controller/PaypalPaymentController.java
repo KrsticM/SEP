@@ -7,6 +7,8 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import tim18.ftn.uns.ac.rs.paypalpayment.dto.CompletePaymentDTO;
+import tim18.ftn.uns.ac.rs.paypalpayment.dto.CompletePaymentResponseDTO;
 import tim18.ftn.uns.ac.rs.paypalpayment.dto.OrderDTO;
 import tim18.ftn.uns.ac.rs.paypalpayment.model.Order;
 import tim18.ftn.uns.ac.rs.paypalpayment.service.OrderService;
@@ -67,10 +71,28 @@ public class PaypalPaymentController {
 	}
 	
 	@RequestMapping(value = "/complete", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> complete(@RequestBody CompletePaymentDTO completePayment) {
-		// TODO: implement
-		System.out.println("Complete payment");
-		logger.info("Complete paypal payment");
-		return ResponseEntity.ok("OK");
+	public String complete(@RequestBody CompletePaymentDTO completePayment) {
+		Order o = orderService.getOrder(completePayment.getOrder_id());
+		o.setStatus("COMPLETED");
+		orderService.saveOrder(o);
+		logger.info("Order with id " + completePayment.getOrder_id() + " is completed"); 
+
+		CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
+		completePaymentResponseDTO.setOrder_id(o.getOrderIdScienceCenter());
+		
+		RestTemplate restTemplate = new RestTemplate();
+        
+		if(completePayment.getStatus().contentEquals("COMPLETED")) {
+			completePaymentResponseDTO.setStatus("COMPLETED");
+		}
+		else {
+			completePaymentResponseDTO.setStatus("FAILED");
+		} // TODO: Expired..
+		
+		
+		ResponseEntity<String> responseEntity = restTemplate.exchange(o.getCallbackUrl(), HttpMethod.POST,
+				new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
+		
+		return responseEntity.getBody();// TODO: implement
 	}
 }

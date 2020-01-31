@@ -24,6 +24,9 @@ public class Order {
 
 	@Column
 	private LocalDateTime createTimestamp;
+	
+	@Column
+	private Integer orderIdScienceCenter;
 
 	@Column
 	private String createTime;
@@ -56,12 +59,13 @@ public class Order {
 		super();
 	}
 
-	public Order(Integer merchantId, String payer, Double price, String callbackUrl) {
+	public Order(Integer merchantId, String payer, Double price, Integer orderCenterId, String callbackUrl) {
 		this.merchant = merchantId;
 		this.payer = payer;
 		this.price = price;
 		this.callbackUrl = callbackUrl;
 		this.executed = false;
+		this.orderIdScienceCenter = orderCenterId;
 		this.createTimestamp = LocalDateTime.now();
 	}
 }

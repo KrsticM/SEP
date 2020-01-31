@@ -35,6 +35,9 @@ public class PaypalSubscription {
 	
 	@Column
 	private Double monthlyPrice;
+	
+	@Column
+	private Integer orderScienceCenterId;
 
 
 	@Column

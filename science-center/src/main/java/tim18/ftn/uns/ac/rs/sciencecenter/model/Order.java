@@ -32,6 +32,9 @@ public class Order {
 	private String callbackUrl;
 	
 	@Column
+	private boolean is_subscription;
+	
+	@Column
 	private OrderStatus status;
 	
 }

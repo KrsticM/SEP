@@ -20,7 +20,9 @@ import org.springframework.http.HttpEntity;
 import java.net.URLEncoder;
 import java.util.List;
 
+import tim18.ftn.uns.ac.rs.paypalpayment.dto.CompletePaymentResponseDTO;
 import tim18.ftn.uns.ac.rs.paypalpayment.model.Order;
+import tim18.ftn.uns.ac.rs.paypalpayment.model.OrderStatus;
 import tim18.ftn.uns.ac.rs.paypalpayment.model.PaypalSubscription;
 import tim18.ftn.uns.ac.rs.paypalpayment.repository.OrderRepository;
 
@@ -34,6 +36,10 @@ public class OrderService {
 	
 	public Order getOrder(Integer orderId) {
 		return orderRepository.getOne(orderId);
+	}
+	
+	public Order saveOrder(Order order) {
+		return orderRepository.save(order);
 	}
 
 	public Order createOrder(Order order) throws UnsupportedEncodingException {
@@ -87,6 +93,10 @@ public class OrderService {
         order.setStatus(status);
         if (status.equalsIgnoreCase("COMPLETED")) {
         	order.setExecuted(true);
+        	CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
+			completePaymentResponseDTO.setOrder_id(order.getOrderIdScienceCenter());
+			completePaymentResponseDTO.setStatus("COMPLETED");
+			restTemplate.exchange(order.getCallbackUrl(), HttpMethod.POST, new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
         }
         orderRepository.save(order);
         return jsonResponse;
@@ -115,6 +125,11 @@ public class OrderService {
 	
 			        if (status.equalsIgnoreCase("COMPLETED")) {
 			        	order.setExecuted(true);
+			         	CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
+						completePaymentResponseDTO.setOrder_id(order.getOrderIdScienceCenter());
+						completePaymentResponseDTO.setStatus("COMPLETED");
+						restTemplate.exchange(order.getCallbackUrl(), HttpMethod.POST, new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
+			        
 			        }
 			    	System.out.println(order.toString());
 			    	
@@ -122,6 +137,10 @@ public class OrderService {
 	            } catch (final HttpClientErrorException e) {
 	            	order.setStatus("ERROR");
 	            	order.setExecuted(true);
+	            	CompletePaymentResponseDTO completePaymentResponseDTO = new CompletePaymentResponseDTO();
+	    			completePaymentResponseDTO.setOrder_id(order.getOrderIdScienceCenter());
+	    			completePaymentResponseDTO.setStatus("FAILED");
+	    			restTemplate.exchange(order.getCallbackUrl(), HttpMethod.POST, new HttpEntity<CompletePaymentResponseDTO>(completePaymentResponseDTO), String.class);
 	            }
 		    }
 	    	orderRepository.saveAll(checkOrders);

@@ -14,4 +14,5 @@ public class CreateOrderDTO {
 	private Double price;
 	private Integer appId;
 	private String callbackUrl;
+	private String redirectUrl;
 }
